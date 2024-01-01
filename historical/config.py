@@ -3,6 +3,7 @@ from dataclasses import dataclass
 
 from historical.common import Deployment, Node
 
+
 @dataclass
 class Config:
     deployments: Dict[str, Deployment]
