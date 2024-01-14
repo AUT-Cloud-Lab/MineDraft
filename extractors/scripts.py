@@ -15,6 +15,9 @@ def check_equality(config: Config, histories: List[History]) -> None:
     number_of_differences: Dict[Deployment, int] = {
         deployment: 0 for _, deployment in config.deployments.items()
     }
+    print(len(histories[0].cycles))
+    print(len(histories[1].cycles))
+
     for cycle_number in range(max(map(lambda history: len(history.cycles), histories))):
         cycles: List[Cycle] = []
         for history in histories:
