@@ -37,7 +37,7 @@ def calc_migrations(config: Config, histories: List[History]) -> None:
         for (start, cycle) in enumerate(history.cycles):
             if not is_cycle_valid(cycle):
                 continue
-            for (_end, next_cycle) in enumerate(history.cycles[start + 1 :]):
+            for (_end, next_cycle) in enumerate(history.cycles[start + 1:]):
                 end = start + _end + 1
                 if not is_cycle_valid(next_cycle):
                     continue
@@ -135,3 +135,8 @@ def check_equality(config: Config, histories: List[History]) -> None:
 
     for deployment, number_of_differences in number_of_differences.items():
         print(f"{deployment}'s number of differences are {number_of_differences}!")
+
+
+@register_extractor
+def average_latency(config: Config, histories: List[History]) -> None:
+    print(config)

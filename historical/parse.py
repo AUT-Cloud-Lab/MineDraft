@@ -65,7 +65,7 @@ def parse_hpa_state(config: Config, json_data: dict) -> HpaState:
         deployment_name = get_deployment_from_name_in_hpa(deployment_name_in_hpa)
         if deployment_name not in config.deployments:
             continue
-        print(f"deployment {deployment_name}: {metric}")
+        # print(f"deployment {deployment_name}: {metric}")
 
         deployment = config.deployments[deployment_name]
         deployment_metrics[deployment] = metric
