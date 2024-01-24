@@ -1,11 +1,17 @@
-from typing import List, Dict
 from math import ceil
+from typing import List, Dict
 
+import matplotlib.pyplot as plt
+
+from extractors.decorator import register_extractor
+from historical.common import Deployment
 from historical.config import Config
 from historical.data import History, Cycle, Migration
-from historical.common import Deployment
+from historical.utils import calculate_cloud_pod_count, calculate_edge_pod_count, calculate_deployments_request_portion
 from historical.utils import get_nodes_of_a_deployment
-from extractors.decorator import register_extractor
+
+CLOUD_RESPONSE_TIME = 350
+EDGE_RESPONSE_TIME = 50
 
 
 @register_extractor
@@ -43,7 +49,7 @@ def calc_migrations(config: Config, histories: List[History]) -> None:
                     continue
 
                 if ceil(cycle.hpa.deployment_metrics[deployment]) != ceil(
-                    next_cycle.hpa.deployment_metrics[deployment]
+                        next_cycle.hpa.deployment_metrics[deployment]
                 ):
                     continue
 
@@ -139,4 +145,37 @@ def check_equality(config: Config, histories: List[History]) -> None:
 
 @register_extractor
 def average_latency(config: Config, histories: List[History]) -> None:
-    print(config)
+    timestamps = [0]
+    a_latencies = [0]
+    b_latencies = [0]
+    c_latencies = [0]
+    d_latencies = [0]
+    for history in histories:
+        for cycle in history.cycles:
+            a_cloud, b_cloud, c_cloud, d_cloud = calculate_cloud_pod_count(cycle)
+            a_edge, b_edge, c_edge, d_edge = calculate_edge_pod_count(cycle)
+
+            a_portion, b_portion, c_portion, d_portion = calculate_deployments_request_portion(cycle)
+
+            a_latency = a_portion * (a_edge * EDGE_RESPONSE_TIME + a_cloud * CLOUD_RESPONSE_TIME)
+            b_latency = b_portion * (b_edge * EDGE_RESPONSE_TIME + b_cloud * CLOUD_RESPONSE_TIME)
+            c_latency = c_portion * (c_edge * EDGE_RESPONSE_TIME + c_cloud * CLOUD_RESPONSE_TIME)
+            d_latency = d_portion * (d_edge * EDGE_RESPONSE_TIME + d_cloud * CLOUD_RESPONSE_TIME)
+
+            timestamps.append(cycle.timestamp)
+            a_latencies.append(a_latency)
+            b_latencies.append(b_latency)
+            c_latencies.append(c_latency)
+            d_latencies.append(d_latency)
+
+    plt.figure(figsize=(9.5, 5), layout="tight")
+    plt.plot(timestamps, a_latencies, label="deployment: a")
+    plt.plot(timestamps, b_latencies, label="deployment: b")
+    plt.plot(timestamps, c_latencies, label="deployment: c")
+    plt.plot(timestamps, d_latencies, label="deployment: d")
+    plt.xlabel("time(s)")
+    plt.ylabel("average latency(ms)")
+    plt.title("average latency - per deployment ")
+    plt.legend()
+    plt.savefig("./results/average_latency/kube-schedule/hard.png")
+    plt.show()
