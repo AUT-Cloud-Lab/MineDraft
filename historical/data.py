@@ -25,3 +25,12 @@ class Cycle:
 @dataclass
 class History:
     cycles: List[Cycle]
+
+
+@dataclass
+class Migration:
+    start: int  # Cycle number
+    end: int  # Cycle number
+    source: Node
+    target: Node
+    deployment: Deployment
