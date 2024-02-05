@@ -2,6 +2,7 @@ from math import ceil
 from typing import List, Dict
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 from extractors.decorator import register_extractor
 from historical.common import Deployment
@@ -144,7 +145,7 @@ def check_equality(config: Config, histories: List[History]) -> None:
 
 
 @register_extractor
-def average_latency(config: Config, histories: List[History]) -> None:
+def average_latency_linechart(config: Config, histories: List[History]) -> None:
     timestamps = [0]
     a_latencies = [0]
     b_latencies = [0]
@@ -177,5 +178,64 @@ def average_latency(config: Config, histories: List[History]) -> None:
     plt.ylabel("average latency(ms)")
     plt.title("average latency - per deployment ")
     plt.legend()
-    plt.savefig("./results/average_latency/kube-schedule/hard.png")
+    plt.savefig("./results/average_latency/kube-schedule/line-chart/hard.png")
+    plt.show()
+
+
+@register_extractor
+def average_latency_barchart(config: Config, histories: List[History]) -> None:
+    timestamps = [0]
+    a_latencies = [0]
+    b_latencies = [0]
+    c_latencies = [0]
+    d_latencies = [0]
+    for history in histories:
+        for cycle in history.cycles:
+            a_cloud, b_cloud, c_cloud, d_cloud = calculate_cloud_pod_count(cycle)
+            a_edge, b_edge, c_edge, d_edge = calculate_edge_pod_count(cycle)
+
+            a_portion, b_portion, c_portion, d_portion = calculate_deployments_request_portion(cycle)
+
+            a_latency = a_portion * (a_edge * EDGE_RESPONSE_TIME + a_cloud * CLOUD_RESPONSE_TIME)
+            b_latency = b_portion * (b_edge * EDGE_RESPONSE_TIME + b_cloud * CLOUD_RESPONSE_TIME)
+            c_latency = c_portion * (c_edge * EDGE_RESPONSE_TIME + c_cloud * CLOUD_RESPONSE_TIME)
+            d_latency = d_portion * (d_edge * EDGE_RESPONSE_TIME + d_cloud * CLOUD_RESPONSE_TIME)
+
+            timestamps.append(cycle.timestamp)
+            a_latencies.append(a_latency)
+            b_latencies.append(b_latency)
+            c_latencies.append(c_latency)
+            d_latencies.append(d_latency)
+
+    a_latencies = np.array(a_latencies)
+    a_mean = np.mean(a_latencies)
+    a_std = np.std(a_latencies)
+
+    b_latencies = np.array(b_latencies)
+    b_mean = np.mean(b_latencies)
+    b_std = np.std(b_latencies)
+
+    c_latencies = np.array(c_latencies)
+    c_mean = np.mean(c_latencies)
+    c_std = np.std(c_latencies)
+
+    d_latencies = np.array(d_latencies)
+    d_mean = np.mean(d_latencies)
+    d_std = np.std(d_latencies)
+
+    x_axis = ['a', "b", "c", "d"]
+    x_pos = np.arange(len(x_axis))
+    CTEs = [a_mean, b_mean, c_mean, d_mean]
+    error = [a_std, b_std, c_std, d_std]
+
+    fig, ax = plt.subplots()
+    ax.bar(x_pos, CTEs, yerr=error, align='center', alpha=0.8, ecolor='black', capsize=8)
+    ax.set_ylabel('average latency - per workload')
+    ax.set_xlabel('workload')
+    ax.set_xticks(x_pos)
+    ax.set_xticklabels(x_axis)
+
+    ax.yaxis.grid(True)
+    plt.tight_layout()
+    plt.savefig("./results/average_latency/kube-schedule/bar-chart/hard.png")
     plt.show()
