@@ -1,6 +1,7 @@
 from typing import List
 
 from historical.common import Deployment, Node
+from historical.config import Config
 from historical.data import PodPlacement, Cycle
 
 
@@ -103,3 +104,32 @@ def calculate_deployments_request_portion(cycle: Cycle) -> (int, int, int, int):
            b_request_count / all_requests_count, \
            c_request_count / all_requests_count, \
            d_request_count / all_requests_count
+
+
+def get_edge_placed_pods(cycle: Cycle) -> list[Deployment]:
+    edge_placed_pods = []
+    for node, pod in cycle.pod_placement.node_pods.items():
+        if node.is_on_edge:
+            edge_placed_pods.extend(pod)
+
+    return edge_placed_pods
+
+
+def calculate_edge_usage_sum(config: Config, edge_pods: List[Deployment]) -> (float, float):
+    cpu_sum = 0
+    memory_sum = 0
+    for pod in edge_pods:
+        cpu_sum += config.deployments[pod.name].resources[0]
+        memory_sum += config.deployments[pod.name].resources[1]
+
+    return cpu_sum, memory_sum
+
+
+def calculate_cluster_usage_sum(cycle: Cycle, config: Config) -> (float, float):
+    cpu_sum = 0
+    memory_sum = 0
+    for node, pods in cycle.pod_placement.node_pods.items():
+        for pod in pods:
+            cpu_sum += pod.resources[0]
+            memory_sum += pod.resources[1]
+    return cpu_sum, memory_sum
