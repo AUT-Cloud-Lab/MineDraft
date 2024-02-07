@@ -1,6 +1,7 @@
-from typing import Dict, List, Tuple
-from historical.data import PodPlacement
+from typing import List
+
 from historical.common import Deployment, Node
+from historical.data import PodPlacement, Cycle
 
 
 def get_deployment_from_name_in_hpa(deployment_name_in_hpa: str) -> str:
@@ -9,12 +10,12 @@ def get_deployment_from_name_in_hpa(deployment_name_in_hpa: str) -> str:
 
 def get_deployment_name_from_pod_name(pod_name: str) -> str:
     return pod_name[
-        : pod_name.find("-deployment")
-    ]  # the pattern is <deployment_name>-deployment-<random_string>
+           : pod_name.find("-deployment")
+           ]  # the pattern is <deployment_name>-deployment-<random_string>
 
 
 def get_nodes_of_a_deployment(
-    pod_placement: PodPlacement, deployment: Deployment
+        pod_placement: PodPlacement, deployment: Deployment
 ) -> List[Node]:
     nodes = []
     for node, pods in pod_placement.node_pods.items():
@@ -22,3 +23,83 @@ def get_nodes_of_a_deployment(
             if pod == deployment:
                 nodes.append(node)
     return nodes
+
+
+def calculate_cloud_pod_count(cycle: Cycle) -> (int, int, int, int):
+    a_count = 0
+    b_count = 0
+    c_count = 0
+    d_count = 0
+
+    for node, placement in cycle.pod_placement.node_pods.items():
+        if node.is_on_edge:
+            continue
+
+        for deployment in placement:
+            if deployment.name == "a":
+                a_count += 1
+
+            if deployment.name == "b":
+                b_count += 1
+
+            if deployment.name == "c":
+                c_count += 1
+
+            if deployment.name == "d":
+                d_count += 1
+
+    return a_count, b_count, c_count, d_count
+
+
+def calculate_edge_pod_count(cycle: Cycle) -> (int, int, int, int):
+    a_count = 0
+    b_count = 0
+    c_count = 0
+    d_count = 0
+
+    for node, placement in cycle.pod_placement.node_pods.items():
+        if not node.is_on_edge:
+            continue
+
+        for deployment in placement:
+            if deployment.name == "a":
+                a_count += 1
+
+            if deployment.name == "b":
+                b_count += 1
+
+            if deployment.name == "c":
+                c_count += 1
+
+            if deployment.name == "d":
+                d_count += 1
+
+    return a_count, b_count, c_count, d_count
+
+
+def calculate_deployments_request_portion(cycle: Cycle) -> (int, int, int, int):
+    a_request_count = 0
+    b_request_count = 0
+    c_request_count = 0
+    d_request_count = 0
+    all_requests_count = 0
+
+    for deployment, hpa_value in cycle.hpa.deployment_metrics.items():
+        if deployment.name == "a":
+            a_request_count = hpa_value * 15 / 5
+
+        if deployment.name == "b":
+            b_request_count = hpa_value * 15 / 5
+
+        if deployment.name == 'c':
+            c_request_count = hpa_value * 15 / 5
+
+        if deployment.name == 'd':
+            d_request_count = hpa_value * 15 / 5
+
+    all_requests_count = a_request_count + b_request_count + c_request_count + d_request_count
+
+    return a_request_count / all_requests_count, \
+           b_request_count / all_requests_count, \
+           c_request_count / all_requests_count, \
+           d_request_count / all_requests_count
