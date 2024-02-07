@@ -125,7 +125,7 @@ def calculate_edge_usage_sum(config: Config, edge_pods: List[Deployment]) -> (fl
     return cpu_sum, memory_sum
 
 
-def calculate_cluster_usage_sum(cycle: Cycle, config: Config) -> (float, float):
+def calculate_cluster_usage_sum(cycle: Cycle) -> (float, float):
     cpu_sum = 0
     memory_sum = 0
     for node, pods in cycle.pod_placement.node_pods.items():
@@ -133,3 +133,13 @@ def calculate_cluster_usage_sum(cycle: Cycle, config: Config) -> (float, float):
             cpu_sum += pod.resources[0]
             memory_sum += pod.resources[1]
     return cpu_sum, memory_sum
+
+
+def calculate_resource_usage_for_node(cycle: Cycle, desired_node: Node) -> (float, float):
+    cpu_usage = 0
+    memory_usage = 0
+    for pod in cycle.pod_placement.node_pods[desired_node]:
+        cpu_usage += pod.resources[0]
+        memory_usage += pod.resources[1]
+
+    return (cpu_usage / desired_node.resources[0]), (memory_usage / desired_node.resources[1])

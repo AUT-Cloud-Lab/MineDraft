@@ -9,7 +9,7 @@ from historical.common import Deployment
 from historical.config import Config
 from historical.data import History, Cycle, Migration
 from historical.utils import calculate_cloud_pod_count, calculate_edge_pod_count, calculate_deployments_request_portion, \
-    calculate_edge_usage_sum, calculate_cluster_usage_sum
+    calculate_edge_usage_sum, calculate_cluster_usage_sum, calculate_resource_usage_for_node
 from historical.utils import get_nodes_of_a_deployment, get_edge_placed_pods
 
 CLOUD_RESPONSE_TIME = 350
@@ -264,13 +264,12 @@ def edge_utilization_linechart(config: Config, histories: List[History]) -> None
             edge_pods = get_edge_placed_pods(cycle)
 
             edge_usage_sum_cpu, edge_usage_sum_memory = calculate_edge_usage_sum(config, edge_pods)
-            cluster_usage_sum_cpu, cluster_usage_sum_memory = calculate_cluster_usage_sum(cycle, config)
+            cluster_usage_sum_cpu, cluster_usage_sum_memory = calculate_cluster_usage_sum(cycle)
 
             utilization = math.sqrt(
                 (edge_usage_sum_cpu / cluster_usage_sum_cpu) * (edge_usage_sum_memory / cluster_usage_sum_memory)
             )
 
-            # append to the correct place
             if index == 0:
                 ecmus_timestamps.append(cycle.timestamp)
                 ecmus_utilization.append(utilization)
@@ -279,7 +278,6 @@ def edge_utilization_linechart(config: Config, histories: List[History]) -> None
                 kube_schedule_timestamps.append(cycle.timestamp)
                 kube_schedule_utilization.append(utilization)
 
-    # plt.figure(figsize=(9.5, 5), layout="tight")
     plt.plot(ecmus_timestamps, ecmus_utilization, label="ecmus")
     plt.plot(kube_schedule_timestamps, kube_schedule_utilization, label="kube-schedule")
     plt.xlabel("time (s)")
@@ -287,4 +285,40 @@ def edge_utilization_linechart(config: Config, histories: List[History]) -> None
     plt.title("edge utilization - per algorithm")
     plt.legend()
     plt.savefig("./results/edge_utilization/line-chart/hard.png")
+    plt.show()
+
+
+@register_extractor
+def edge_fragmentation_linechart(config: Config, histories: List[History]) -> None:
+    ecmus_fragmentation = []
+    ecmus_timestamps = []
+
+    kube_schedule_fragmentation = []
+    kube_schedule_timestamps = []
+
+    number_of_nodes = len(config.nodes)
+    for index, history in enumerate(histories):
+        for cycle in history.cycles:
+            cluster_usage = 0
+            for node in cycle.pod_placement.node_pods.keys():
+                if node.is_on_edge:
+                    cpu_usage, memory_usage = calculate_resource_usage_for_node(cycle, node)
+                    cluster_usage += math.sqrt(cpu_usage * memory_usage)
+
+            fragmentation = 1 - (cluster_usage / number_of_nodes)
+            if index == 0:
+                ecmus_timestamps.append(cycle.timestamp)
+                ecmus_fragmentation.append(fragmentation)
+
+            if index == 1:
+                kube_schedule_timestamps.append(cycle.timestamp)
+                kube_schedule_fragmentation.append(fragmentation)
+
+    plt.plot(ecmus_timestamps, ecmus_fragmentation, label="ecmus")
+    plt.plot(kube_schedule_timestamps, kube_schedule_fragmentation, label="kube-schedule")
+    plt.xlabel("time (s)")
+    plt.ylabel("fragmentation")
+    plt.title("edge fragmentation - per algorithm")
+    plt.legend()
+    plt.savefig("./results/edge_fragmentation/line-chart/hard.png")
     plt.show()
