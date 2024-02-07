@@ -1,3 +1,4 @@
+import math
 from math import ceil
 from typing import List, Dict
 
@@ -7,8 +8,9 @@ from extractors.decorator import register_extractor
 from historical.common import Deployment
 from historical.config import Config
 from historical.data import History, Cycle, Migration
-from historical.utils import calculate_cloud_pod_count, calculate_edge_pod_count, calculate_deployments_request_portion
-from historical.utils import get_nodes_of_a_deployment
+from historical.utils import calculate_cloud_pod_count, calculate_edge_pod_count, calculate_deployments_request_portion, \
+    calculate_edge_usage_sum, calculate_cluster_usage_sum
+from historical.utils import get_nodes_of_a_deployment, get_edge_placed_pods
 
 CLOUD_RESPONSE_TIME = 350
 EDGE_RESPONSE_TIME = 50
@@ -144,7 +146,7 @@ def check_equality(config: Config, histories: List[History]) -> None:
 
 
 @register_extractor
-def average_latency_linechart(config: Config, histories: List[History]) -> None:
+def average_latency_linechart(_: Config, histories: List[History]) -> None:
     timestamps = [0]
     a_latencies = [0]
     b_latencies = [0]
@@ -182,7 +184,7 @@ def average_latency_linechart(config: Config, histories: List[History]) -> None:
 
 
 @register_extractor
-def average_latency_boxplot(config: Config, histories: List[History]) -> None:
+def average_latency_boxplot(_: Config, histories: List[History]) -> None:
     a_latencies = [0]
     b_latencies = [0]
     c_latencies = [0]
@@ -216,7 +218,7 @@ def average_latency_boxplot(config: Config, histories: List[History]) -> None:
 
 
 @register_extractor
-def average_latency_boxplot(config: Config, histories: List[History]) -> None:
+def average_latency_boxplot(_: Config, histories: List[History]) -> None:
     a_latencies = [0]
     b_latencies = [0]
     c_latencies = [0]
@@ -246,4 +248,43 @@ def average_latency_boxplot(config: Config, histories: List[History]) -> None:
     ax.set_ylabel('Latency (ms)')
 
     plt.savefig("./results/average_latency/kube-schedule/boxplot/hard.png")
+    plt.show()
+
+
+@register_extractor
+def edge_utilization_linechart(config: Config, histories: List[History]) -> None:
+    ecmus_utilization = []
+    ecmus_timestamps = []
+
+    kube_schedule_utilization = []
+    kube_schedule_timestamps = []
+
+    for index, history in enumerate(histories):
+        for cycle in history.cycles:
+            edge_pods = get_edge_placed_pods(cycle)
+
+            edge_usage_sum_cpu, edge_usage_sum_memory = calculate_edge_usage_sum(config, edge_pods)
+            cluster_usage_sum_cpu, cluster_usage_sum_memory = calculate_cluster_usage_sum(cycle, config)
+
+            utilization = math.sqrt(
+                (edge_usage_sum_cpu / cluster_usage_sum_cpu) * (edge_usage_sum_memory / cluster_usage_sum_memory)
+            )
+
+            # append to the correct place
+            if index == 0:
+                ecmus_timestamps.append(cycle.timestamp)
+                ecmus_utilization.append(utilization)
+
+            if index == 1:
+                kube_schedule_timestamps.append(cycle.timestamp)
+                kube_schedule_utilization.append(utilization)
+
+    # plt.figure(figsize=(9.5, 5), layout="tight")
+    plt.plot(ecmus_timestamps, ecmus_utilization, label="ecmus")
+    plt.plot(kube_schedule_timestamps, kube_schedule_utilization, label="kube-schedule")
+    plt.xlabel("time (s)")
+    plt.ylabel("edge utilization")
+    plt.title("edge utilization - per algorithm")
+    plt.legend()
+    plt.savefig("./results/edge_utilization/line-chart/hard.png")
     plt.show()
