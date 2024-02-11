@@ -296,16 +296,16 @@ def edge_fragmentation_linechart(config: Config, histories: List[History]) -> No
     kube_schedule_fragmentation = []
     kube_schedule_timestamps = []
 
-    number_of_nodes = len(config.nodes)
+    edge_nodes_count = len([node for node in config.nodes.values() if node.is_on_edge])
     for index, history in enumerate(histories):
         for cycle in history.cycles:
-            cluster_usage = 0
+            edge_usage = 0
             for node in cycle.pod_placement.node_pods.keys():
                 if node.is_on_edge:
                     cpu_usage, memory_usage = calculate_resource_usage_for_node(cycle, node)
-                    cluster_usage += math.sqrt(cpu_usage * memory_usage)
+                    edge_usage += math.sqrt(cpu_usage * memory_usage)
 
-            fragmentation = 1 - (cluster_usage / number_of_nodes)
+            fragmentation = 1 - (edge_usage / edge_nodes_count)
             if index == 0:
                 ecmus_timestamps.append(cycle.timestamp)
                 ecmus_fragmentation.append(fragmentation)
