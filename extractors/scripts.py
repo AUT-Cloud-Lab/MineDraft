@@ -110,15 +110,16 @@ def calc_migrations(config: Config, histories: List[History], save_path: str) ->
 
 
 @register_extractor
-def check_equality(config: Config, histories: List[History]) -> None:
+def check_equality(config: Config, histories: List[History], save_path: str) -> None:
+    output_file = open(save_path, 'w')
     """
     Check if the histories are equal.
     """
     number_of_differences: Dict[Deployment, int] = {
         deployment: 0 for _, deployment in config.deployments.items()
     }
-    print(len(histories[0].cycles))
-    print(len(histories[1].cycles))
+    print(len(histories[0].cycles), file=output_file)
+    print(len(histories[1].cycles), file=output_file)
 
     for cycle_number in range(max(map(lambda history: len(history.cycles), histories))):
         cycles: List[Cycle] = []
@@ -140,7 +141,7 @@ def check_equality(config: Config, histories: List[History]) -> None:
                     number_of_differences[deployment] += 1
 
     for deployment, number_of_differences in number_of_differences.items():
-        print(f"{deployment}'s number of differences are {number_of_differences}!")
+        print(f"{deployment}'s number of differences are {number_of_differences}!", file=output_file)
 
 
 @register_extractor
