@@ -217,41 +217,7 @@ def average_latency_boxplot(_: Config, histories: List[History], save_path: str)
 
 
 @register_extractor
-def average_latency_boxplot(_: Config, histories: List[History]) -> None:
-    a_latencies = [0]
-    b_latencies = [0]
-    c_latencies = [0]
-    d_latencies = [0]
-    for history in histories:
-        for cycle in history.cycles:
-            a_cloud, b_cloud, c_cloud, d_cloud = calculate_cloud_pod_count(cycle)
-            a_edge, b_edge, c_edge, d_edge = calculate_edge_pod_count(cycle)
-
-            a_portion, b_portion, c_portion, d_portion = calculate_deployments_request_portion(cycle)
-
-            a_latency = a_portion * (a_edge * EDGE_RESPONSE_TIME + a_cloud * CLOUD_RESPONSE_TIME)
-            b_latency = b_portion * (b_edge * EDGE_RESPONSE_TIME + b_cloud * CLOUD_RESPONSE_TIME)
-            c_latency = c_portion * (c_edge * EDGE_RESPONSE_TIME + c_cloud * CLOUD_RESPONSE_TIME)
-            d_latency = d_portion * (d_edge * EDGE_RESPONSE_TIME + d_cloud * CLOUD_RESPONSE_TIME)
-
-            a_latencies.append(a_latency)
-            b_latencies.append(b_latency)
-            c_latencies.append(c_latency)
-            d_latencies.append(d_latency)
-    fig, ax = plt.subplots()
-    data = [a_latencies, b_latencies, c_latencies, d_latencies]
-    ax.boxplot(data)
-    ax.set_xticklabels(['A', 'B', 'C', 'D'])
-    ax.set_title('latency boxplot - per workload')
-    ax.set_xlabel('Workloads')
-    ax.set_ylabel('Latency (ms)')
-
-    plt.savefig("./results/average_latency/kube-schedule/boxplot/hard.png")
-    plt.show()
-
-
-@register_extractor
-def edge_utilization_linechart(config: Config, histories: List[History]) -> None:
+def edge_utilization_linechart(config: Config, histories: List[History], save_path: str) -> None:
     ecmus_utilization = []
     ecmus_timestamps = []
 
@@ -283,7 +249,7 @@ def edge_utilization_linechart(config: Config, histories: List[History]) -> None
     plt.ylabel("edge utilization")
     plt.title("edge utilization - per algorithm")
     plt.legend()
-    plt.savefig("./results/edge_utilization/line-chart/hard.png")
+    plt.savefig(save_path)
     plt.show()
 
 
