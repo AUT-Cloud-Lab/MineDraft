@@ -285,5 +285,5 @@ def edge_fragmentation_linechart(config: Config, histories: List[History], save_
     plt.ylabel("fragmentation")
     plt.title("edge fragmentation - per algorithm")
     plt.legend()
-    plt.savefig("./results/edge_fragmentation/line-chart/hard.png")
+    plt.savefig(save_path)
     plt.show()
