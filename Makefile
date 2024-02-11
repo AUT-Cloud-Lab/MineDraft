@@ -68,3 +68,25 @@ average_latency_boxplot_kube_mid:
 average_latency_boxplot_kube_hard:
 	python3 main.py --script_name average_latency_boxplot --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_hard.json  --save-path ./results/average_latency/kube-schedule/boxplot/hard.png
 # -------------------------------------------- end average_latency_boxplot -----------------------------------------------
+
+# -------------------------------------------- edge_fragmentation_linechart -----------------------------------------------
+edge_fragmentation_linechart_soft:
+	python3 main.py --script_name edge_fragmentation_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_soft.json  reports/ecmus/2023-12-31/status_soft.json  --save-path ./results/edge_fragmentation/line-chart/soft.png
+
+edge_fragmentation_linechart_mid:
+	python3 main.py --script_name edge_fragmentation_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_mid.json  reports/ecmus/2023-12-31/status_mid.json  --save-path ./results/edge_fragmentation/line-chart/mid.png
+
+edge_fragmentation_linechart_hard:
+	python3 main.py --script_name edge_fragmentation_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_hard.json  reports/ecmus/2023-12-31/status_hard.json  --save-path ./results/edge_fragmentation/line-chart/hard.png
+# -------------------------------------------- end edge_fragmentation_linechart -----------------------------------------------
+
+# -------------------------------------------- edge_utilization_linechart -----------------------------------------------
+edge_fragmentation_utilization_soft:
+	python3 main.py --script_name edge_utilization_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_soft.json  reports/ecmus/2023-12-31/status_soft.json  --save-path ./results/edge_utilization/line-chart/soft.png
+
+edge_fragmentation_utilization_mid:
+	python3 main.py --script_name edge_utilization_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_mid.json  reports/ecmus/2023-12-31/status_mid.json  --save-path ./results/edge_utilization/line-chart/mid.png
+
+edge_fragmentation_utilization_hard:
+	python3 main.py --script_name edge_utilization_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_hard.json  reports/ecmus/2023-12-31/status_hard.json  --save-path ./results/edge_utilization/line-chart/hard.png
+# -------------------------------------------- end edge_utilization_linechart -----------------------------------------------
