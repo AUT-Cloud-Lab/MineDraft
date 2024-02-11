@@ -179,7 +179,6 @@ def average_latency_linechart(_: Config, histories: List[History], save_path: st
     plt.title("average latency - per deployment ")
     plt.legend()
     plt.savefig(save_path)
-    plt.show()
 
 
 @register_extractor
@@ -213,7 +212,6 @@ def average_latency_boxplot(_: Config, histories: List[History], save_path: str)
     ax.set_ylabel('Latency (ms)')
 
     plt.savefig(save_path)
-    plt.show()
 
 
 @register_extractor
@@ -250,7 +248,6 @@ def edge_utilization_linechart(config: Config, histories: List[History], save_pa
     plt.title("edge utilization - per algorithm")
     plt.legend()
     plt.savefig(save_path)
-    plt.show()
 
 
 @register_extractor
@@ -286,4 +283,3 @@ def edge_fragmentation_linechart(config: Config, histories: List[History], save_
     plt.title("edge fragmentation - per algorithm")
     plt.legend()
     plt.savefig(save_path)
-    plt.show()
