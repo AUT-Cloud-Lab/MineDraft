@@ -289,7 +289,7 @@ def edge_utilization_linechart(config: Config, histories: List[History]) -> None
 
 
 @register_extractor
-def edge_fragmentation_linechart(config: Config, histories: List[History]) -> None:
+def edge_fragmentation_linechart(config: Config, histories: List[History], save_path: str) -> None:
     ecmus_fragmentation = []
     ecmus_timestamps = []
 
