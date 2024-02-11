@@ -145,12 +145,12 @@ def check_equality(config: Config, histories: List[History], save_path: str) -> 
 
 
 @register_extractor
-def average_latency_linechart(_: Config, histories: List[History]) -> None:
-    timestamps = [0]
-    a_latencies = [0]
-    b_latencies = [0]
-    c_latencies = [0]
-    d_latencies = [0]
+def average_latency_linechart(_: Config, histories: List[History], save_path: str) -> None:
+    timestamps = []
+    a_latencies = []
+    b_latencies = []
+    c_latencies = []
+    d_latencies = []
     for history in histories:
         for cycle in history.cycles:
             a_cloud, b_cloud, c_cloud, d_cloud = calculate_cloud_pod_count(cycle)
@@ -178,16 +178,16 @@ def average_latency_linechart(_: Config, histories: List[History]) -> None:
     plt.ylabel("average latency(ms)")
     plt.title("average latency - per deployment ")
     plt.legend()
-    plt.savefig("./results/average_latency/kube-schedule/line-chart/hard.png")
+    plt.savefig(save_path)
     plt.show()
 
 
 @register_extractor
 def average_latency_boxplot(_: Config, histories: List[History]) -> None:
-    a_latencies = [0]
-    b_latencies = [0]
-    c_latencies = [0]
-    d_latencies = [0]
+    a_latencies = []
+    b_latencies = []
+    c_latencies = []
+    d_latencies = []
     for history in histories:
         for cycle in history.cycles:
             a_cloud, b_cloud, c_cloud, d_cloud = calculate_cloud_pod_count(cycle)
