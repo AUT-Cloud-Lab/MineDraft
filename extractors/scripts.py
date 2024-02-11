@@ -17,10 +17,8 @@ EDGE_RESPONSE_TIME = 50
 
 
 @register_extractor
-def calc_migrations(config: Config, histories: List[History]) -> None:
-    """
-    Calculate the number of migrations for each deployment.
-    """
+def calc_migrations(config: Config, histories: List[History], save_path: str) -> None:
+    output_file = open(save_path, 'w')
     assert len(histories) == 1
     history: History = histories[0]
 
@@ -65,8 +63,8 @@ def calc_migrations(config: Config, histories: List[History]) -> None:
                     key=lambda node: node.name,
                 )
 
-                print(list(map(lambda node: node.name, source_nodes)))
-                print(list(map(lambda node: node.name, target_nodes)))
+                print(list(map(lambda node: node.name, source_nodes)), file=output_file)
+                print(list(map(lambda node: node.name, target_nodes)), file=output_file)
 
                 real_sources = []
                 real_targets = []
@@ -108,7 +106,7 @@ def calc_migrations(config: Config, histories: List[History]) -> None:
 
         print(f"Number of migrations for {deployment.name}: {len(migrations)}")
         for migration in migrations:
-            print(migration)
+            print(migration, file=output_file)
 
 
 @register_extractor
