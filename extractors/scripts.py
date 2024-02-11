@@ -91,8 +91,8 @@ def calc_migrations(config: Config, histories: List[History], save_path: str) ->
                     it_target += 1
 
                 assert len(real_sources) == len(real_targets)
-                print(f"here with {len(real_sources)}")
-                print(f"{start}, {end}")
+                print(f"here with {len(real_sources)}", file=output_file)
+                print(f"{start}, {end}", file=output_file)
                 for i in range(len(real_sources)):
                     migrations.append(
                         Migration(
@@ -104,7 +104,7 @@ def calc_migrations(config: Config, histories: List[History], save_path: str) ->
                         )
                     )
 
-        print(f"Number of migrations for {deployment.name}: {len(migrations)}")
+        print(f"Number of migrations for {deployment.name}: {len(migrations)}", file=output_file)
         for migration in migrations:
             print(migration, file=output_file)
 
