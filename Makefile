@@ -48,3 +48,23 @@ average_latency_linechart_kube_mid:
 average_latency_linechart_kube_hard:
 	python3 main.py --script_name average_latency_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_hard.json  --save-path ./results/average_latency/kube-schedule/line-chart/hard.png
 # -------------------------------------------- end average_latency_linechart -----------------------------------------------
+
+# -------------------------------------------- average_latency_boxplot -----------------------------------------------
+average_latency_boxplot_ecmus_soft:
+	python3 main.py --script_name average_latency_boxplot --config_path config.json --history_paths reports/ecmus/2023-12-31/status_soft.json  --save-path ./results/average_latency/ecmus/boxplot/soft.png
+
+average_latency_boxplot_ecmus_mid:
+	python3 main.py --script_name average_latency_boxplot --config_path config.json --history_paths reports/ecmus/2023-12-31/status_mid.json  --save-path ./results/average_latency/ecmus/boxplot/mid.png
+
+average_latency_boxplot_ecmus_hard:
+	python3 main.py --script_name average_latency_boxplot --config_path config.json --history_paths reports/ecmus/2023-12-31/status_hard.json  --save-path ./results/average_latency/ecmus/boxplot/hard.png
+
+average_latency_boxplot_kube_soft:
+	python3 main.py --script_name average_latency_boxplot --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_soft.json  --save-path ./results/average_latency/kube-schedule/boxplot/soft.png
+
+average_latency_boxplot_kube_mid:
+	python3 main.py --script_name average_latency_boxplot --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_mid.json  --save-path ./results/average_latency/kube-schedule/boxplot/mid.png
+
+average_latency_boxplot_kube_hard:
+	python3 main.py --script_name average_latency_boxplot --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_hard.json  --save-path ./results/average_latency/kube-schedule/boxplot/hard.png
+# -------------------------------------------- end average_latency_boxplot -----------------------------------------------
