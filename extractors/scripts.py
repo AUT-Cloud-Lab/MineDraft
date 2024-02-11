@@ -17,10 +17,8 @@ EDGE_RESPONSE_TIME = 50
 
 
 @register_extractor
-def calc_migrations(config: Config, histories: List[History]) -> None:
-    """
-    Calculate the number of migrations for each deployment.
-    """
+def calc_migrations(config: Config, histories: List[History], save_path: str) -> None:
+    output_file = open(save_path, 'w')
     assert len(histories) == 1
     history: History = histories[0]
 
@@ -65,8 +63,8 @@ def calc_migrations(config: Config, histories: List[History]) -> None:
                     key=lambda node: node.name,
                 )
 
-                print(list(map(lambda node: node.name, source_nodes)))
-                print(list(map(lambda node: node.name, target_nodes)))
+                print(list(map(lambda node: node.name, source_nodes)), file=output_file)
+                print(list(map(lambda node: node.name, target_nodes)), file=output_file)
 
                 real_sources = []
                 real_targets = []
@@ -93,8 +91,8 @@ def calc_migrations(config: Config, histories: List[History]) -> None:
                     it_target += 1
 
                 assert len(real_sources) == len(real_targets)
-                print(f"here with {len(real_sources)}")
-                print(f"{start}, {end}")
+                print(f"here with {len(real_sources)}", file=output_file)
+                print(f"{start}, {end}", file=output_file)
                 for i in range(len(real_sources)):
                     migrations.append(
                         Migration(
@@ -106,21 +104,22 @@ def calc_migrations(config: Config, histories: List[History]) -> None:
                         )
                     )
 
-        print(f"Number of migrations for {deployment.name}: {len(migrations)}")
+        print(f"Number of migrations for {deployment.name}: {len(migrations)}", file=output_file)
         for migration in migrations:
-            print(migration)
+            print(migration, file=output_file)
 
 
 @register_extractor
-def check_equality(config: Config, histories: List[History]) -> None:
+def check_equality(config: Config, histories: List[History], save_path: str) -> None:
+    output_file = open(save_path, 'w')
     """
     Check if the histories are equal.
     """
     number_of_differences: Dict[Deployment, int] = {
         deployment: 0 for _, deployment in config.deployments.items()
     }
-    print(len(histories[0].cycles))
-    print(len(histories[1].cycles))
+    print(len(histories[0].cycles), file=output_file)
+    print(len(histories[1].cycles), file=output_file)
 
     for cycle_number in range(max(map(lambda history: len(history.cycles), histories))):
         cycles: List[Cycle] = []
@@ -142,16 +141,16 @@ def check_equality(config: Config, histories: List[History]) -> None:
                     number_of_differences[deployment] += 1
 
     for deployment, number_of_differences in number_of_differences.items():
-        print(f"{deployment}'s number of differences are {number_of_differences}!")
+        print(f"{deployment}'s number of differences are {number_of_differences}!", file=output_file)
 
 
 @register_extractor
-def average_latency_linechart(_: Config, histories: List[History]) -> None:
-    timestamps = [0]
-    a_latencies = [0]
-    b_latencies = [0]
-    c_latencies = [0]
-    d_latencies = [0]
+def average_latency_linechart(_: Config, histories: List[History], save_path: str) -> None:
+    timestamps = []
+    a_latencies = []
+    b_latencies = []
+    c_latencies = []
+    d_latencies = []
     for history in histories:
         for cycle in history.cycles:
             a_cloud, b_cloud, c_cloud, d_cloud = calculate_cloud_pod_count(cycle)
@@ -179,16 +178,15 @@ def average_latency_linechart(_: Config, histories: List[History]) -> None:
     plt.ylabel("average latency(ms)")
     plt.title("average latency - per deployment ")
     plt.legend()
-    plt.savefig("./results/average_latency/kube-schedule/line-chart/hard.png")
-    plt.show()
+    plt.savefig(save_path)
 
 
 @register_extractor
-def average_latency_boxplot(_: Config, histories: List[History]) -> None:
-    a_latencies = [0]
-    b_latencies = [0]
-    c_latencies = [0]
-    d_latencies = [0]
+def average_latency_boxplot(_: Config, histories: List[History], save_path: str) -> None:
+    a_latencies = []
+    b_latencies = []
+    c_latencies = []
+    d_latencies = []
     for history in histories:
         for cycle in history.cycles:
             a_cloud, b_cloud, c_cloud, d_cloud = calculate_cloud_pod_count(cycle)
@@ -213,46 +211,11 @@ def average_latency_boxplot(_: Config, histories: List[History]) -> None:
     ax.set_xlabel('Workloads')
     ax.set_ylabel('Latency (ms)')
 
-    plt.savefig("./results/average_latency/kube-schedule/line-chart/hard.png")
-    plt.show()
+    plt.savefig(save_path)
 
 
 @register_extractor
-def average_latency_boxplot(_: Config, histories: List[History]) -> None:
-    a_latencies = [0]
-    b_latencies = [0]
-    c_latencies = [0]
-    d_latencies = [0]
-    for history in histories:
-        for cycle in history.cycles:
-            a_cloud, b_cloud, c_cloud, d_cloud = calculate_cloud_pod_count(cycle)
-            a_edge, b_edge, c_edge, d_edge = calculate_edge_pod_count(cycle)
-
-            a_portion, b_portion, c_portion, d_portion = calculate_deployments_request_portion(cycle)
-
-            a_latency = a_portion * (a_edge * EDGE_RESPONSE_TIME + a_cloud * CLOUD_RESPONSE_TIME)
-            b_latency = b_portion * (b_edge * EDGE_RESPONSE_TIME + b_cloud * CLOUD_RESPONSE_TIME)
-            c_latency = c_portion * (c_edge * EDGE_RESPONSE_TIME + c_cloud * CLOUD_RESPONSE_TIME)
-            d_latency = d_portion * (d_edge * EDGE_RESPONSE_TIME + d_cloud * CLOUD_RESPONSE_TIME)
-
-            a_latencies.append(a_latency)
-            b_latencies.append(b_latency)
-            c_latencies.append(c_latency)
-            d_latencies.append(d_latency)
-    fig, ax = plt.subplots()
-    data = [a_latencies, b_latencies, c_latencies, d_latencies]
-    ax.boxplot(data)
-    ax.set_xticklabels(['A', 'B', 'C', 'D'])
-    ax.set_title('latency boxplot - per workload')
-    ax.set_xlabel('Workloads')
-    ax.set_ylabel('Latency (ms)')
-
-    plt.savefig("./results/average_latency/kube-schedule/boxplot/hard.png")
-    plt.show()
-
-
-@register_extractor
-def edge_utilization_linechart(config: Config, histories: List[History]) -> None:
+def edge_utilization_linechart(config: Config, histories: List[History], save_path: str) -> None:
     ecmus_utilization = []
     ecmus_timestamps = []
 
@@ -284,12 +247,11 @@ def edge_utilization_linechart(config: Config, histories: List[History]) -> None
     plt.ylabel("edge utilization")
     plt.title("edge utilization - per algorithm")
     plt.legend()
-    plt.savefig("./results/edge_utilization/line-chart/hard.png")
-    plt.show()
+    plt.savefig(save_path)
 
 
 @register_extractor
-def edge_fragmentation_linechart(config: Config, histories: List[History]) -> None:
+def edge_fragmentation_linechart(config: Config, histories: List[History], save_path: str) -> None:
     ecmus_fragmentation = []
     ecmus_timestamps = []
 
@@ -320,5 +282,4 @@ def edge_fragmentation_linechart(config: Config, histories: List[History]) -> No
     plt.ylabel("fragmentation")
     plt.title("edge fragmentation - per algorithm")
     plt.legend()
-    plt.savefig("./results/edge_fragmentation/line-chart/hard.png")
-    plt.show()
+    plt.savefig(save_path)
