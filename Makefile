@@ -81,12 +81,31 @@ edge_fragmentation_linechart_hard:
 # -------------------------------------------- end edge_fragmentation_linechart -----------------------------------------------
 
 # -------------------------------------------- edge_utilization_linechart -----------------------------------------------
-edge_fragmentation_utilization_soft:
+edge_utilization_linechart_soft:
 	python3 main.py --script_name edge_utilization_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_soft.json  reports/ecmus/2023-12-31/status_soft.json  --save-path ./results/edge_utilization/line-chart/soft.png
 
-edge_fragmentation_utilization_mid:
+edge_utilization_linechart_mid:
 	python3 main.py --script_name edge_utilization_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_mid.json  reports/ecmus/2023-12-31/status_mid.json  --save-path ./results/edge_utilization/line-chart/mid.png
 
-edge_fragmentation_utilization_hard:
+edge_utilization_linechart_hard:
 	python3 main.py --script_name edge_utilization_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_hard.json  reports/ecmus/2023-12-31/status_hard.json  --save-path ./results/edge_utilization/line-chart/hard.png
 # -------------------------------------------- end edge_utilization_linechart -----------------------------------------------
+
+all_diagrams: average_latency_linechart_ecmus_soft \
+	average_latency_linechart_ecmus_mid \
+	average_latency_linechart_ecmus_hard \
+	average_latency_linechart_kube_soft \
+	average_latency_linechart_kube_mid \
+	average_latency_linechart_kube_hard \
+	average_latency_boxplot_ecmus_soft \
+	average_latency_boxplot_ecmus_mid \
+	average_latency_boxplot_ecmus_hard \
+	average_latency_boxplot_kube_soft \
+	average_latency_boxplot_kube_mid \
+	average_latency_boxplot_kube_hard \
+	edge_fragmentation_linechart_soft \
+	edge_fragmentation_linechart_mid \
+	edge_fragmentation_linechart_hard \
+	edge_utilization_linechart_soft \
+	edge_utilization_linechart_mid \
+	edge_utilization_linechart_hard
