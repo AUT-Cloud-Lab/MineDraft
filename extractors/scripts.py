@@ -183,7 +183,7 @@ def average_latency_linechart(_: Config, histories: List[History], save_path: st
 
 
 @register_extractor
-def average_latency_boxplot(_: Config, histories: List[History]) -> None:
+def average_latency_boxplot(_: Config, histories: List[History], save_path: str) -> None:
     a_latencies = []
     b_latencies = []
     c_latencies = []
@@ -212,7 +212,7 @@ def average_latency_boxplot(_: Config, histories: List[History]) -> None:
     ax.set_xlabel('Workloads')
     ax.set_ylabel('Latency (ms)')
 
-    plt.savefig("./results/average_latency/kube-schedule/line-chart/hard.png")
+    plt.savefig(save_path)
     plt.show()
 
 
