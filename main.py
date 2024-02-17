@@ -12,12 +12,14 @@ def main():
     parser.add_argument("--config_path", type=str, help="Config path")
     parser.add_argument("--history_paths", type=str, nargs="+", help="Histories path")
     parser.add_argument("--save-path", type=str, help="save path of the output file")
+    parser.add_argument("--scenario-name", type=str, required=False, help="scenario name")
 
     args = vars(parser.parse_args())
     script_name = args["script_name"]
     config_path = args["config_path"]
     history_paths = args["history_paths"]
     save_path = args["save_path"]
+    scenario_name = args["scenario_name"]
 
     if script_name not in extractor_scripts:
         print(f"Script {script_name} not found!")
@@ -34,7 +36,7 @@ def main():
         with open(history_path, "r") as history_file:
             histories.append(parse_history(config, json.load(history_file)))
 
-    extractor_scripts[script_name](config, histories, save_path)
+    extractor_scripts[script_name](config, scenario_name, histories, save_path)
 
 
 if __name__ == "__main__":

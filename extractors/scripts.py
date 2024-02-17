@@ -8,11 +8,12 @@ from extractors.decorator import register_extractor
 from historical.common import Deployment
 from historical.config import Config
 from historical.data import History, Cycle, Migration
-from historical.utils import calculate_cloud_pod_count, calculate_edge_pod_count, calculate_deployments_request_portion, \
-    calculate_edge_usage_sum, calculate_cluster_usage_sum, calculate_resource_usage_for_node
+from historical.utils import calculate_edge_usage_sum, \
+    calculate_cluster_usage_sum, calculate_resource_usage_for_node, calculate_placement_for_deployment, \
+    calculate_request_portion_for_deployment
 from historical.utils import get_nodes_of_a_deployment, get_edge_placed_pods
 
-CLOUD_RESPONSE_TIME = 350
+CLOUD_RESPONSE_TIME = 300
 EDGE_RESPONSE_TIME = 50
 
 
@@ -145,77 +146,79 @@ def check_equality(config: Config, histories: List[History], save_path: str) -> 
 
 
 @register_extractor
-def average_latency_linechart(_: Config, histories: List[History], save_path: str) -> None:
-    timestamps = []
-    a_latencies = []
-    b_latencies = []
-    c_latencies = []
-    d_latencies = []
-    for history in histories:
-        for cycle in history.cycles:
-            a_cloud, b_cloud, c_cloud, d_cloud = calculate_cloud_pod_count(cycle)
-            a_edge, b_edge, c_edge, d_edge = calculate_edge_pod_count(cycle)
+def average_latency_linechart(config: Config, scenario_name: str, histories: List[History], save_path: str) -> None:
+    for deployment in config.deployments.values():
+        kube_latencies = []
+        kube_timestamps = []
 
-            a_portion, b_portion, c_portion, d_portion = calculate_deployments_request_portion(cycle)
+        ecmus_latencies = []
+        ecmus_timestamps = []
+        for index, history in enumerate(histories):
+            for cycle in history.cycles:
+                cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(cycle, deployment)
+                all_pods_count = cloud_pods_count + edge_pods_count
+                portion = calculate_request_portion_for_deployment(config, cycle, deployment)
+                paran = (cloud_pods_count * CLOUD_RESPONSE_TIME + edge_pods_count * EDGE_RESPONSE_TIME) / all_pods_count
+                latency = portion * paran
 
-            a_latency = a_portion * (a_edge * EDGE_RESPONSE_TIME + a_cloud * CLOUD_RESPONSE_TIME)
-            b_latency = b_portion * (b_edge * EDGE_RESPONSE_TIME + b_cloud * CLOUD_RESPONSE_TIME)
-            c_latency = c_portion * (c_edge * EDGE_RESPONSE_TIME + c_cloud * CLOUD_RESPONSE_TIME)
-            d_latency = d_portion * (d_edge * EDGE_RESPONSE_TIME + d_cloud * CLOUD_RESPONSE_TIME)
+                if index == 0:
+                    ecmus_latencies.append(latency)
+                    ecmus_timestamps.append(cycle.timestamp)
 
-            timestamps.append(cycle.timestamp)
-            a_latencies.append(a_latency)
-            b_latencies.append(b_latency)
-            c_latencies.append(c_latency)
-            d_latencies.append(d_latency)
+                if index == 1:
+                    kube_latencies.append(latency)
+                    kube_timestamps.append(cycle.timestamp)
 
-    plt.figure(figsize=(9.5, 5), layout="tight")
-    plt.plot(timestamps, a_latencies, label="deployment: a")
-    plt.plot(timestamps, b_latencies, label="deployment: b")
-    plt.plot(timestamps, c_latencies, label="deployment: c")
-    plt.plot(timestamps, d_latencies, label="deployment: d")
-    plt.xlabel("time(s)")
-    plt.ylabel("average latency(ms)")
-    plt.title("average latency - per deployment ")
-    plt.legend()
-    plt.savefig(save_path)
+        data = {
+            "ecmus": ecmus_latencies,
+            "kube-schedule": kube_latencies
+        }
 
-
-@register_extractor
-def average_latency_boxplot(_: Config, histories: List[History], save_path: str) -> None:
-    a_latencies = []
-    b_latencies = []
-    c_latencies = []
-    d_latencies = []
-    for history in histories:
-        for cycle in history.cycles:
-            a_cloud, b_cloud, c_cloud, d_cloud = calculate_cloud_pod_count(cycle)
-            a_edge, b_edge, c_edge, d_edge = calculate_edge_pod_count(cycle)
-
-            a_portion, b_portion, c_portion, d_portion = calculate_deployments_request_portion(cycle)
-
-            a_latency = a_portion * (a_edge * EDGE_RESPONSE_TIME + a_cloud * CLOUD_RESPONSE_TIME)
-            b_latency = b_portion * (b_edge * EDGE_RESPONSE_TIME + b_cloud * CLOUD_RESPONSE_TIME)
-            c_latency = c_portion * (c_edge * EDGE_RESPONSE_TIME + c_cloud * CLOUD_RESPONSE_TIME)
-            d_latency = d_portion * (d_edge * EDGE_RESPONSE_TIME + d_cloud * CLOUD_RESPONSE_TIME)
-
-            a_latencies.append(a_latency)
-            b_latencies.append(b_latency)
-            c_latencies.append(c_latency)
-            d_latencies.append(d_latency)
-    fig, ax = plt.subplots()
-    data = [a_latencies, b_latencies, c_latencies, d_latencies]
-    ax.boxplot(data)
-    ax.set_xticklabels(['A', 'B', 'C', 'D'])
-    ax.set_title('latency boxplot - per workload')
-    ax.set_xlabel('Workloads')
-    ax.set_ylabel('Latency (ms)')
-
-    plt.savefig(save_path)
+        fig, ax = plt.subplots()
+        ax.plot(kube_timestamps, kube_latencies, label="kube")
+        ax.plot(ecmus_timestamps, ecmus_latencies, label="ecmus")
+        plt.xlabel("time(s)")
+        plt.ylabel("average latency(ms)")
+        plt.title(f"average latency - workload: {deployment.name}")
+        plt.legend()
+        plt.savefig(f"{save_path}/{scenario_name}-{deployment.name}.png")
 
 
 @register_extractor
-def edge_utilization_linechart(config: Config, histories: List[History], save_path: str) -> None:
+def average_latency_boxplot(config: Config, scenario_name: str, histories: List[History], save_path: str) -> None:
+    for deployment in config.deployments.values():
+        kube_latencies = []
+        ecmus_latencies = []
+        for index, history in enumerate(histories):
+            for cycle in history.cycles:
+                cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(cycle, deployment)
+                all_pods_count = cloud_pods_count + edge_pods_count
+                portion = calculate_request_portion_for_deployment(config, cycle, deployment)
+                paran = (cloud_pods_count * CLOUD_RESPONSE_TIME + edge_pods_count * EDGE_RESPONSE_TIME) / all_pods_count
+                latency = portion * paran
+
+                if index == 0:
+                    ecmus_latencies.append(latency)
+
+                if index == 1:
+                    kube_latencies.append(latency)
+
+        data = {
+            "ecmus": ecmus_latencies,
+            "kube-schedule": kube_latencies
+        }
+
+        fig, ax = plt.subplots()
+        plt.title(f"average latency - workload: {deployment.name.upper()}")
+        plt.xlabel("time(s)")
+        plt.ylabel("average latency(ms)")
+        ax.boxplot(data.values(), showfliers=False)
+        ax.set_xticklabels(data.keys())
+        plt.savefig(f"{save_path}/{scenario_name}-{deployment.name}.png")
+
+
+@register_extractor
+def edge_utilization_linechart(config: Config, _: str, histories: List[History], save_path: str) -> None:
     ecmus_utilization = []
     ecmus_timestamps = []
 
@@ -245,13 +248,14 @@ def edge_utilization_linechart(config: Config, histories: List[History], save_pa
     plt.plot(kube_schedule_timestamps, kube_schedule_utilization, label="kube-schedule")
     plt.xlabel("time (s)")
     plt.ylabel("edge utilization")
+    plt.ylim(0, 1.10)
     plt.title("edge utilization - per algorithm")
     plt.legend()
     plt.savefig(save_path)
 
 
 @register_extractor
-def edge_fragmentation_linechart(config: Config, histories: List[History], save_path: str) -> None:
+def edge_fragmentation_linechart(config: Config, _: str, histories: List[History], save_path: str) -> None:
     ecmus_fragmentation = []
     ecmus_timestamps = []
 
@@ -280,6 +284,7 @@ def edge_fragmentation_linechart(config: Config, histories: List[History], save_
     plt.plot(kube_schedule_timestamps, kube_schedule_fragmentation, label="kube-schedule")
     plt.xlabel("time (s)")
     plt.ylabel("fragmentation")
+    plt.ylim(0, 1.10)
     plt.title("edge fragmentation - per algorithm")
     plt.legend()
     plt.savefig(save_path)

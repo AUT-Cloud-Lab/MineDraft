@@ -26,56 +26,35 @@ def get_nodes_of_a_deployment(
     return nodes
 
 
-def calculate_cloud_pod_count(cycle: Cycle) -> (int, int, int, int):
-    a_count = 0
-    b_count = 0
-    c_count = 0
-    d_count = 0
+def calculate_placement_for_deployment(cycle: Cycle, target: Deployment) -> (int, int):
+    cloud_count = 0
+    edge_count = 0
+    for node, pods in cycle.pod_placement.node_pods.items():
+        for pod in pods:
+            if pod.name != target.name:
+                continue
 
-    for node, placement in cycle.pod_placement.node_pods.items():
-        if node.is_on_edge:
-            continue
+            if node.is_on_edge:
+                edge_count += 1
 
-        for deployment in placement:
-            if deployment.name == "a":
-                a_count += 1
+            if not node.is_on_edge:
+                cloud_count += 1
 
-            if deployment.name == "b":
-                b_count += 1
-
-            if deployment.name == "c":
-                c_count += 1
-
-            if deployment.name == "d":
-                d_count += 1
-
-    return a_count, b_count, c_count, d_count
+    return cloud_count, edge_count
 
 
-def calculate_edge_pod_count(cycle: Cycle) -> (int, int, int, int):
-    a_count = 0
-    b_count = 0
-    c_count = 0
-    d_count = 0
+def calculate_request_portion_for_deployment(config: Config, cycle: Cycle, target: Deployment) -> float:
+    request = 0
+    all_requests = 0
+    for deployment in config.deployments.values():
+        hpa_value = cycle.hpa.deployment_metrics[deployment]
+        request_for_deployment = (hpa_value * 15) / 5
+        if deployment.name == target.name:
+            request = request_for_deployment
 
-    for node, placement in cycle.pod_placement.node_pods.items():
-        if not node.is_on_edge:
-            continue
+        all_requests += request_for_deployment
 
-        for deployment in placement:
-            if deployment.name == "a":
-                a_count += 1
-
-            if deployment.name == "b":
-                b_count += 1
-
-            if deployment.name == "c":
-                c_count += 1
-
-            if deployment.name == "d":
-                d_count += 1
-
-    return a_count, b_count, c_count, d_count
+    return request / all_requests
 
 
 def calculate_deployments_request_portion(cycle: Cycle) -> (int, int, int, int):
