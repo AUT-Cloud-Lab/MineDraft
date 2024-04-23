@@ -1,88 +1,900 @@
-# -------------------------------------------- check_equality -----------------------------------------------
-check_equality_soft:
-	python3 main.py --script_name check_equality --config_path config.json --history_paths reports/ecmus/2023-12-31/status_soft.json reports/kube-schedule/2023-12-31/status_soft.json --save-path ./results/check_equality/soft.txt
+date_kube_schedule ="2024-04-11"
+date_ecmus="2024-04-11"
+date_ecmus_no_migration="2024-04-23"
 
-check_equality_mid:
-	python3 main.py --script_name check_equality --config_path config.json --history_paths reports/ecmus/2023-12-31/status_mid.json reports/kube-schedule/2023-12-31/status_mid.json --save-path ./results/check_equality/mid.txt
 
-check_equality_hard:
-	python3 main.py --script_name check_equality --config_path config.json --history_paths reports/ecmus/2023-12-31/status_hard.json reports/kube-schedule/2023-12-31/status_hard.json --save-path ./results/check_equality/hard.txt
-# -------------------------------------------- end check_equality -----------------------------------------------
+all_scenarios: normal wavy
 
-# -------------------------------------------- calc_migrations -----------------------------------------------
-calc_migrations_ecmus_soft:
-	python3 main.py --script_name calc_migrations --config_path config.json --history_paths reports/ecmus/2023-12-31/status_soft.json  --save-path ./results/migrations/ecmus/soft.txt
+wavy: wavy_average_latency_boxplots wavy_average_latency_linecharts wavy_edge_utilization_linechart wavy_placement_ratio_linechart
 
-calc_migrations_ecmus_mid:
-	python3 main.py --script_name calc_migrations --config_path config.json --history_paths reports/ecmus/2023-12-31/status_mid.json  --save-path ./results/migrations/ecmus/mid.txt
 
-calc_migrations_ecmus_hard:
-	python3 main.py --script_name calc_migrations --config_path config.json --history_paths reports/ecmus/2023-12-31/status_hard.json  --save-path ./results/migrations/ecmus/hard.txt
+normal: normal_average_latency_boxplots normal_average_latency_linecharts normal_edge_utilization_linechart normal_placement_ratio_linechart
 
-calc_migrations_kube_soft:
-	python3 main.py --script_name calc_migrations --config_path config.json --history_paths  reports/kube-schedule/2023-12-31/status_soft.json --save-path ./results/migrations/kube-schedule/soft.txt
+wavy_placement_ratio_linechart:
+	python3 main.py \
+		--script_name placement_ratio_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5.json.json \
+		--scenario-name wavy_scenario_0.5 \
+		--save-path ./results/placement_ratio/linechart/wavy_scenario_0.5
 
-calc_migrations_kube_mid:
-	python3 main.py --script_name calc_migrations --config_path config.json --history_paths  reports/kube-schedule/2023-12-31/status_mid.json --save-path ./results/migrations/kube-schedule/mid.txt
+	python3 main.py \
+		--script_name placement_ratio_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_1.json.json \
+		--scenario-name wavy_scenario_0.5_1 \
+		--save-path ./results/placement_ratio/linechart/wavy_scenario_0.5_1
 
-calc_migrations_kube_hard:
-	python3 main.py --script_name calc_migrations --config_path config.json --history_paths  reports/kube-schedule/2023-12-31/status_hard.json --save-path ./results/migrations/kube-schedule/hard.txt
-# -------------------------------------------- end calc_migrations -----------------------------------------------
+	python3 main.py \
+		--script_name placement_ratio_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_2.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_2.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_2.json.json \
+		--scenario-name wavy_scenario_0.5_2 \
+		--save-path ./results/placement_ratio/linechart/wavy_scenario_0.5_2
 
-# -------------------------------------------- average_latency_linechart -----------------------------------------------
-average_latency_linechart_soft:
-	python3 main.py --script_name average_latency_linechart --config_path config.json --history_paths reports/ecmus/2023-12-31/status_soft.json reports/kube-schedule/2023-12-31/status_soft.json  --scenario-name soft --save-path ./results/average_latency/line-chart/
+	python3 main.py \
+		--script_name placement_ratio_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_3.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_3.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_3.json.json \
+		--scenario-name wavy_scenario_0.5_3 \
+		--save-path ./results/placement_ratio/linechart/wavy_scenario_0.5_3
 
-average_latency_linechart_mid:
-	python3 main.py --script_name average_latency_linechart --config_path config.json --history_paths reports/ecmus/2023-12-31/status_mid.json reports/kube-schedule/2023-12-31/status_mid.json  --scenario-name mid --save-path ./results/average_latency/line-chart/
+	python3 main.py \
+		--script_name placement_ratio_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_4.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_4.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_4.json.json \
+		--scenario-name wavy_scenario_0.5_4 \
+		--save-path ./results/placement_ratio/linechart/wavy_scenario_0.5_4
 
-average_latency_linechart_hard:
-	python3 main.py --script_name average_latency_linechart --config_path config.json --history_paths reports/ecmus/2023-12-31/status_hard.json  reports/kube-schedule/2023-12-31/status_hard.json --scenario-name hard  --save-path ./results/average_latency/line-chart/
+	python3 main.py \
+		--script_name placement_ratio_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0.json.json \
+		--scenario-name wavy_scenario_1.0 \
+		--save-path ./results/placement_ratio/linechart/wavy_scenario_1.0
 
-# -------------------------------------------- end average_latency_linechart -----------------------------------------------
+	python3 main.py \
+		--script_name placement_ratio_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_1.json.json \
+		--scenario-name wavy_scenario_1.0_1 \
+		--save-path ./results/placement_ratio/linechart/wavy_scenario_1.0_1
 
-# -------------------------------------------- average_latency_boxplot -----------------------------------------------
-average_latency_boxplot_soft:
-	python3 main.py --script_name average_latency_boxplot --config_path config.json --history_paths reports/ecmus/2023-12-31/status_soft.json  reports/kube-schedule/2023-12-31/status_soft.json --scenario-name soft  --save-path ./results/average_latency/boxplot/
+	python3 main.py \
+		--script_name placement_ratio_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_2.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_2.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_2.json.json \
+		--scenario-name wavy_scenario_1.0_2 \
+		--save-path ./results/placement_ratio/linechart/wavy_scenario_1.0_2
 
-average_latency_boxplot_mid:
-	python3 main.py --script_name average_latency_boxplot --config_path config.json --history_paths reports/ecmus/2023-12-31/status_mid.json reports/kube-schedule/2023-12-31/status_mid.json  --scenario-name mid --save-path ./results/average_latency/boxplot/
+	python3 main.py \
+		--script_name placement_ratio_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_3.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_3.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_3.json.json \
+		--scenario-name wavy_scenario_1.0_3 \
+		--save-path ./results/placement_ratio/linechart/wavy_scenario_1.0_3
 
-average_latency_boxplot_hard:
-	python3 main.py --script_name average_latency_boxplot --config_path config.json --history_paths reports/ecmus/2023-12-31/status_hard.json reports/kube-schedule/2023-12-31/status_hard.json --scenario-name hard --save-path ./results/average_latency/boxplot/
-# -------------------------------------------- end average_latency_boxplot -----------------------------------------------
+	python3 main.py \
+		--script_name placement_ratio_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_4.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_4.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_4.json.json \
+		--scenario-name wavy_scenario_1.0_4 \
+		--save-path ./results/placement_ratio/linechart/wavy_scenario_1.0_4
 
-# -------------------------------------------- edge_fragmentation_linechart -----------------------------------------------
-edge_fragmentation_linechart_soft:
-	python3 main.py --script_name edge_fragmentation_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_soft.json  reports/ecmus/2023-12-31/status_soft.json  --scenario-name soft --save-path ./results/edge_fragmentation/line-chart/soft.png
+normal_placement_ratio_linechart:
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.1.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.1.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.1.json.json \
+	   --scenario-name normal_scenario_0.5_0.1 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.1
 
-edge_fragmentation_linechart_mid:
-	python3 main.py --script_name edge_fragmentation_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_mid.json  reports/ecmus/2023-12-31/status_mid.json --scenario-name mid --save-path ./results/edge_fragmentation/line-chart/mid.png
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.5.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.5.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.5.json.json \
+	   --scenario-name normal_scenario_0.5_0.5 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.5
 
-edge_fragmentation_linechart_hard:
-	python3 main.py --script_name edge_fragmentation_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_hard.json  reports/ecmus/2023-12-31/status_hard.json --scenario-name hard --save-path ./results/edge_fragmentation/line-chart/hard.png
-# -------------------------------------------- end edge_fragmentation_linechart -----------------------------------------------
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.7.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.7.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.7.json.json \
+	   --scenario-name normal_scenario_0.5_0.7 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.7
 
-# -------------------------------------------- edge_utilization_linechart -----------------------------------------------
-edge_utilization_linechart_soft:
-	python3 main.py --script_name edge_utilization_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_soft.json  reports/ecmus/2023-12-31/status_soft.json --scenario-name soft --save-path ./results/edge_utilization/line-chart/soft.png
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.1.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.1.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.1.json.json \
+	   --scenario-name normal_scenario_0.75_0.1 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.1
 
-edge_utilization_linechart_mid:
-	python3 main.py --script_name edge_utilization_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_mid.json  reports/ecmus/2023-12-31/status_mid.json --scenario-name mid --save-path ./results/edge_utilization/line-chart/mid.png
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.5.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.5.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.5.json.json \
+	   --scenario-name normal_scenario_0.75_0.5 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.5
 
-edge_utilization_linechart_hard:
-	python3 main.py --script_name edge_utilization_linechart --config_path config.json --history_paths reports/kube-schedule/2023-12-31/status_hard.json  reports/ecmus/2023-12-31/status_hard.json --scenario-name hard --save-path ./results/edge_utilization/line-chart/hard.png
-# -------------------------------------------- end edge_utilization_linechart -----------------------------------------------
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.7.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.7.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.7.json.json \
+	   --scenario-name normal_scenario_0.75_0.7 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.7
 
-all_diagrams: average_latency_boxplot_soft\
-	average_latency_boxplot_mid\
-	average_latency_boxplot_hard\
-	average_latency_linechart_soft\
-	average_latency_linechart_mid\
-	average_latency_linechart_hard\
-	edge_fragmentation_linechart_soft \
-	edge_fragmentation_linechart_mid \
-	edge_fragmentation_linechart_hard \
-	edge_utilization_linechart_soft \
-	edge_utilization_linechart_mid \
-	edge_utilization_linechart_hard
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.1.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.1.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.1.json.json \
+	   --scenario-name normal_scenario_1.0_0.1 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.1
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.5.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.5.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.5.json.json \
+	   --scenario-name normal_scenario_1.0_0.5 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.5
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.7.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.7.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.7.json.json \
+	   --scenario-name normal_scenario_1.0_0.7 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.7
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.1.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.1.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.1.json.json \
+	   --scenario-name normal_scenario_1.25_0.1 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.1
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.5.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.5.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.5.json.json \
+	   --scenario-name normal_scenario_1.25_0.5 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.5
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.7.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.7.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.7.json.json \
+	   --scenario-name normal_scenario_1.25_0.7 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.7
+
+wavy_edge_utilization_linechart:
+	python3 main.py \
+		--script_name edge_utilization_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5.json.json \
+		--scenario-name wavy_scenario_0.5 \
+		--save-path ./results/edge_utilization/linechart/wavy_scenario_0.5
+
+	python3 main.py \
+		--script_name edge_utilization_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_1.json.json \
+		--scenario-name wavy_scenario_0.5_1 \
+		--save-path ./results/edge_utilization/linechart/wavy_scenario_0.5_1
+
+	python3 main.py \
+		--script_name edge_utilization_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_2.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_2.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_2.json.json \
+		--scenario-name wavy_scenario_0.5_2 \
+		--save-path ./results/edge_utilization/linechart/wavy_scenario_0.5_2
+
+	python3 main.py \
+		--script_name edge_utilization_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_3.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_3.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_3.json.json \
+		--scenario-name wavy_scenario_0.5_3 \
+		--save-path ./results/edge_utilization/linechart/wavy_scenario_0.5_3
+
+	python3 main.py \
+		--script_name edge_utilization_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_4.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_4.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_4.json.json \
+		--scenario-name wavy_scenario_0.5_4 \
+		--save-path ./results/edge_utilization/linechart/wavy_scenario_0.5_4
+
+	python3 main.py \
+		--script_name edge_utilization_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0.json.json \
+		--scenario-name wavy_scenario_1.0 \
+		--save-path ./results/edge_utilization/linechart/wavy_scenario_1.0
+
+	python3 main.py \
+		--script_name edge_utilization_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_1.json.json \
+		--scenario-name wavy_scenario_1.0_1 \
+		--save-path ./results/edge_utilization/linechart/wavy_scenario_1.0_1
+
+	python3 main.py \
+		--script_name edge_utilization_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_2.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_2.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_2.json.json \
+		--scenario-name wavy_scenario_1.0_2 \
+		--save-path ./results/edge_utilization/linechart/wavy_scenario_1.0_2
+
+	python3 main.py \
+		--script_name edge_utilization_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_3.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_3.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_3.json.json \
+		--scenario-name wavy_scenario_1.0_3 \
+		--save-path ./results/edge_utilization/linechart/wavy_scenario_1.0_3
+
+	python3 main.py \
+		--script_name edge_utilization_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_4.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_4.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_4.json.json \
+		--scenario-name wavy_scenario_1.0_4 \
+		--save-path ./results/edge_utilization/linechart/wavy_scenario_1.0_4
+
+wavy_average_latency_linecharts:
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5.json.json \
+		--scenario-name wavy_scenario_0.5 \
+		--save-path ./results/average_latency/linechart/wavy_scenario_0.5
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_1.json.json \
+		--scenario-name wavy_scenario_0.5_1 \
+		--save-path ./results/average_latency/linechart/wavy_scenario_0.5_1
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_2.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_2.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_2.json.json \
+		--scenario-name wavy_scenario_0.5_2 \
+		--save-path ./results/average_latency/linechart/wavy_scenario_0.5_2
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_3.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_3.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_3.json.json \
+		--scenario-name wavy_scenario_0.5_3 \
+		--save-path ./results/average_latency/linechart/wavy_scenario_0.5_3
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_4.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_4.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_4.json.json \
+		--scenario-name wavy_scenario_0.5_4 \
+		--save-path ./results/average_latency/linechart/wavy_scenario_0.5_4
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0.json.json \
+		--scenario-name wavy_scenario_1.0 \
+		--save-path ./results/average_latency/linechart/wavy_scenario_1.0
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_1.json.json \
+		--scenario-name wavy_scenario_1.0_1 \
+		--save-path ./results/average_latency/linechart/wavy_scenario_1.0_1
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_2.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_2.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_2.json.json \
+		--scenario-name wavy_scenario_1.0_2 \
+		--save-path ./results/average_latency/linechart/wavy_scenario_1.0_2
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_3.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_3.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_3.json.json \
+		--scenario-name wavy_scenario_1.0_3 \
+		--save-path ./results/average_latency/linechart/wavy_scenario_1.0_3
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_4.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_4.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_4.json.json \
+		--scenario-name wavy_scenario_1.0_4 \
+		--save-path ./results/average_latency/linechart/wavy_scenario_1.0_4
+
+normal_average_latency_linecharts:
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.1.json.json \
+		--scenario-name normal_scenario_0.5_0.1 \
+		--save-path ./results/average_latency/linechart/normal_scenario_0.5_0.1
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.5.json.json \
+		--scenario-name normal_scenario_0.5_0.5 \
+		--save-path ./results/average_latency/linechart/normal_scenario_0.5_0.5
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.7.json.json \
+		--scenario-name normal_scenario_0.5_0.7 \
+		--save-path ./results/average_latency/linechart/normal_scenario_0.5_0.7
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.1.json.json \
+		--scenario-name normal_scenario_0.75_0.1 \
+		--save-path ./results/average_latency/linechart/normal_scenario_0.75_0.1
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.5.json.json \
+		--scenario-name normal_scenario_0.75_0.5 \
+		--save-path ./results/average_latency/linechart/normal_scenario_0.75_0.5
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.7.json.json \
+		--scenario-name normal_scenario_0.75_0.7 \
+		--save-path ./results/average_latency/linechart/normal_scenario_0.75_0.7
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.1.json.json \
+		--scenario-name normal_scenario_1.0_0.1 \
+		--save-path ./results/average_latency/linechart/normal_scenario_1.0_0.1
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.5.json.json \
+		--scenario-name normal_scenario_1.0_0.5 \
+		--save-path ./results/average_latency/linechart/normal_scenario_1.0_0.5
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.7.json.json \
+		--scenario-name normal_scenario_1.0_0.7 \
+		--save-path ./results/average_latency/linechart/normal_scenario_1.0_0.7
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.1.json.json \
+		--scenario-name normal_scenario_1.25_0.1 \
+		--save-path ./results/average_latency/linechart/normal_scenario_1.25_0.1
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.5.json.json \
+		--scenario-name normal_scenario_1.25_0.5 \
+		--save-path ./results/average_latency/linechart/normal_scenario_1.25_0.5
+
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.7.json.json \
+		--scenario-name normal_scenario_1.25_0.7 \
+		--save-path ./results/average_latency/linechart/normal_scenario_1.25_0.7
+
+wavy_average_latency_boxplots:
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/wavy_scenario_0.5.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5.json.json \
+	   --scenario-name wavy_scenario_0.5 \
+	   --save-path ./results/average_latency/boxplot/wavy_scenario_0.5
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_1.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_1.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_1.json.json \
+	   --scenario-name wavy_scenario_0.5_1 \
+	   --save-path ./results/average_latency/boxplot/wavy_scenario_0.5_1
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_2.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_2.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_2.json.json \
+	   --scenario-name wavy_scenario_0.5_2 \
+	   --save-path ./results/average_latency/boxplot/wavy_scenario_0.5_2
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_3.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_3.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_3.json.json \
+	   --scenario-name wavy_scenario_0.5_3 \
+	   --save-path ./results/average_latency/boxplot/wavy_scenario_0.5_3
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_4.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_4.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_4.json.json \
+	   --scenario-name wavy_scenario_0.5_4 \
+	   --save-path ./results/average_latency/boxplot/wavy_scenario_0.5_4
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/wavy_scenario_1.0.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0.json.json \
+	   --scenario-name wavy_scenario_1.0 \
+	   --save-path ./results/average_latency/boxplot/wavy_scenario_1.0
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_1.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_1.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_1.json.json \
+	   --scenario-name wavy_scenario_1.0_1 \
+	   --save-path ./results/average_latency/boxplot/wavy_scenario_1.0_1
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_2.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_2.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_2.json.json \
+	   --scenario-name wavy_scenario_1.0_2 \
+	   --save-path ./results/average_latency/boxplot/wavy_scenario_1.0_2
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_3.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_3.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_3.json.json \
+	   --scenario-name wavy_scenario_1.0_3 \
+	   --save-path ./results/average_latency/boxplot/wavy_scenario_1.0_3
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_4.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_4.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_4.json.json \
+	   --scenario-name wavy_scenario_1.0_4 \
+	   --save-path ./results/average_latency/boxplot/wavy_scenario_1.0_4
+
+normal_average_latency_boxplots:
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.1.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.1.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.1.json.json \
+	   --scenario-name normal_scenario_0.5_0.1 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.1
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.5.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.5.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.5.json.json \
+	   --scenario-name normal_scenario_0.5_0.5 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.5
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.7.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.7.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.7.json.json \
+	   --scenario-name normal_scenario_0.5_0.7 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.7
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.1.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.1.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.1.json.json \
+	   --scenario-name normal_scenario_0.75_0.1 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.1
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.5.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.5.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.5.json.json \
+	   --scenario-name normal_scenario_0.75_0.5 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.5
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.7.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.7.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.7.json.json \
+	   --scenario-name normal_scenario_0.75_0.7 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.7
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.1.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.1.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.1.json.json \
+	   --scenario-name normal_scenario_1.0_0.1 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.1
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.5.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.5.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.5.json.json \
+	   --scenario-name normal_scenario_1.0_0.5 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.5
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.7.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.7.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.7.json.json \
+	   --scenario-name normal_scenario_1.0_0.7 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.7
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.1.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.1.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.1.json.json \
+	   --scenario-name normal_scenario_1.25_0.1 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.1
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.5.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.5.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.5.json.json \
+	   --scenario-name normal_scenario_1.25_0.5 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.5
+
+	python3 main.py \
+	   --script_name average_latency_boxplot \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.7.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.7.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.7.json.json \
+	   --scenario-name normal_scenario_1.25_0.7 \
+	   --save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.7
+
+
+normal_edge_utilization_linechart:
+	python3 main.py \
+	   --script_name edge_utilization_linechart \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.1.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.1.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.1.json.json \
+	   --scenario-name normal_scenario_0.5_0.1 \
+	   --save-path ./results/edge_utilization/linechart/normal_scenario_0.5_0.1
+
+	python3 main.py \
+	   --script_name edge_utilization_linechart \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.5.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.5.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.5.json.json \
+	   --scenario-name normal_scenario_0.5_0.5 \
+	   --save-path ./results/edge_utilization/linechart/normal_scenario_0.5_0.5
+
+	python3 main.py \
+	   --script_name edge_utilization_linechart \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.7.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.7.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.7.json.json \
+	   --scenario-name normal_scenario_0.5_0.7 \
+	   --save-path ./results/edge_utilization/linechart/normal_scenario_0.5_0.7
+
+	python3 main.py \
+	   --script_name edge_utilization_linechart \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.1.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.1.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.1.json.json \
+	   --scenario-name normal_scenario_0.75_0.1 \
+	   --save-path ./results/edge_utilization/linechart/normal_scenario_0.75_0.1
+
+	python3 main.py \
+	   --script_name edge_utilization_linechart \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.5.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.5.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.5.json.json \
+	   --scenario-name normal_scenario_0.75_0.5 \
+	   --save-path ./results/edge_utilization/linechart/normal_scenario_0.75_0.5
+
+	python3 main.py \
+	   --script_name edge_utilization_linechart \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.7.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.7.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.7.json.json \
+	   --scenario-name normal_scenario_0.75_0.7 \
+	   --save-path ./results/edge_utilization/linechart/normal_scenario_0.75_0.7
+
+	python3 main.py \
+	   --script_name edge_utilization_linechart \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.1.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.1.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.1.json.json \
+	   --scenario-name normal_scenario_1.0_0.1 \
+	   --save-path ./results/edge_utilization/linechart/normal_scenario_1.0_0.1
+
+	python3 main.py \
+	   --script_name edge_utilization_linechart \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.5.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.5.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.5.json.json \
+	   --scenario-name normal_scenario_1.0_0.5 \
+	   --save-path ./results/edge_utilization/linechart/normal_scenario_1.0_0.5
+
+	python3 main.py \
+	   --script_name edge_utilization_linechart \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.7.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.7.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.7.json.json \
+	   --scenario-name normal_scenario_1.0_0.7 \
+	   --save-path ./results/edge_utilization/linechart/normal_scenario_1.0_0.7
+
+	python3 main.py \
+	   --script_name edge_utilization_linechart \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.1.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.1.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.1.json.json \
+	   --scenario-name normal_scenario_1.25_0.1 \
+	   --save-path ./results/edge_utilization/linechart/normal_scenario_1.25_0.1
+
+	python3 main.py \
+	   --script_name edge_utilization_linechart \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.5.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.5.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.5.json.json \
+	   --scenario-name normal_scenario_1.25_0.5 \
+	   --save-path ./results/edge_utilization/linechart/normal_scenario_1.25_0.5
+
+	python3 main.py \
+	   --script_name edge_utilization_linechart \
+	   --config_path config.json \
+	   --history_paths \
+		  reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.7.json.json \
+		  reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.7.json.json \
+		  reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.7.json.json \
+	   --scenario-name normal_scenario_1.25_0.7 \
+	   --save-path ./results/edge_utilization/linechart/normal_scenario_1.25_0.7

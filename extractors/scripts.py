@@ -1,4 +1,5 @@
 import math
+import os.path
 from math import ceil
 from typing import List, Dict
 
@@ -9,12 +10,15 @@ from historical.common import Deployment
 from historical.config import Config
 from historical.data import History, Cycle, Migration
 from historical.utils import calculate_edge_usage_sum, \
-    calculate_cluster_usage_sum, calculate_resource_usage_for_node, calculate_placement_for_deployment, \
-    calculate_request_portion_for_deployment
+    calculate_cluster_usage_sum, calculate_resource_usage_for_node, calculate_placement_for_deployment
 from historical.utils import get_nodes_of_a_deployment, get_edge_placed_pods
 
 CLOUD_RESPONSE_TIME = 300
 EDGE_RESPONSE_TIME = 50
+
+ECMUS_INDEX = 0
+KUBE_SCHEDULE_INDEX = 1
+ECMUS_NO_MIGRATION_INDEX = 2
 
 
 @register_extractor
@@ -153,35 +157,49 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
 
         ecmus_latencies = []
         ecmus_timestamps = []
+
+        ecmus_no_migration_latencies = []
+        ecmus_no_migration_timestamps = []
         for index, history in enumerate(histories):
             for cycle in history.cycles:
                 cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(cycle, deployment)
                 all_pods_count = cloud_pods_count + edge_pods_count
-                portion = calculate_request_portion_for_deployment(config, cycle, deployment)
-                paran = (cloud_pods_count * CLOUD_RESPONSE_TIME + edge_pods_count * EDGE_RESPONSE_TIME) / all_pods_count
-                latency = portion * paran
+                # portion = calculate_request_portion_for_deployment(config, cycle, deployment)
+                latency = (
+                                  cloud_pods_count * CLOUD_RESPONSE_TIME + edge_pods_count * EDGE_RESPONSE_TIME) / all_pods_count
 
-                if index == 0:
+                if index == ECMUS_INDEX:
                     ecmus_latencies.append(latency)
                     ecmus_timestamps.append(cycle.timestamp)
 
-                if index == 1:
+                if index == KUBE_SCHEDULE_INDEX:
                     kube_latencies.append(latency)
                     kube_timestamps.append(cycle.timestamp)
 
-        data = {
-            "ecmus": ecmus_latencies,
-            "kube-schedule": kube_latencies
-        }
+                if index == ECMUS_NO_MIGRATION_INDEX:
+                    ecmus_no_migration_latencies.append(latency)
+                    ecmus_no_migration_timestamps.append(cycle.timestamp)
+
+        # data = {
+        #     "ecmus": ecmus_latencies,
+        #     "kube-schedule": kube_latencies
+        # }
 
         fig, ax = plt.subplots()
         ax.plot(kube_timestamps, kube_latencies, label="kube")
         ax.plot(ecmus_timestamps, ecmus_latencies, label="ecmus")
+        ax.plot(ecmus_no_migration_timestamps, ecmus_no_migration_latencies, label="ecmus-no-migration")
         plt.xlabel("time(s)")
         plt.ylabel("average latency(ms)")
         plt.title(f"average latency - workload: {deployment.name}")
         plt.legend()
-        plt.savefig(f"{save_path}/{scenario_name}-{deployment.name}.png")
+        ensure_directory(save_path)
+        plt.savefig(f"{save_path}/{deployment.name}.png")
+
+
+def ensure_directory(save_path):
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
 
 
 @register_extractor
@@ -189,23 +207,27 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
     for deployment in config.deployments.values():
         kube_latencies = []
         ecmus_latencies = []
+        ecmus_no_migration_latencies = []
         for index, history in enumerate(histories):
             for cycle in history.cycles:
                 cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(cycle, deployment)
                 all_pods_count = cloud_pods_count + edge_pods_count
-                portion = calculate_request_portion_for_deployment(config, cycle, deployment)
-                paran = (cloud_pods_count * CLOUD_RESPONSE_TIME + edge_pods_count * EDGE_RESPONSE_TIME) / all_pods_count
-                latency = portion * paran
+                latency = (
+                                  cloud_pods_count * CLOUD_RESPONSE_TIME + edge_pods_count * EDGE_RESPONSE_TIME) / all_pods_count
 
-                if index == 0:
+                if index == ECMUS_INDEX:
                     ecmus_latencies.append(latency)
 
-                if index == 1:
+                if index == KUBE_SCHEDULE_INDEX:
                     kube_latencies.append(latency)
+
+                if index == ECMUS_NO_MIGRATION_INDEX:
+                    ecmus_no_migration_latencies.append(latency)
 
         data = {
             "ecmus": ecmus_latencies,
-            "kube-schedule": kube_latencies
+            "kube-schedule": kube_latencies,
+            "ecmus_no_migration": ecmus_no_migration_latencies
         }
 
         fig, ax = plt.subplots()
@@ -214,7 +236,8 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
         plt.ylabel("average latency(ms)")
         ax.boxplot(data.values(), showfliers=False)
         ax.set_xticklabels(data.keys())
-        plt.savefig(f"{save_path}/{scenario_name}-{deployment.name}.png")
+        ensure_directory(save_path)
+        plt.savefig(f"{save_path}/{deployment.name}.png")
 
 
 @register_extractor
@@ -225,6 +248,8 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
     kube_schedule_utilization = []
     kube_schedule_timestamps = []
 
+    ecmus_no_migration_utilization = []
+    ecmus_no_migration_timestamps = []
     for index, history in enumerate(histories):
         for cycle in history.cycles:
             edge_pods = get_edge_placed_pods(cycle)
@@ -236,55 +261,91 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
                 (edge_usage_sum_cpu / cluster_usage_sum_cpu) * (edge_usage_sum_memory / cluster_usage_sum_memory)
             )
 
-            if index == 0:
+            if index == ECMUS_INDEX:
                 ecmus_timestamps.append(cycle.timestamp)
                 ecmus_utilization.append(utilization)
 
-            if index == 1:
+            if index == KUBE_SCHEDULE_INDEX:
                 kube_schedule_timestamps.append(cycle.timestamp)
                 kube_schedule_utilization.append(utilization)
 
+            if index == ECMUS_NO_MIGRATION_INDEX:
+                ecmus_no_migration_timestamps.append(cycle.timestamp)
+                ecmus_no_migration_utilization.append(utilization)
+
     plt.plot(ecmus_timestamps, ecmus_utilization, label="ecmus")
     plt.plot(kube_schedule_timestamps, kube_schedule_utilization, label="kube-schedule")
+    plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_utilization, label="ecmus-no-migration")
     plt.xlabel("time (s)")
     plt.ylabel("edge utilization")
     plt.ylim(0, 1.10)
     plt.title("edge utilization - per algorithm")
     plt.legend()
-    plt.savefig(save_path)
+    ensure_directory(save_path)
+    plt.savefig(save_path + "/result.png")
 
 
 @register_extractor
-def edge_fragmentation_linechart(config: Config, _: str, histories: List[History], save_path: str) -> None:
-    ecmus_fragmentation = []
+def placement_ratio_linechart(config: Config, _: str, histories: List[History], save_path: str) -> None:
+    ecmus_edge_placement_ratio = []
+    ecmus_cloud_placement_ratio = []
     ecmus_timestamps = []
 
-    kube_schedule_fragmentation = []
+    kube_schedule_edge_placement_ratio = []
+    kube_schedule_cloud_placement_ratio = []
     kube_schedule_timestamps = []
 
+    ecmus_no_migration_edge_placement_ratio = []
+    ecmus_no_migration_cloud_placement_ratio = []
+    ecmus_no_migration_timestamps = []
+
     edge_nodes_count = len([node for node in config.nodes.values() if node.is_on_edge])
+    cloud_nodes_count = len([node for node in config.nodes.values() if not node.is_on_edge])
     for index, history in enumerate(histories):
         for cycle in history.cycles:
             edge_usage = 0
+            cloud_usage = 0
             for node in cycle.pod_placement.node_pods.keys():
+                cpu_usage, memory_usage = calculate_resource_usage_for_node(cycle, node)
+
                 if node.is_on_edge:
-                    cpu_usage, memory_usage = calculate_resource_usage_for_node(cycle, node)
                     edge_usage += math.sqrt(cpu_usage * memory_usage)
 
-            fragmentation = 1 - (edge_usage / edge_nodes_count)
-            if index == 0:
+                if not node.is_on_edge:
+                    cloud_usage += math.sqrt(cpu_usage * memory_usage)
+
+            fragmentation_edge = 1 - (edge_usage / edge_nodes_count)
+            fragmentation_cloud = 1 - (cloud_usage / cloud_nodes_count)
+
+            if index == ECMUS_INDEX:
                 ecmus_timestamps.append(cycle.timestamp)
-                ecmus_fragmentation.append(fragmentation)
+                ecmus_edge_placement_ratio.append(fragmentation_edge)
+                ecmus_cloud_placement_ratio.append(fragmentation_cloud)
 
-            if index == 1:
+            if index == KUBE_SCHEDULE_INDEX:
                 kube_schedule_timestamps.append(cycle.timestamp)
-                kube_schedule_fragmentation.append(fragmentation)
+                kube_schedule_edge_placement_ratio.append(fragmentation_edge)
+                kube_schedule_cloud_placement_ratio.append(fragmentation_cloud)
 
-    plt.plot(ecmus_timestamps, ecmus_fragmentation, label="ecmus")
-    plt.plot(kube_schedule_timestamps, kube_schedule_fragmentation, label="kube-schedule")
+            if index == ECMUS_NO_MIGRATION_INDEX:
+                ecmus_no_migration_timestamps.append(cycle.timestamp)
+                ecmus_no_migration_edge_placement_ratio.append(fragmentation_edge)
+                ecmus_no_migration_cloud_placement_ratio.append(fragmentation_cloud)
+
+    plt.plot(ecmus_timestamps, ecmus_edge_placement_ratio, label="ecmus - edge")
+    plt.plot(ecmus_timestamps, ecmus_cloud_placement_ratio, label="ecmus - cloud")
+
+    plt.plot(kube_schedule_timestamps, kube_schedule_edge_placement_ratio, label="kube-schedule - edge")
+    plt.plot(kube_schedule_timestamps, kube_schedule_cloud_placement_ratio, label="kube-schedule - cloud")
+
+    plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_edge_placement_ratio, label="ecmus-no-migration - edge")
+    plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_cloud_placement_ratio,
+             label="ecmus-no-migration - cloud")
+
     plt.xlabel("time (s)")
-    plt.ylabel("fragmentation")
+    plt.ylabel("placement ratio")
     plt.ylim(0, 1.10)
-    plt.title("edge fragmentation - per algorithm")
+    plt.title("pod placement ratio")
     plt.legend()
-    plt.savefig(save_path)
+    ensure_directory(save_path)
+    plt.savefig(save_path + "/result.png")
