@@ -19,6 +19,7 @@ EDGE_RESPONSE_TIME = 50
 ECMUS_INDEX = 0
 KUBE_SCHEDULE_INDEX = 1
 ECMUS_NO_MIGRATION_INDEX = 2
+RANDOM_INDEX = 3
 
 
 @register_extractor
@@ -160,6 +161,9 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
 
         ecmus_no_migration_latencies = []
         ecmus_no_migration_timestamps = []
+
+        random_latencies = []
+        random_timestamps = []
         for index, history in enumerate(histories):
             for cycle in history.cycles:
                 cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(cycle, deployment)
@@ -180,6 +184,9 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
                     ecmus_no_migration_latencies.append(latency)
                     ecmus_no_migration_timestamps.append(cycle.timestamp)
 
+                if index == RANDOM_INDEX:
+                    random_latencies.append(latency)
+                    random_timestamps.append(cycle.timestamp)
         # data = {
         #     "ecmus": ecmus_latencies,
         #     "kube-schedule": kube_latencies
@@ -208,6 +215,7 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
         kube_latencies = []
         ecmus_latencies = []
         ecmus_no_migration_latencies = []
+        random_latencies = []
         for index, history in enumerate(histories):
             for cycle in history.cycles:
                 cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(cycle, deployment)
@@ -224,10 +232,14 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
                 if index == ECMUS_NO_MIGRATION_INDEX:
                     ecmus_no_migration_latencies.append(latency)
 
+                if index == RANDOM_INDEX:
+                    random_latencies.append(latency)
+
         data = {
             "ecmus": ecmus_latencies,
             "kube-schedule": kube_latencies,
-            "ecmus_no_migration": ecmus_no_migration_latencies
+            "ecmus_no_migration": ecmus_no_migration_latencies,
+            "random_scheduler": random_latencies,
         }
 
         fig, ax = plt.subplots()
@@ -250,6 +262,9 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
 
     ecmus_no_migration_utilization = []
     ecmus_no_migration_timestamps = []
+
+    random_utilization = []
+    random_timestamps = []
     for index, history in enumerate(histories):
         for cycle in history.cycles:
             edge_pods = get_edge_placed_pods(cycle)
@@ -273,9 +288,15 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
                 ecmus_no_migration_timestamps.append(cycle.timestamp)
                 ecmus_no_migration_utilization.append(utilization)
 
+            if index == RANDOM_INDEX:
+                random_timestamps.append(cycle.timestamp)
+                random_utilization.append(utilization)
+
     plt.plot(ecmus_timestamps, ecmus_utilization, label="ecmus")
     plt.plot(kube_schedule_timestamps, kube_schedule_utilization, label="kube-schedule")
     plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_utilization, label="ecmus-no-migration")
+    plt.plot(random_timestamps, random_utilization, label="random")
+
     plt.xlabel("time (s)")
     plt.ylabel("edge utilization")
     plt.ylim(0, 1.10)
@@ -298,6 +319,10 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
     ecmus_no_migration_edge_placement_ratio = []
     ecmus_no_migration_cloud_placement_ratio = []
     ecmus_no_migration_timestamps = []
+
+    random_edge_placement_ratio = []
+    random_cloud_placement_ratio = []
+    random_timestamps = []
 
     edge_nodes_count = len([node for node in config.nodes.values() if node.is_on_edge])
     cloud_nodes_count = len([node for node in config.nodes.values() if not node.is_on_edge])
@@ -332,6 +357,11 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
                 ecmus_no_migration_edge_placement_ratio.append(fragmentation_edge)
                 ecmus_no_migration_cloud_placement_ratio.append(fragmentation_cloud)
 
+            if index == RANDOM_INDEX:
+                random_timestamps.append(cycle.timestamp)
+                random_edge_placement_ratio.append(fragmentation_edge)
+                random_cloud_placement_ratio.append(fragmentation_cloud)
+
     plt.plot(ecmus_timestamps, ecmus_edge_placement_ratio, label="ecmus - edge")
     plt.plot(ecmus_timestamps, ecmus_cloud_placement_ratio, label="ecmus - cloud")
 
@@ -341,6 +371,9 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
     plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_edge_placement_ratio, label="ecmus-no-migration - edge")
     plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_cloud_placement_ratio,
              label="ecmus-no-migration - cloud")
+
+    plt.plot(random_timestamps, random_edge_placement_ratio, label="random - edge")
+    plt.plot(random_timestamps, random_cloud_placement_ratio, label="random - cloud")
 
     plt.xlabel("time (s)")
     plt.ylabel("placement ratio")
