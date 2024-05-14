@@ -1,42 +1,74 @@
 {
-    "deployments": [
-        {
-            "name": "a",
-            "resources": [1, 1]
-        },
-        {
-            "name": "b",
-            "resources": [1, 2]
-        },
-        {
-            "name": "c",
-            "resources": [1, 1]
-        },
-        {
-            "name": "d",
-            "resources": [3, 3]
-        }
-    ],
-    "nodes": [
-        {
-            "name": "uq7g5w631-01",
-            "is_on_edge": true,
-            "resources": [5, 5]
-        },
-        {
-            "name": "uq7j5k991-01",
-            "is_on_edge": true,
-            "resources": [4, 4]
-        },
-        {
-            "name": "uq7p7x251-01",
-            "is_on_edge": true,
-            "resources": [5, 7]
-        },
-        {
-            "name": "uq7p7w241-01",
-            "is_on_edge": false,
-            "resources": [17, 22]
-        }
-    ]
+  "deployments": [
+    {
+      "name": "a",
+      "resources": [
+        1,
+        1
+      ]
+    },
+    {
+      "name": "b",
+      "resources": [
+        1,
+        2
+      ]
+    },
+    {
+      "name": "c",
+      "resources": [
+        1,
+        1
+      ]
+    },
+    {
+      "name": "d",
+      "resources": [
+        3,
+        3
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "uq7g5t611-01",
+      "is_on_edge": false,
+      "resources": [
+        4,
+        6
+      ]
+    },
+    {
+      "name": "uq7g5w631-01",
+      "is_on_edge": true,
+      "resources": [
+        5,
+        5
+      ]
+    },
+    {
+      "name": "uq7j5k991-01",
+      "is_on_edge": true,
+      "resources": [
+        4,
+        4
+      ]
+    },
+    {
+      "name": "uq7p7x251-01",
+      "is_on_edge": true,
+      "resources": [
+        5,
+        7
+      ]
+    },
+    {
+      "name": "uq7p7w241-01",
+      "is_on_edge": false,
+      "resources": [
+        17,
+        22
+      ]
+    }
+  ]
 }
