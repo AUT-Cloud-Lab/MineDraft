@@ -2,7 +2,7 @@ date_kube_schedule ="2024-04-11"
 date_ecmus="2024-04-11"
 date_ecmus_no_migration="2024-04-23"
 date_random="" //TODO: fill here
-
+date_cloud_first="2024-05-14"
 
 all_scenarios: normal wavy
 
