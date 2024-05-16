@@ -3,8 +3,8 @@ date_ecmus="2024-04-11"
 date_ecmus_no_migration="2024-04-23"
 date_random="2024-05-14"
 date_cloud_first="2024-05-14"
-date_smallest_edge_first="" //TODO: fill here
-date_biggest_edge_first="" // TODO: fill here
+date_smallest_edge_first="2024-05-16"
+date_biggest_edge_first="2024-05-16"
 
 all_scenarios: normal wavy
 
