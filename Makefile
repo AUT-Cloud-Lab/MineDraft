@@ -4,6 +4,7 @@ date_ecmus_no_migration="2024-04-23"
 date_random="2024-05-14"
 date_cloud_first="2024-05-14"
 date_smallest_edge_first="" //TODO: fill here
+date_biggest_edge_first="" // TODO: fill here
 
 all_scenarios: normal wavy
 
@@ -23,6 +24,7 @@ wavy_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5.json.json \
 		--scenario-name wavy_scenario_0.5 \
 		--save-path ./results/placement_ratio/linechart/wavy_scenario_0.5
 
@@ -36,6 +38,7 @@ wavy_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_1.json.json \
 		--scenario-name wavy_scenario_0.5_1 \
 		--save-path ./results/placement_ratio/linechart/wavy_scenario_0.5_1
 
@@ -49,6 +52,7 @@ wavy_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_2.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_2.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_2.json.json \
 		--scenario-name wavy_scenario_0.5_2 \
 		--save-path ./results/placement_ratio/linechart/wavy_scenario_0.5_2
 
@@ -62,6 +66,7 @@ wavy_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_3.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_3.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_3.json.json \
 		--scenario-name wavy_scenario_0.5_3 \
 		--save-path ./results/placement_ratio/linechart/wavy_scenario_0.5_3
 
@@ -75,6 +80,7 @@ wavy_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_4.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_4.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_4.json.json \
 		--scenario-name wavy_scenario_0.5_4 \
 		--save-path ./results/placement_ratio/linechart/wavy_scenario_0.5_4
 
@@ -88,6 +94,7 @@ wavy_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0.json.json \
 		--scenario-name wavy_scenario_1.0 \
 		--save-path ./results/placement_ratio/linechart/wavy_scenario_1.0
 
@@ -101,6 +108,7 @@ wavy_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_1.json.json \
 		--scenario-name wavy_scenario_1.0_1 \
 		--save-path ./results/placement_ratio/linechart/wavy_scenario_1.0_1
 
@@ -114,6 +122,7 @@ wavy_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_2.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_2.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_2.json.json \
 		--scenario-name wavy_scenario_1.0_2 \
 		--save-path ./results/placement_ratio/linechart/wavy_scenario_1.0_2
 
@@ -127,6 +136,7 @@ wavy_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_3.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_3.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_3.json.json \
 		--scenario-name wavy_scenario_1.0_3 \
 		--save-path ./results/placement_ratio/linechart/wavy_scenario_1.0_3
 
@@ -140,6 +150,7 @@ wavy_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_4.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_4.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_4.json.json \
 		--scenario-name wavy_scenario_1.0_4 \
 		--save-path ./results/placement_ratio/linechart/wavy_scenario_1.0_4
 
@@ -154,6 +165,7 @@ normal_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.1.json.json \
 		--scenario-name normal_scenario_0.5_0.1 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.1
 
@@ -167,6 +179,7 @@ normal_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.5.json.json \
 		--scenario-name normal_scenario_0.5_0.5 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.5
 
@@ -180,6 +193,7 @@ normal_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.7.json.json \
 		--scenario-name normal_scenario_0.5_0.7 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.7
 
@@ -193,6 +207,7 @@ normal_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.1.json.json \
 		--scenario-name normal_scenario_0.75_0.1 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.1
 
@@ -206,6 +221,7 @@ normal_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.5.json.json \
 		--scenario-name normal_scenario_0.75_0.5 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.5
 
@@ -219,7 +235,8 @@ normal_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.7.json.json \
-		--scenario-name normal_scenario_0.75_0.7 \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.7.json.json \
+		--scenario-name normal_scenario
 		--save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.7
 
 	python3 main.py \
@@ -232,6 +249,7 @@ normal_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.1.json.json \
 		--scenario-name normal_scenario_1.0_0.1 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.1
 
@@ -245,6 +263,7 @@ normal_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.5.json.json \
 		--scenario-name normal_scenario_1.0_0.5 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.5
 
@@ -258,6 +277,7 @@ normal_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.7.json.json \
 		--scenario-name normal_scenario_1.0_0.7 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.7
 
@@ -271,6 +291,7 @@ normal_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.1.json.json \
 		--scenario-name normal_scenario_1.25_0.1 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.1
 
@@ -284,8 +305,10 @@ normal_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.5.json.json \
 		--scenario-name normal_scenario_1.25_0.5 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.5
+
 
 	python3 main.py \
 		--script_name average_latency_boxplot \
@@ -297,6 +320,7 @@ normal_placement_ratio_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7.json.json \
 		--scenario-name normal_scenario_1.25_0.7 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.7
 
@@ -311,6 +335,7 @@ wavy_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5.json.json \
 		--scenario-name wavy_scenario_0.5 \
 		--save-path ./results/edge_utilization/linechart/wavy_scenario_0.5
 
@@ -324,6 +349,7 @@ wavy_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_1.json.json \
 		--scenario-name wavy_scenario_0.5_1 \
 		--save-path ./results/edge_utilization/linechart/wavy_scenario_0.5_1
 
@@ -337,6 +363,7 @@ wavy_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_2.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_2.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_2.json.json \
 		--scenario-name wavy_scenario_0.5_2 \
 		--save-path ./results/edge_utilization/linechart/wavy_scenario_0.5_2
 
@@ -350,6 +377,7 @@ wavy_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_3.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_3.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_3.json.json \
 		--scenario-name wavy_scenario_0.5_3 \
 		--save-path ./results/edge_utilization/linechart/wavy_scenario_0.5_3
 
@@ -363,6 +391,7 @@ wavy_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_4.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_4.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_4.json.json \
 		--scenario-name wavy_scenario_0.5_4 \
 		--save-path ./results/edge_utilization/linechart/wavy_scenario_0.5_4
 
@@ -376,6 +405,7 @@ wavy_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0.json.json \
 		--scenario-name wavy_scenario_1.0 \
 		--save-path ./results/edge_utilization/linechart/wavy_scenario_1.0
 
@@ -389,6 +419,7 @@ wavy_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_1.json.json \
 		--scenario-name wavy_scenario_1.0_1 \
 		--save-path ./results/edge_utilization/linechart/wavy_scenario_1.0_1
 
@@ -402,6 +433,7 @@ wavy_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_2.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_2.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_2.json.json \
 		--scenario-name wavy_scenario_1.0_2 \
 		--save-path ./results/edge_utilization/linechart/wavy_scenario_1.0_2
 
@@ -415,6 +447,7 @@ wavy_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_3.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_3.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_3.json.json \
 		--scenario-name wavy_scenario_1.0_3 \
 		--save-path ./results/edge_utilization/linechart/wavy_scenario_1.0_3
 
@@ -428,6 +461,7 @@ wavy_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_4.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_4.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_4.json.json \
 		--scenario-name wavy_scenario_1.0_4 \
 		--save-path ./results/edge_utilization/linechart/wavy_scenario_1.0_4
 
@@ -442,6 +476,7 @@ wavy_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5.json.json \
 		--scenario-name wavy_scenario_0.5 \
 		--save-path ./results/average_latency/linechart/wavy_scenario_0.5
 
@@ -455,6 +490,7 @@ wavy_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_1.json.json \
 		--scenario-name wavy_scenario_0.5_1 \
 		--save-path ./results/average_latency/linechart/wavy_scenario_0.5_1
 
@@ -468,6 +504,7 @@ wavy_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_2.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_2.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_2.json.json \
 		--scenario-name wavy_scenario_0.5_2 \
 		--save-path ./results/average_latency/linechart/wavy_scenario_0.5_2
 
@@ -481,6 +518,7 @@ wavy_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_3.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_3.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_3.json.json \
 		--scenario-name wavy_scenario_0.5_3 \
 		--save-path ./results/average_latency/linechart/wavy_scenario_0.5_3
 
@@ -494,6 +532,7 @@ wavy_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_4.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_4.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_4.json.json \
 		--scenario-name wavy_scenario_0.5_4 \
 		--save-path ./results/average_latency/linechart/wavy_scenario_0.5_4
 
@@ -507,6 +546,7 @@ wavy_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0.json.json \
 		--scenario-name wavy_scenario_1.0 \
 		--save-path ./results/average_latency/linechart/wavy_scenario_1.0
 
@@ -520,9 +560,9 @@ wavy_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_1.json.json \
 		--scenario-name wavy_scenario_1.0_1 \
 		--save-path ./results/average_latency/linechart/wavy_scenario_1.0_1
-
 
 	python3 main.py \
 		--script_name average_latency_linechart \
@@ -534,6 +574,7 @@ wavy_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_2.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_2.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_2.json.json \
 		--scenario-name wavy_scenario_1.0_2 \
 		--save-path ./results/average_latency/linechart/wavy_scenario_1.0_2
 
@@ -547,6 +588,7 @@ wavy_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_3.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_3.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_3.json.json \
 		--scenario-name wavy_scenario_1.0_3 \
 		--save-path ./results/average_latency/linechart/wavy_scenario_1.0_3
 
@@ -560,6 +602,7 @@ wavy_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_4.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_4.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_4.json.json \
 		--scenario-name wavy_scenario_1.0_4 \
 		--save-path ./results/average_latency/linechart/wavy_scenario_1.0_4
 
@@ -574,6 +617,7 @@ normal_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.1.json.json \
 		--scenario-name normal_scenario_0.5_0.1 \
 		--save-path ./results/average_latency/linechart/normal_scenario_0.5_0.1
 
@@ -587,6 +631,7 @@ normal_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.5.json.json \
 		--scenario-name normal_scenario_0.5_0.5 \
 		--save-path ./results/average_latency/linechart/normal_scenario_0.5_0.5
 
@@ -600,6 +645,7 @@ normal_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.7.json.json \
 		--scenario-name normal_scenario_0.5_0.7 \
 		--save-path ./results/average_latency/linechart/normal_scenario_0.5_0.7
 
@@ -613,6 +659,7 @@ normal_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.1.json.json \
 		--scenario-name normal_scenario_0.75_0.1 \
 		--save-path ./results/average_latency/linechart/normal_scenario_0.75_0.1
 
@@ -626,6 +673,7 @@ normal_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.5.json.json \
 		--scenario-name normal_scenario_0.75_0.5 \
 		--save-path ./results/average_latency/linechart/normal_scenario_0.75_0.5
 
@@ -639,6 +687,7 @@ normal_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.7.json.json \
 		--scenario-name normal_scenario_0.75_0.7 \
 		--save-path ./results/average_latency/linechart/normal_scenario_0.75_0.7
 
@@ -652,6 +701,7 @@ normal_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.1.json.json \
 		--scenario-name normal_scenario_1.0_0.1 \
 		--save-path ./results/average_latency/
 
@@ -665,6 +715,7 @@ normal_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.5.json.json \
 		--scenario-name normal_scenario_1.0_0.5 \
 		--save-path ./results/average_latency/linechart/normal_scenario_1.0_0.5
 
@@ -678,6 +729,7 @@ normal_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.7.json.json \
 		--scenario-name normal_scenario_1.0_0.7 \
 		--save-path ./results/average_latency/linechart/normal_scenario_1.0_0.7
 
@@ -691,6 +743,7 @@ normal_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.1.json.json \
 		--scenario-name normal_scenario_1.25_0.1 \
 		--save-path ./results/average_latency/linechart/normal_scenario_1.25_0.1
 
@@ -704,6 +757,7 @@ normal_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.5.json.json \
 		--scenario-name normal_scenario_1.25_0.5 \
 		--save-path ./results/average_latency/linechart/normal_scenario_1.25_0.5
 
@@ -717,6 +771,7 @@ normal_average_latency_linecharts:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7.json.json \
 		--scenario-name normal_scenario_1.25_0.7 \
 		--save-path ./results/average_latency/linechart/normal_scenario_1.25_0.7
 
@@ -731,6 +786,7 @@ wavy_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5.json.json \
 		--scenario-name wavy_scenario_0.5 \
 		--save-path ./results/average_latency/boxplot/wavy_scenario_0.5
 
@@ -744,6 +800,7 @@ wavy_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_1.json.json \
 		--scenario-name wavy_scenario_0.5_1 \
 		--save-path ./results/average_latency/boxplot/wavy_scenario_0.5_1
 
@@ -757,6 +814,7 @@ wavy_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_2.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_2.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_2.json.json \
 		--scenario-name wavy_scenario_0.5_2 \
 		--save-path ./results/average_latency/boxplot/wavy_scenario_0.5_2
 
@@ -770,6 +828,7 @@ wavy_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_3.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_3.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_3.json.json \
 		--scenario-name wavy_scenario_0.5_3 \
 		--save-path ./results/average_latency/boxplot/wavy_scenario_0.5_3
 
@@ -783,6 +842,7 @@ wavy_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_4.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_4.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_4.json.json \
 		--scenario-name wavy_scenario_0.5_4 \
 		--save-path ./results/average_latency/boxplot/wavy_scenario_0.5_4
 
@@ -796,6 +856,7 @@ wavy_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0.json.json \
 		--scenario-name wavy_scenario_1.0 \
 		--save-path ./results/average_latency/boxplot/wavy_scenario_1.0
 
@@ -809,6 +870,7 @@ wavy_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_1.json.json \
 		--scenario-name wavy_scenario_1.0_1 \
 		--save-path ./results/average_latency/boxplot/wavy_scenario_1.0_1
 
@@ -822,6 +884,7 @@ wavy_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_2.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_2.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_2.json.json \
 		--scenario-name wavy_scenario_1.0_2 \
 		--save-path ./results/average_latency/boxplot/wavy_scenario_1.0_2
 
@@ -835,8 +898,10 @@ wavy_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_3.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_3.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_3.json.json \
 		--scenario-name wavy_scenario_1.0_3 \
 		--save-path ./results/average_latency/boxplot/wavy_scenario_1.0_3
+
 
 	python3 main.py \
 		--script_name average_latency_boxplot \
@@ -848,6 +913,7 @@ wavy_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_4.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_4.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_4.json.json \
 		--scenario-name wavy_scenario_1.0_4 \
 		--save-path ./results/average_latency/boxplot/wavy_scenario_1.0_4
 
@@ -862,6 +928,7 @@ normal_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.1.json.json \
 		--scenario-name normal_scenario_0.5_0.1 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.1
 
@@ -875,6 +942,7 @@ normal_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.5.json.json \
 		--scenario-name normal_scenario_0.5_0.5 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.5
 
@@ -888,6 +956,7 @@ normal_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.7.json.json \
 		--scenario-name normal_scenario_0.5_0.7 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.7
 
@@ -901,6 +970,7 @@ normal_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.1.json.json \
 		--scenario-name normal_scenario_0.75_0.1 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.1
 
@@ -914,6 +984,7 @@ normal_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.5.json.json \
 		--scenario-name normal_scenario_0.75_0.5 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.5
 
@@ -927,9 +998,9 @@ normal_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.7.json.json \
 		--scenario-name normal_scenario_0.75_0.7 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.7
-
 	python3 main.py \
 		--script_name average_latency_boxplot \
 		--config_path config.json \
@@ -940,6 +1011,7 @@ normal_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.1.json.json \
 		--scenario-name normal_scenario_1.0_0.1 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.1
 
@@ -953,6 +1025,7 @@ normal_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.5.json.json \
 		--scenario-name normal_scenario_1.0_0.5 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.5
 
@@ -966,6 +1039,7 @@ normal_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.7.json.json \
 		--scenario-name normal_scenario_1.0_0.7 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.7
 
@@ -979,6 +1053,7 @@ normal_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.1.json.json \
 		--scenario-name normal_scenario_1.25_0.1 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.1
 
@@ -992,6 +1067,7 @@ normal_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.5.json.json \
 		--scenario-name normal_scenario_1.25_0.5 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.5
 
@@ -1005,6 +1081,7 @@ normal_average_latency_boxplots:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7.json.json \
 		--scenario-name normal_scenario_1.25_0.7 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.7
 
@@ -1019,6 +1096,7 @@ normal_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.1.json.json \
 		--scenario-name normal_scenario_0.5_0.1 \
 		--save-path ./results/edge_utilization/linechart/normal_scenario_0.5_0.1
 
@@ -1032,6 +1110,7 @@ normal_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.5.json.json \
 		--scenario-name normal_scenario_0.5_0.5 \
 		--save-path ./results/edge_utilization/linechart/normal_scenario_0.5_0.5
 
@@ -1045,6 +1124,7 @@ normal_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.7.json.json \
 		--scenario-name normal_scenario_0.5_0.7 \
 		--save-path ./results/edge_utilization/linechart/normal_scenario_0.5_0.7
 
@@ -1058,6 +1138,7 @@ normal_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.1.json.json \
 		--scenario-name normal_scenario_0.75_0.1 \
 		--save-path ./results/edge_utilization/linechart/normal_scenario_0.75_0.1
 
@@ -1071,6 +1152,7 @@ normal_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.5.json.json \
 		--scenario-name normal_scenario_0.75_0.5 \
 		--save-path ./results/edge_utilization/linechart/normal_scenario_0.75_0.5
 
@@ -1084,6 +1166,7 @@ normal_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.7.json.json \
 		--scenario-name normal_scenario_0.75_0.7 \
 		--save-path ./results/edge_utilization/linechart/normal_scenario_0.75_0.7
 
@@ -1097,6 +1180,7 @@ normal_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.1.json.json \
 		--scenario-name normal_scenario_1.0_0.1 \
 		--save-path ./results/edge_utilization/linechart/normal_scenario_1.0_0.1
 
@@ -1110,6 +1194,7 @@ normal_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.5.json.json \
 		--scenario-name normal_scenario_1.0_0.5 \
 		--save-path ./results/edge_utilization/linechart/normal_scenario_1.0_0.5
 
@@ -1123,6 +1208,7 @@ normal_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.7.json.json \
 		--scenario-name normal_scenario_1.0_0.7 \
 		--save-path ./results/edge_utilization/linechart/normal_scenario_1.0_0.7
 
@@ -1136,6 +1222,7 @@ normal_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.1.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.1.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.1.json.json \
 		--scenario-name normal_scenario_1.25_0.1 \
 		--save-path ./results/edge_utilization/linechart/normal_scenario_1.25_0.1
 
@@ -1149,6 +1236,7 @@ normal_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.5.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.5.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.5.json.json \
 		--scenario-name normal_scenario_1.25_0.5 \
 		--save-path ./results/edge_utilization/linechart/normal_scenario_1.25_0.5
 
@@ -1162,5 +1250,6 @@ normal_edge_utilization_linechart:
 			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.7.json.json \
 			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.7.json.json \
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7.json.json \
 		--scenario-name normal_scenario_1.25_0.7 \
 		--save-path ./results/edge_utilization/linechart/normal_scenario_1.25_0.7
