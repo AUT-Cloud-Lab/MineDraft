@@ -22,6 +22,7 @@ ECMUS_NO_MIGRATION_INDEX = 2
 RANDOM_INDEX = 3
 CLOUD_FIRST_INDEX = 4
 SMALLEST_EDGE_FIRST_INDEX = 5
+BIGGEST_EDGE_FIRST_INDEX = 6
 
 
 @register_extractor
@@ -172,6 +173,9 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
 
         smallest_edge_first_latencies = []
         smallest_edge_first_timestamps = []
+
+        biggest_edge_first_latencies = []
+        biggest_edge_first_timestamps = []
         for index, history in enumerate(histories):
             for cycle in history.cycles:
                 cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(cycle, deployment)
@@ -204,11 +208,16 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
                     smallest_edge_first_latencies.append(latency)
                     smallest_edge_first_timestamps.append(cycle.timestamp)
 
+                if index == BIGGEST_EDGE_FIRST_INDEX:
+                    biggest_edge_first_latencies.append(latency)
+                    biggest_edge_first_timestamps.append(cycle.timestamp)
+
         fig, ax = plt.subplots()
         ax.plot(kube_timestamps, kube_latencies, label="kube")
         ax.plot(ecmus_timestamps, ecmus_latencies, label="ecmus")
         ax.plot(ecmus_no_migration_timestamps, ecmus_no_migration_latencies, label="ecmus-no-migration")
         ax.plot(cloud_first_timestamps, cloud_first_latencies, label="cloud-first")
+        ax.plot(biggest_edge_first_timestamps, biggest_edge_first_latencies, label="biggest-edge-first")
         plt.xlabel("time(s)")
         plt.ylabel("average latency(ms)")
         plt.title(f"average latency - workload: {deployment.name}")
@@ -231,6 +240,7 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
         random_latencies = []
         cloud_first_latencies = []
         smallest_edge_first_latencies = []
+        biggest_edge_first_latencies = []
         for index, history in enumerate(histories):
             for cycle in history.cycles:
                 cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(cycle, deployment)
@@ -256,13 +266,17 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
                 if index == SMALLEST_EDGE_FIRST_INDEX:
                     smallest_edge_first_latencies.append(latency)
 
+                if index == BIGGEST_EDGE_FIRST_INDEX:
+                    biggest_edge_first_latencies.append(latency)
+
         data = {
             "ecmus": ecmus_latencies,
             "kube-schedule": kube_latencies,
             "ecmus_no_migration": ecmus_no_migration_latencies,
             "random_scheduler": random_latencies,
             "cloud-first": cloud_first_latencies,
-            "smallest_edge": smallest_edge_first_latencies,
+            "smallest-edge-first": smallest_edge_first_latencies,
+            "biggest-edge-first": biggest_edge_first_latencies,
         }
 
         fig, ax = plt.subplots()
@@ -296,6 +310,9 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
 
     smallest_edge_first_utilization = []
     smallest_edge_first_timestamps = []
+
+    biggest_edge_first_utilization = []
+    biggest_edge_first_timestamps = []
     for index, history in enumerate(histories):
         for cycle in history.cycles:
             edge_pods = get_edge_placed_pods(cycle)
@@ -331,12 +348,17 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
                 smallest_edge_first_timestamps.append(cycle.timestamp)
                 smallest_edge_first_utilization.append(utilization)
 
+            if index == BIGGEST_EDGE_FIRST_INDEX:
+                biggest_edge_first_timestamps.append(cycle.timestamp)
+                biggest_edge_first_utilization.append(utilization)
+
     plt.plot(ecmus_timestamps, ecmus_utilization, label="ecmus")
     plt.plot(kube_schedule_timestamps, kube_schedule_utilization, label="kube-schedule")
     plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_utilization, label="ecmus-no-migration")
     plt.plot(random_timestamps, random_utilization, label="random")
     plt.plot(cloud_first_timestamps, cloud_first_utilization, label="cloud-first")
     plt.plot(smallest_edge_first_timestamps, smallest_edge_first_utilization, label="smallest-edge-first")
+    plt.plot(biggest_edge_first_timestamps, biggest_edge_first_utilization, label="biggest-edge-first")
 
     plt.xlabel("time (s)")
     plt.ylabel("edge utilization")
@@ -372,6 +394,10 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
     smallest_edge_first_cloud_placement_ratio = []
     smallest_edge_first_edge_placement_ratio = []
     smallest_edge_first_timestamps = []
+
+    biggest_edge_first_edge_placement_ratio = []
+    biggest_edge_first_cloud_placement_ratio = []
+    biggest_edge_first_timestamps = []
 
     edge_nodes_count = len([node for node in config.nodes.values() if node.is_on_edge])
     cloud_nodes_count = len([node for node in config.nodes.values() if not node.is_on_edge])
@@ -421,6 +447,11 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
                 smallest_edge_first_edge_placement_ratio.append(fragmentation_edge)
                 smallest_edge_first_cloud_placement_ratio.append(fragmentation_cloud)
 
+            if index == BIGGEST_EDGE_FIRST_INDEX:
+                biggest_edge_first_timestamps.append(cycle.timestamp)
+                biggest_edge_first_edge_placement_ratio.append(fragmentation_edge)
+                biggest_edge_first_cloud_placement_ratio.append(fragmentation_cloud)
+
     plt.plot(ecmus_timestamps, ecmus_edge_placement_ratio, label="ecmus - edge")
     plt.plot(ecmus_timestamps, ecmus_cloud_placement_ratio, label="ecmus - cloud")
 
@@ -441,6 +472,10 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
              label="smallest-edge-first - edge")
     plt.plot(smallest_edge_first_timestamps, smallest_edge_first_cloud_placement_ratio,
              label="smallest-edge-first - cloud")
+
+    plt.plot(biggest_edge_first_timestamps, biggest_edge_first_edge_placement_ratio, label="biggest-edge-first - edge")
+    plt.plot(biggest_edge_first_timestamps, biggest_edge_first_cloud_placement_ratio,
+             label="biggest-edge-first - cloud")
 
     plt.xlabel("time (s)")
     plt.ylabel("placement ratio")
