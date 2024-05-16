@@ -260,9 +260,11 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
         plt.title(f"average latency - workload: {deployment.name.upper()}")
         plt.xlabel("time(s)")
         plt.ylabel("average latency(ms)")
-        ax.boxplot(data.values(), showfliers=False)
-        ax.set_xticklabels(data.keys())
+        ax.boxplot(data.values(), showfliers=False, )
+        fig.tight_layout()
+        ax.set_xticklabels(data.keys(), rotation=45, horizontalalignment='right')
         ensure_directory(save_path)
+        plt.tight_layout()
         plt.savefig(f"{save_path}/{deployment.name}.png")
 
 
