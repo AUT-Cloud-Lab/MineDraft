@@ -1,9 +1,11 @@
 import math
 import os.path
+import statistics
 from math import ceil
 from typing import List, Dict
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 from extractors.decorator import register_extractor
 from historical.common import Deployment
@@ -234,14 +236,52 @@ def ensure_directory(save_path):
 
 @register_extractor
 def average_latency_boxplot(config: Config, scenario_name: str, histories: List[History], save_path: str) -> None:
+    data = {
+        "kube-scheduler": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
+        "ecmus": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
+        "ecmus-no-migration": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
+        "random-scheduler": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
+        "cloud-first-scheduler": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
+        "biggest-edge-first-scheduler": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
+        "smallest-edge-first-scheduler": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
+    }
+
     for deployment in config.deployments.values():
-        kube_latencies = []
-        ecmus_latencies = []
-        ecmus_no_migration_latencies = []
-        random_latencies = []
-        cloud_first_latencies = []
-        smallest_edge_first_latencies = []
-        biggest_edge_first_latencies = []
         for index, history in enumerate(histories):
             for cycle in history.cycles:
                 cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(cycle, deployment)
@@ -250,46 +290,64 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
                                   cloud_pods_count * CLOUD_RESPONSE_TIME + edge_pods_count * EDGE_RESPONSE_TIME) / all_pods_count
 
                 if index == ECMUS_INDEX:
-                    ecmus_latencies.append(latency)
+                    data["ecmus"][deployment.name].append(latency)
 
                 if index == KUBE_SCHEDULE_INDEX:
-                    kube_latencies.append(latency)
+                    data["kube-scheduler"][deployment.name].append(latency)
 
                 if index == ECMUS_NO_MIGRATION_INDEX:
-                    ecmus_no_migration_latencies.append(latency)
+                    data["ecmus-no-migration"][deployment.name].append(latency)
 
                 if index == RANDOM_INDEX:
-                    random_latencies.append(latency)
+                    data["random-scheduler"][deployment.name].append(latency)
 
                 if index == CLOUD_FIRST_INDEX:
-                    cloud_first_latencies.append(latency)
+                    data["cloud-first-scheduler"][deployment.name].append(latency)
 
                 if index == SMALLEST_EDGE_FIRST_INDEX:
-                    smallest_edge_first_latencies.append(latency)
+                    data["smallest-edge-first-scheduler"][deployment.name].append(latency)
 
                 if index == BIGGEST_EDGE_FIRST_INDEX:
-                    biggest_edge_first_latencies.append(latency)
+                    data["biggest-edge-first-scheduler"][deployment.name].append(latency)
 
-        data = {
-            "ecmus": ecmus_latencies,
-            "kube-schedule": kube_latencies,
-            "ecmus_no_migration": ecmus_no_migration_latencies,
-            "random_scheduler": random_latencies,
-            "cloud-first": cloud_first_latencies,
-            "smallest-edge-first": smallest_edge_first_latencies,
-            "biggest-edge-first": biggest_edge_first_latencies,
-        }
+    a_means = []
+    b_means = []
+    c_means = []
+    d_means = []
 
-        fig, ax = plt.subplots()
-        plt.title(f"average latency - workload: {deployment.name.upper()}")
-        plt.xlabel("time(s)")
-        plt.ylabel("average latency(ms)")
-        ax.boxplot(data.values(), showfliers=False, )
-        fig.tight_layout()
-        ax.set_xticklabels(data.keys(), rotation=45, horizontalalignment='right')
-        ensure_directory(save_path)
-        plt.tight_layout()
-        plt.savefig(f"{save_path}/{deployment.name}.png")
+    a_errors = []
+    b_errors = []
+    c_errors = []
+    d_errors = []
+    for scheduler, latencies in data.items():
+        a_means.append(statistics.mean(latencies["a"]))
+        b_means.append(statistics.mean(latencies["b"]))
+        c_means.append(statistics.mean(latencies["c"]))
+        d_means.append(statistics.mean(latencies["d"]))
+
+        a_errors.append(statistics.stdev(latencies["a"]))
+        b_errors.append(statistics.stdev(latencies["b"]))
+        c_errors.append(statistics.stdev(latencies["c"]))
+        d_errors.append(statistics.stdev(latencies["d"]))
+
+    x = np.arange(len(data.keys()))
+    width = 0.2
+
+    fig, ax = plt.subplots(layout="constrained")
+
+    rects1 = ax.bar(x - 3 * width / 2, a_means, width, label='a', yerr=a_errors, capsize=5)
+    rects2 = ax.bar(x - width / 2, b_means, width, label='b', yerr=b_errors, capsize=5)
+    rects3 = ax.bar(x + width / 2, c_means, width, label='c', yerr=c_errors, capsize=5)
+    rects4 = ax.bar(x + 3 * width / 2, d_means, width, label='d', yerr=d_errors, capsize=5)
+
+    ax.set_xlabel('Schedulers')
+    ax.set_title('Grouped bar chart for schedulers')
+    ax.set_xticks(x)
+    ax.set_xticklabels(data.keys(), rotation=-90)
+    ax.set_ylim(0, 350)
+    ax.legend()
+    ensure_directory(save_path)
+    plt.savefig(save_path + "/result.png")
 
 
 @register_extractor
