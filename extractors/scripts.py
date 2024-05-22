@@ -215,12 +215,16 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
                     biggest_edge_first_timestamps.append(cycle.timestamp)
 
         fig, ax = plt.subplots()
+        plt.grid()
+        fig.set_size_inches(10.5, 10.5)
         ax.plot(kube_timestamps, kube_latencies, label="kube")
         ax.plot(ecmus_timestamps, ecmus_latencies, label="ecmus")
         ax.plot(ecmus_no_migration_timestamps, ecmus_no_migration_latencies, label="ecmus-no-migration")
         ax.plot(random_timestamps, random_latencies, label="random")
         ax.plot(cloud_first_timestamps, cloud_first_latencies, label="cloud-first")
         ax.plot(biggest_edge_first_timestamps, biggest_edge_first_latencies, label="biggest-edge-first")
+        ax.set_ylim(25, 325)
+        ax.set_yticks(range(25, 325, 25))
         plt.xlabel("time(s)")
         plt.ylabel("average latency(ms)")
         plt.title(f"average latency - workload: {deployment.name}")
@@ -334,20 +338,26 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
     width = 0.2
 
     fig, ax = plt.subplots(layout="constrained")
+    fig.set_size_inches(10.5, 10.5)
 
-    rects1 = ax.bar(x - 3 * width / 2, a_means, width, label='a', yerr=a_errors, capsize=5)
-    rects2 = ax.bar(x - width / 2, b_means, width, label='b', yerr=b_errors, capsize=5)
-    rects3 = ax.bar(x + width / 2, c_means, width, label='c', yerr=c_errors, capsize=5)
-    rects4 = ax.bar(x + 3 * width / 2, d_means, width, label='d', yerr=d_errors, capsize=5)
+    rects1 = ax.bar(x - 3 * width / 2, a_means, width, label='a', yerr=a_errors, capsize=10)
+    ax.bar_label(rects1, padding=10)
+    rects2 = ax.bar(x - width / 2, b_means, width, label='b', yerr=b_errors, capsize=10)
+    ax.bar_label(rects2, padding=10)
+    rects3 = ax.bar(x + width / 2, c_means, width, label='c', yerr=c_errors, capsize=10)
+    ax.bar_label(rects3, padding=10)
+    rects4 = ax.bar(x + 3 * width / 2, d_means, width, label='d', yerr=d_errors, capsize=10)
+    ax.bar_label(rects4, padding=10)
 
+    plt.grid()
     ax.set_xlabel('Schedulers')
     ax.set_title('Grouped bar chart for schedulers')
     ax.set_xticks(x)
     ax.set_xticklabels(data.keys(), rotation=-90)
     ax.set_ylim(0, 350)
-    ax.legend()
     ensure_directory(save_path)
     plt.savefig(save_path + "/result.png")
+    # plt.show()
 
 
 @register_extractor
@@ -411,6 +421,7 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
                 biggest_edge_first_timestamps.append(cycle.timestamp)
                 biggest_edge_first_utilization.append(utilization)
 
+    fig, ax = plt.subplots()
     plt.plot(ecmus_timestamps, ecmus_utilization, label="ecmus")
     plt.plot(kube_schedule_timestamps, kube_schedule_utilization, label="kube-schedule")
     plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_utilization, label="ecmus-no-migration")
@@ -419,9 +430,12 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
     plt.plot(smallest_edge_first_timestamps, smallest_edge_first_utilization, label="smallest-edge-first")
     plt.plot(biggest_edge_first_timestamps, biggest_edge_first_utilization, label="biggest-edge-first")
 
+    fig.set_size_inches(10.5, 10.5)
+    plt.grid()
     plt.xlabel("time (s)")
     plt.ylabel("edge utilization")
     plt.ylim(0, 1.10)
+    plt.yticks(list(map(lambda x: x / 100.0, range(0, 110, 5))))
     plt.title("edge utilization - per algorithm")
     plt.legend()
     ensure_directory(save_path)
@@ -511,6 +525,10 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
                 biggest_edge_first_edge_placement_ratio.append(fragmentation_edge)
                 biggest_edge_first_cloud_placement_ratio.append(fragmentation_cloud)
 
+    fig, ax = plt.subplots()
+    fig.set_size_inches(10.5, 10.5)
+
+    plt.grid()
     plt.plot(ecmus_timestamps, ecmus_edge_placement_ratio, label="ecmus - edge")
     plt.plot(ecmus_timestamps, ecmus_cloud_placement_ratio, label="ecmus - cloud")
 
@@ -539,6 +557,7 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
     plt.xlabel("time (s)")
     plt.ylabel("placement ratio")
     plt.ylim(0, 1.10)
+    plt.yticks(list(map(lambda x: x / 100.0, range(0, 110, 5))))
     plt.title("pod placement ratio")
     plt.legend()
     ensure_directory(save_path)

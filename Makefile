@@ -156,7 +156,7 @@ wavy_placement_ratio_linechart:
 
 normal_placement_ratio_linechart:
 	python3 main.py \
-		--script_name average_latency_boxplot \
+		--script_name placement_ratio_linechart \
 		--config_path config.json \
 		--history_paths \
 			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.1.json.json \
@@ -167,10 +167,10 @@ normal_placement_ratio_linechart:
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.1.json.json \
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.1.json.json \
 		--scenario-name normal_scenario_0.5_0.1 \
-		--save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.1
+		--save-path ./results/placement_ratio/linechart/normal_scenario_0.5_0.1
 
 	python3 main.py \
-		--script_name average_latency_boxplot \
+		--script_name placement_ratio_linechart \
 		--config_path config.json \
 		--history_paths \
 			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.5.json.json \
@@ -181,10 +181,10 @@ normal_placement_ratio_linechart:
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.5.json.json \
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.5.json.json \
 		--scenario-name normal_scenario_0.5_0.5 \
-		--save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.5
+		--save-path ./results/placement_ratio/linechart/normal_scenario_0.5_0.5
 
 	python3 main.py \
-		--script_name average_latency_boxplot \
+		--script_name placement_ratio_linechart \
 		--config_path config.json \
 		--history_paths \
 			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.7.json.json \
@@ -195,10 +195,10 @@ normal_placement_ratio_linechart:
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.7.json.json \
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.7.json.json \
 		--scenario-name normal_scenario_0.5_0.7 \
-		--save-path ./results/average_latency/boxplot/normal_scenario_0.5_0.7
+		--save-path ./results/placement_ratio/linechart/normal_scenario_0.5_0.7
 
 	python3 main.py \
-		--script_name average_latency_boxplot \
+		--script_name placement_ratio_linechart \
 		--config_path config.json \
 		--history_paths \
 			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.1.json.json \
@@ -209,10 +209,10 @@ normal_placement_ratio_linechart:
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.1.json.json \
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.1.json.json \
 		--scenario-name normal_scenario_0.75_0.1 \
-		--save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.1
+		--save-path ./results/placement_ratio/linechart/normal_scenario_0.75_0.1
 
 	python3 main.py \
-		--script_name average_latency_boxplot \
+		--script_name placement_ratio_linechart \
 		--config_path config.json \
 		--history_paths \
 			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.5.json.json \
@@ -223,10 +223,10 @@ normal_placement_ratio_linechart:
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.5.json.json \
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.5.json.json \
 		--scenario-name normal_scenario_0.75_0.5 \
-		--save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.5
+		--save-path ./results/placement_ratio/linechart/normal_scenario_0.75_0.5
 
 	python3 main.py \
-		--script_name average_latency_boxplot \
+		--script_name placement_ratio_linechart \
 		--config_path config.json \
 		--history_paths \
 			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.7.json.json \
@@ -237,10 +237,10 @@ normal_placement_ratio_linechart:
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.7.json.json \
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.7.json.json \
 		--scenario-name normal_scenario_0.75_0.7.json.json \
-		--save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.7
+		--save-path ./results/placement_ratio/linechart/normal_scenario_0.75_0.7
 
 	python3 main.py \
-		--script_name average_latency_boxplot \
+		--script_name placement_ratio_linechart \
 		--config_path config.json \
 		--history_paths \
 			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.1.json.json \
@@ -251,10 +251,10 @@ normal_placement_ratio_linechart:
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.1.json.json \
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.1.json.json \
 		--scenario-name normal_scenario_1.0_0.1 \
-		--save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.1
+		--save-path ./results/placement_ratio/linechart/normal_scenario_1.0_0.1
 
 	python3 main.py \
-		--script_name average_latency_boxplot \
+		--script_name placement_ratio_linechart \
 		--config_path config.json \
 		--history_paths \
 			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.5.json.json \
@@ -265,10 +265,10 @@ normal_placement_ratio_linechart:
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.5.json.json \
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.5.json.json \
 		--scenario-name normal_scenario_1.0_0.5 \
-		--save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.5
+		--save-path ./results/placement_ratio/linechart/normal_scenario_1.0_0.5
 
 	python3 main.py \
-		--script_name average_latency_boxplot \
+		--script_name placement_ratio_linechart \
 		--config_path config.json \
 		--history_paths \
 			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.7.json.json \
@@ -279,10 +279,10 @@ normal_placement_ratio_linechart:
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.7.json.json \
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.7.json.json \
 		--scenario-name normal_scenario_1.0_0.7 \
-		--save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.7
+		--save-path ./results/placement_ratio/linechart/normal_scenario_1.0_0.7
 
 	python3 main.py \
-		--script_name average_latency_boxplot \
+		--script_name placement_ratio_linechart \
 		--config_path config.json \
 		--history_paths \
 			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.1.json.json \
@@ -293,10 +293,10 @@ normal_placement_ratio_linechart:
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.1.json.json \
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.1.json.json \
 		--scenario-name normal_scenario_1.25_0.1 \
-		--save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.1
+		--save-path ./results/placement_ratio/linechart/normal_scenario_1.25_0.1
 
 	python3 main.py \
-		--script_name average_latency_boxplot \
+		--script_name placement_ratio_linechart \
 		--config_path config.json \
 		--history_paths \
 			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.5.json.json \
@@ -307,11 +307,11 @@ normal_placement_ratio_linechart:
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.5.json.json \
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.5.json.json \
 		--scenario-name normal_scenario_1.25_0.5 \
-		--save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.5
+		--save-path ./results/placement_ratio/linechart/normal_scenario_1.25_0.5
 
 
 	python3 main.py \
-		--script_name average_latency_boxplot \
+		--script_name placement_ratio_linechart \
 		--config_path config.json \
 		--history_paths \
 			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.7.json.json \
@@ -322,7 +322,7 @@ normal_placement_ratio_linechart:
 			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.7.json.json \
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7.json.json \
 		--scenario-name normal_scenario_1.25_0.7 \
-		--save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.7
+		--save-path ./results/placement_ratio/linechart/normal_scenario_1.25_0.7
 
 wavy_edge_utilization_linechart:
 	python3 main.py \
