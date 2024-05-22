@@ -216,6 +216,7 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
         ax.plot(kube_timestamps, kube_latencies, label="kube")
         ax.plot(ecmus_timestamps, ecmus_latencies, label="ecmus")
         ax.plot(ecmus_no_migration_timestamps, ecmus_no_migration_latencies, label="ecmus-no-migration")
+        ax.plot(random_timestamps, random_latencies, label="random")
         ax.plot(cloud_first_timestamps, cloud_first_latencies, label="cloud-first")
         ax.plot(biggest_edge_first_timestamps, biggest_edge_first_latencies, label="biggest-edge-first")
         plt.xlabel("time(s)")
