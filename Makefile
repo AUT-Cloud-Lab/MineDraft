@@ -154,6 +154,84 @@ wavy_placement_ratio_linechart:
 		--scenario-name wavy_scenario_1.0_4 \
 		--save-path ./results/placement_ratio/linechart/wavy_scenario_1.0_4
 
+wavy_multiple_placement_ratio_linechart:
+	python3 main.py \
+		--script_name placement_ratio_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_1.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_1.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_2.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_2.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_2.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_2.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_2.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_2.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_3.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_3.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_3.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_3.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_3.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_3.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_4.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_4.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_4.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_4.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_4.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_4.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_1.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_1.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_2.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_2.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_2.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_2.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_2.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_2.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_3.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_3.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_3.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_3.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_3.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_3.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_4.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_4.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_4.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_4.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_4.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_4.json.json \
+		--scenario-name wavy_scenario_all \
+		--save-path ./results/placement_ratio/linechart/wavy_scenario_all
+
 normal_placement_ratio_linechart:
 	python3 main.py \
 		--script_name placement_ratio_linechart \
@@ -309,7 +387,6 @@ normal_placement_ratio_linechart:
 		--scenario-name normal_scenario_1.25_0.5 \
 		--save-path ./results/placement_ratio/linechart/normal_scenario_1.25_0.5
 
-
 	python3 main.py \
 		--script_name placement_ratio_linechart \
 		--config_path config.json \
@@ -323,6 +400,98 @@ normal_placement_ratio_linechart:
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7.json.json \
 		--scenario-name normal_scenario_1.25_0.7 \
 		--save-path ./results/placement_ratio/linechart/normal_scenario_1.25_0.7
+
+normal_multiple_placement_ratio_linechart:
+	python3 main.py \
+		--script_name placement_ratio_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.7.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.7.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.7.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7.json.json \
+		--scenario-name normal_scenario_all \
+		--save-path ./results/placement_ratio/linechart/normal_scenario_all
 
 wavy_edge_utilization_linechart:
 	python3 main.py \
@@ -464,6 +633,85 @@ wavy_edge_utilization_linechart:
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_4.json.json \
 		--scenario-name wavy_scenario_1.0_4 \
 		--save-path ./results/edge_utilization/linechart/wavy_scenario_1.0_4
+
+wavy_multiple_edge_utilization_linechart:
+	python3 main.py \
+		--script_name edge_utilization_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_1.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_1.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_2.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_2.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_2.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_2.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_2.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_2.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_3.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_3.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_3.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_3.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_3.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_3.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_4.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_4.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_4.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_4.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_4.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_4.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_1.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_1.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_2.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_2.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_2.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_2.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_2.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_2.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_3.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_3.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_3.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_3.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_3.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_3.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_4.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_4.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_4.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_4.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_4.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_4.json.json \
+		--scenario-name wavy_scenario_all \
+		--scenario-name wavy_scenario_all \
+		--save-path ./results/edge_utilization/linechart/wavy_scenario_all
 
 wavy_average_latency_linecharts:
 	python3 main.py \
@@ -774,6 +1022,176 @@ normal_average_latency_linecharts:
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7.json.json \
 		--scenario-name normal_scenario_1.25_0.7 \
 		--save-path ./results/average_latency/linechart/normal_scenario_1.25_0.7
+
+wavy_multiple_average_latency_linecharts:
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_1.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_1.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_2.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_2.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_2.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_2.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_2.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_2.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_3.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_3.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_3.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_3.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_3.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_3.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_4.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_4.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_4.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_4.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_4.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_4.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_1.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_1.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_2.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_2.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_2.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_2.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_2.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_2.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_3.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_3.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_3.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_3.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_3.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_3.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_4.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_4.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_4.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_4.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_4.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_4.json.json \
+		--scenario-name wavy_scenario_all \
+		--save-path ./results/average_latency/linechart/wavy_scenario_all
+
+normal_multiple_average_latency_linecharts:
+	python3 main.py \
+		--script_name average_latency_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.7.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.7.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.7.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7.json.json \
+		--scenario-name normal_scenario_all \
+		--save-path ./results/average_latency/linechart/normal_scenario_all
 
 wavy_average_latency_boxplots:
 	python3 main.py \
@@ -1086,6 +1504,176 @@ normal_average_latency_boxplots:
 		--scenario-name normal_scenario_1.25_0.7 \
 		--save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.7
 
+wavy_multiple_average_latency_boxplots:
+	python3 main.py \
+		--script_name average_latency_boxplot \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_1.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_1.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_2.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_2.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_2.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_2.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_2.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_2.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_3.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_3.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_3.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_3.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_3.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_3.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_0.5_4.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_0.5_4.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_0.5_4.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_0.5_4.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_0.5_4.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_0.5_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_0.5_4.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_1.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_1.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_2.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_2.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_2.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_2.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_2.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_2.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_2.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_3.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_3.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_3.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_3.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_3.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_3.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_3.json.json \
+			reports/ecmus/$(date_ecmus)/wavy_scenario_1.0_4.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/wavy_scenario_1.0_4.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/wavy_scenario_1.0_4.json.json \
+			reports/random-scheduler/$(date_random)/wavy_scenario_1.0_4.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/wavy_scenario_1.0_4.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/wavy_scenario_1.0_4.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/wavy_scenario_1.0_4.json.json \
+		--scenario-name wavy_scenario_all \
+		--save-path ./results/average_latency/boxplot/wavy_scenario_all
+
+normal_multiple_average_latency_boxplots:
+	python3 main.py \
+		--script_name average_latency_boxplot \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.7.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.7.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.7.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7.json.json \
+		--scenario-name normal_scenario_all \
+		--save-path ./results/average_latency/boxplot/normal_scenario_all
+
 normal_edge_utilization_linechart:
 	python3 main.py \
 		--script_name edge_utilization_linechart \
@@ -1254,3 +1842,95 @@ normal_edge_utilization_linechart:
 			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7.json.json \
 		--scenario-name normal_scenario_1.25_0.7 \
 		--save-path ./results/edge_utilization/linechart/normal_scenario_1.25_0.7
+
+normal_multiple_edge_utilization_linechart:
+	python3 main.py \
+		--script_name edge_utilization_linechart \
+		--config_path config.json \
+		--history_paths \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.5_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.5_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.5_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.5_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.5_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.5_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.5_0.7.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_0.75_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_0.75_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_0.75_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_0.75_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_0.75_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_0.75_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.7.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.0_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.0_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.0_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.0_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.0_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.0_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.7.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.1.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.1.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.1.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.1.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.1.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.1.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.1.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.5.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.5.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.5.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.5.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.5.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.5.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.5.json.json \
+			reports/ecmus/$(date_ecmus)/normal_scenario_1.25_0.7.json.json \
+			reports/kube-schedule/$(date_kube_schedule)/normal_scenario_1.25_0.7.json.json \
+			reports/ecmus-no-migration/$(date_ecmus_no_migration)/normal_scenario_1.25_0.7.json.json \
+			reports/random-scheduler/$(date_random)/normal_scenario_1.25_0.7.json.json \
+			reports/cloud-first-scheduler/$(date_cloud_first)/normal_scenario_1.25_0.7.json.json \
+			reports/smallest-edge-first-scheduler/$(date_smallest_edge_first)/normal_scenario_1.25_0.7.json.json \
+			reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7.json.json \
+		--scenario-name normal_scenario_all \
+		--save-path ./results/edge_utilization/linechart/normal_scenario_all
