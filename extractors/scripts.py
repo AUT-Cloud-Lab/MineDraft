@@ -11,9 +11,8 @@ from extractors.decorator import register_extractor
 from historical.common import Deployment
 from historical.config import Config
 from historical.data import History, Cycle, Migration
-from historical.utils import calculate_edge_usage_sum, \
-    calculate_cluster_usage_sum, calculate_resource_usage_for_node, calculate_placement_for_deployment
-from historical.utils import get_nodes_of_a_deployment, get_edge_placed_pods
+from historical.utils import calculate_edge_usage_sum, calculate_cluster_usage_sum, calculate_resource_usage_for_node, \
+    calculate_placement_for_deployment, get_nodes_of_a_deployment, get_edge_placed_pods
 
 CLOUD_RESPONSE_TIME = 300
 EDGE_RESPONSE_TIME = 50
@@ -25,6 +24,8 @@ RANDOM_INDEX = 3
 CLOUD_FIRST_INDEX = 4
 SMALLEST_EDGE_FIRST_INDEX = 5
 BIGGEST_EDGE_FIRST_INDEX = 6
+
+INDEX_COUNT = 7
 
 
 @register_extractor
@@ -67,15 +68,15 @@ def calc_migrations(config: Config, histories: List[History], save_path: str) ->
                 # found two cycles with possible migrations!
                 source_nodes = sorted(
                     get_nodes_of_a_deployment(cycle.pod_placement, deployment),
-                    key=lambda node: node.name,
+                    key = lambda node: node.name,
                 )
                 target_nodes = sorted(
                     get_nodes_of_a_deployment(next_cycle.pod_placement, deployment),
-                    key=lambda node: node.name,
+                    key = lambda node: node.name,
                 )
 
-                print(list(map(lambda node: node.name, source_nodes)), file=output_file)
-                print(list(map(lambda node: node.name, target_nodes)), file=output_file)
+                print(list(map(lambda node: node.name, source_nodes)), file = output_file)
+                print(list(map(lambda node: node.name, target_nodes)), file = output_file)
 
                 real_sources = []
                 real_targets = []
@@ -102,22 +103,22 @@ def calc_migrations(config: Config, histories: List[History], save_path: str) ->
                     it_target += 1
 
                 assert len(real_sources) == len(real_targets)
-                print(f"here with {len(real_sources)}", file=output_file)
-                print(f"{start}, {end}", file=output_file)
+                print(f"here with {len(real_sources)}", file = output_file)
+                print(f"{start}, {end}", file = output_file)
                 for i in range(len(real_sources)):
                     migrations.append(
                         Migration(
-                            deployment=deployment,
-                            source=real_sources[i],
-                            target=real_targets[i],
-                            start=start,
-                            end=end,
+                            deployment = deployment,
+                            source = real_sources[i],
+                            target = real_targets[i],
+                            start = start,
+                            end = end,
                         )
                     )
 
-        print(f"Number of migrations for {deployment.name}: {len(migrations)}", file=output_file)
+        print(f"Number of migrations for {deployment.name}: {len(migrations)}", file = output_file)
         for migration in migrations:
-            print(migration, file=output_file)
+            print(migration, file = output_file)
 
 
 @register_extractor
@@ -129,8 +130,8 @@ def check_equality(config: Config, histories: List[History], save_path: str) -> 
     number_of_differences: Dict[Deployment, int] = {
         deployment: 0 for _, deployment in config.deployments.items()
     }
-    print(len(histories[0].cycles), file=output_file)
-    print(len(histories[1].cycles), file=output_file)
+    print(len(histories[0].cycles), file = output_file)
+    print(len(histories[1].cycles), file = output_file)
 
     for cycle_number in range(max(map(lambda history: len(history.cycles), histories))):
         cycles: List[Cycle] = []
@@ -152,33 +153,53 @@ def check_equality(config: Config, histories: List[History], save_path: str) -> 
                     number_of_differences[deployment] += 1
 
     for deployment, number_of_differences in number_of_differences.items():
-        print(f"{deployment}'s number of differences are {number_of_differences}!", file=output_file)
+        print(f"{deployment}'s number of differences are {number_of_differences}!", file = output_file)
+
+
+def merge_lists(*lists):
+    max_length = max(len(lst) for lst in lists)
+
+    sums = [0] * max_length
+    counts = [0] * max_length
+
+    for lst in lists:
+        for i, val in enumerate(lst):
+            sums[i] += val
+            counts[i] += 1
+
+    return [sums[i] / counts[i] if counts[i] != 0 else 0 for i in range(max_length)]
 
 
 @register_extractor
 def average_latency_linechart(config: Config, scenario_name: str, histories: List[History], save_path: str) -> None:
     for deployment in config.deployments.values():
-        kube_latencies = []
-        kube_timestamps = []
+        box_count = len(histories) // INDEX_COUNT
 
-        ecmus_latencies = []
-        ecmus_timestamps = []
+        kube_latencies = {it: [] for it in range(box_count)}
+        kube_timestamps = {it: [] for it in range(box_count)}
 
-        ecmus_no_migration_latencies = []
-        ecmus_no_migration_timestamps = []
+        ecmus_latencies = {it: [] for it in range(box_count)}
+        ecmus_timestamps = {it: [] for it in range(box_count)}
 
-        random_latencies = []
-        random_timestamps = []
+        ecmus_no_migration_latencies = {it: [] for it in range(box_count)}
+        ecmus_no_migration_timestamps = {it: [] for it in range(box_count)}
 
-        cloud_first_latencies = []
-        cloud_first_timestamps = []
+        random_latencies = {it: [] for it in range(box_count)}
+        random_timestamps = {it: [] for it in range(box_count)}
 
-        smallest_edge_first_latencies = []
-        smallest_edge_first_timestamps = []
+        cloud_first_latencies = {it: [] for it in range(box_count)}
+        cloud_first_timestamps = {it: [] for it in range(box_count)}
 
-        biggest_edge_first_latencies = []
-        biggest_edge_first_timestamps = []
-        for index, history in enumerate(histories):
+        smallest_edge_first_latencies = {it: [] for it in range(box_count)}
+        smallest_edge_first_timestamps = {it: [] for it in range(box_count)}
+
+        biggest_edge_first_latencies = {it: [] for it in range(box_count)}
+        biggest_edge_first_timestamps = {it: [] for it in range(box_count)}
+
+        for id, history in enumerate(histories):
+            # IMPORTANT NOTICE: histories have to be in order of INDICES for this to work
+            index = id % INDEX_COUNT
+            box_id = id // INDEX_COUNT
             for cycle in history.cycles:
                 cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(cycle, deployment)
                 all_pods_count = cloud_pods_count + edge_pods_count
@@ -187,42 +208,64 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
                                   cloud_pods_count * CLOUD_RESPONSE_TIME + edge_pods_count * EDGE_RESPONSE_TIME) / all_pods_count
 
                 if index == ECMUS_INDEX:
-                    ecmus_latencies.append(latency)
-                    ecmus_timestamps.append(cycle.timestamp)
+                    ecmus_latencies[box_id].append(latency)
+                    ecmus_timestamps[box_id].append(cycle.timestamp)
 
                 if index == KUBE_SCHEDULE_INDEX:
-                    kube_latencies.append(latency)
-                    kube_timestamps.append(cycle.timestamp)
+                    kube_latencies[box_id].append(latency)
+                    kube_timestamps[box_id].append(cycle.timestamp)
 
                 if index == ECMUS_NO_MIGRATION_INDEX:
-                    ecmus_no_migration_latencies.append(latency)
-                    ecmus_no_migration_timestamps.append(cycle.timestamp)
+                    ecmus_no_migration_latencies[box_id].append(latency)
+                    ecmus_no_migration_timestamps[box_id].append(cycle.timestamp)
 
                 if index == RANDOM_INDEX:
-                    random_latencies.append(latency)
-                    random_timestamps.append(cycle.timestamp)
+                    random_latencies[box_id].append(latency)
+                    random_timestamps[box_id].append(cycle.timestamp)
 
                 if index == CLOUD_FIRST_INDEX:
-                    cloud_first_latencies.append(latency)
-                    cloud_first_timestamps.append(cycle.timestamp)
+                    cloud_first_latencies[box_id].append(latency)
+                    cloud_first_timestamps[box_id].append(cycle.timestamp)
 
                 if index == SMALLEST_EDGE_FIRST_INDEX:
-                    smallest_edge_first_latencies.append(latency)
-                    smallest_edge_first_timestamps.append(cycle.timestamp)
+                    smallest_edge_first_latencies[box_id].append(latency)
+                    smallest_edge_first_timestamps[box_id].append(cycle.timestamp)
 
                 if index == BIGGEST_EDGE_FIRST_INDEX:
-                    biggest_edge_first_latencies.append(latency)
-                    biggest_edge_first_timestamps.append(cycle.timestamp)
+                    biggest_edge_first_latencies[box_id].append(latency)
+                    biggest_edge_first_timestamps[box_id].append(cycle.timestamp)
+
+        ecmus_latencies = merge_lists(*[ecmus_latencies[it] for it in range(box_count)])
+        ecmus_timestamps = merge_lists(*[ecmus_timestamps[it] for it in range(box_count)])
+
+        kube_latencies = merge_lists(*[kube_latencies[it] for it in range(box_count)])
+        kube_timestamps = merge_lists(*[kube_timestamps[it] for it in range(box_count)])
+
+        ecmus_no_migration_latencies = merge_lists(*[ecmus_no_migration_latencies[it] for it in range(box_count)])
+        ecmus_no_migration_timestamps = merge_lists(*[ecmus_no_migration_timestamps[it] for it in range(box_count)])
+
+        cloud_first_latencies = merge_lists(*[cloud_first_latencies[it] for it in range(box_count)])
+        cloud_first_timestamps = merge_lists(*[cloud_first_timestamps[it] for it in range(box_count)])
+
+        random_latencies = merge_lists(*[random_latencies[it] for it in range(box_count)])
+        random_timestamps = merge_lists(*[random_timestamps[it] for it in range(box_count)])
+
+        smallest_edge_first_latencies = merge_lists(*[smallest_edge_first_latencies[it] for it in range(box_count)])
+        smallest_edge_first_timestamps = merge_lists(*[smallest_edge_first_timestamps[it] for it in range(box_count)])
+
+        biggest_edge_first_latencies = merge_lists(*[biggest_edge_first_latencies[it] for it in range(box_count)])
+        biggest_edge_first_timestamps = merge_lists(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
 
         fig, ax = plt.subplots()
         plt.grid()
         fig.set_size_inches(10.5, 10.5)
-        ax.plot(kube_timestamps, kube_latencies, label="kube")
-        ax.plot(ecmus_timestamps, ecmus_latencies, label="ecmus")
-        ax.plot(ecmus_no_migration_timestamps, ecmus_no_migration_latencies, label="ecmus-no-migration")
-        ax.plot(random_timestamps, random_latencies, label="random")
-        ax.plot(cloud_first_timestamps, cloud_first_latencies, label="cloud-first")
-        ax.plot(biggest_edge_first_timestamps, biggest_edge_first_latencies, label="biggest-edge-first")
+        ax.plot(kube_timestamps, kube_latencies, label = "kube")
+        ax.plot(ecmus_timestamps, ecmus_latencies, label = "ecmus")
+        ax.plot(ecmus_no_migration_timestamps, ecmus_no_migration_latencies, label = "ecmus-no-migration")
+        ax.plot(random_timestamps, random_latencies, label = "random")
+        ax.plot(cloud_first_timestamps, cloud_first_latencies, label = "cloud-first")
+        ax.plot(biggest_edge_first_timestamps, biggest_edge_first_latencies, label = "biggest-edge-first")
+        ax.plot(smallest_edge_first_timestamps, smallest_edge_first_latencies, label = "smallest-edge-first")
         ax.set_ylim(25, 325)
         ax.set_yticks(range(25, 325, 25))
         plt.xlabel("time(s)")
@@ -241,37 +284,37 @@ def ensure_directory(save_path):
 @register_extractor
 def average_latency_boxplot(config: Config, scenario_name: str, histories: List[History], save_path: str) -> None:
     data = {
-        "kube-scheduler": {
+        "kube-scheduler"               : {
             "a": [],
             "b": [],
             "c": [],
             "d": [],
         },
-        "ecmus": {
+        "ecmus"                        : {
             "a": [],
             "b": [],
             "c": [],
             "d": [],
         },
-        "ecmus-no-migration": {
+        "ecmus-no-migration"           : {
             "a": [],
             "b": [],
             "c": [],
             "d": [],
         },
-        "random-scheduler": {
+        "random-scheduler"             : {
             "a": [],
             "b": [],
             "c": [],
             "d": [],
         },
-        "cloud-first-scheduler": {
+        "cloud-first-scheduler"        : {
             "a": [],
             "b": [],
             "c": [],
             "d": [],
         },
-        "biggest-edge-first-scheduler": {
+        "biggest-edge-first-scheduler" : {
             "a": [],
             "b": [],
             "c": [],
@@ -286,7 +329,9 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
     }
 
     for deployment in config.deployments.values():
-        for index, history in enumerate(histories):
+        for id, history in enumerate(histories):
+            # IMPORTANT NOTICE: histories have to be in order of INDICES for this to work
+            index = id % INDEX_COUNT
             for cycle in history.cycles:
                 cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(cycle, deployment)
                 all_pods_count = cloud_pods_count + edge_pods_count
@@ -337,23 +382,23 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
     x = np.arange(len(data.keys()))
     width = 0.2
 
-    fig, ax = plt.subplots(layout="constrained")
+    fig, ax = plt.subplots(layout = "constrained")
     fig.set_size_inches(10.5, 10.5)
 
-    rects1 = ax.bar(x - 3 * width / 2, a_means, width, label='a', yerr=a_errors, capsize=10)
-    ax.bar_label(rects1, padding=10)
-    rects2 = ax.bar(x - width / 2, b_means, width, label='b', yerr=b_errors, capsize=10)
-    ax.bar_label(rects2, padding=10)
-    rects3 = ax.bar(x + width / 2, c_means, width, label='c', yerr=c_errors, capsize=10)
-    ax.bar_label(rects3, padding=10)
-    rects4 = ax.bar(x + 3 * width / 2, d_means, width, label='d', yerr=d_errors, capsize=10)
-    ax.bar_label(rects4, padding=10)
+    rects1 = ax.bar(x - 3 * width / 2, a_means, width, label = 'a', yerr = a_errors, capsize = 10)
+    ax.bar_label(rects1, padding = 10)
+    rects2 = ax.bar(x - width / 2, b_means, width, label = 'b', yerr = b_errors, capsize = 10)
+    ax.bar_label(rects2, padding = 10)
+    rects3 = ax.bar(x + width / 2, c_means, width, label = 'c', yerr = c_errors, capsize = 10)
+    ax.bar_label(rects3, padding = 10)
+    rects4 = ax.bar(x + 3 * width / 2, d_means, width, label = 'd', yerr = d_errors, capsize = 10)
+    ax.bar_label(rects4, padding = 10)
 
     plt.grid()
     ax.set_xlabel('Schedulers')
     ax.set_title('Grouped bar chart for schedulers')
     ax.set_xticks(x)
-    ax.set_xticklabels(data.keys(), rotation=-90)
+    ax.set_xticklabels(data.keys(), rotation = -90)
     ax.set_ylim(0, 350)
     ensure_directory(save_path)
     plt.savefig(save_path + "/result.png")
@@ -362,27 +407,33 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
 
 @register_extractor
 def edge_utilization_linechart(config: Config, _: str, histories: List[History], save_path: str) -> None:
-    ecmus_utilization = []
-    ecmus_timestamps = []
+    box_count = len(histories) // INDEX_COUNT
 
-    kube_schedule_utilization = []
-    kube_schedule_timestamps = []
+    ecmus_utilization = {it: [] for it in range(box_count)}
+    ecmus_timestamps = {it: [] for it in range(box_count)}
 
-    ecmus_no_migration_utilization = []
-    ecmus_no_migration_timestamps = []
+    kube_schedule_utilization = {it: [] for it in range(box_count)}
+    kube_schedule_timestamps = {it: [] for it in range(box_count)}
 
-    random_utilization = []
-    random_timestamps = []
+    ecmus_no_migration_utilization = {it: [] for it in range(box_count)}
+    ecmus_no_migration_timestamps = {it: [] for it in range(box_count)}
 
-    cloud_first_utilization = []
-    cloud_first_timestamps = []
+    random_utilization = {it: [] for it in range(box_count)}
+    random_timestamps = {it: [] for it in range(box_count)}
 
-    smallest_edge_first_utilization = []
-    smallest_edge_first_timestamps = []
+    cloud_first_utilization = {it: [] for it in range(box_count)}
+    cloud_first_timestamps = {it: [] for it in range(box_count)}
 
-    biggest_edge_first_utilization = []
-    biggest_edge_first_timestamps = []
-    for index, history in enumerate(histories):
+    smallest_edge_first_utilization = {it: [] for it in range(box_count)}
+    smallest_edge_first_timestamps = {it: [] for it in range(box_count)}
+
+    biggest_edge_first_utilization = {it: [] for it in range(box_count)}
+    biggest_edge_first_timestamps = {it: [] for it in range(box_count)}
+
+    for id, history in enumerate(histories):
+        # IMPORTANT NOTICE: histories have to be in order of INDICES for this to work
+        index = id % INDEX_COUNT
+        box_id = id // INDEX_COUNT
         for cycle in history.cycles:
             edge_pods = get_edge_placed_pods(cycle)
 
@@ -394,41 +445,62 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
             )
 
             if index == ECMUS_INDEX:
-                ecmus_timestamps.append(cycle.timestamp)
-                ecmus_utilization.append(utilization)
+                ecmus_timestamps[box_id].append(cycle.timestamp)
+                ecmus_utilization[box_id].append(utilization)
 
             if index == KUBE_SCHEDULE_INDEX:
-                kube_schedule_timestamps.append(cycle.timestamp)
-                kube_schedule_utilization.append(utilization)
+                kube_schedule_timestamps[box_id].append(cycle.timestamp)
+                kube_schedule_utilization[box_id].append(utilization)
 
             if index == ECMUS_NO_MIGRATION_INDEX:
-                ecmus_no_migration_timestamps.append(cycle.timestamp)
-                ecmus_no_migration_utilization.append(utilization)
+                ecmus_no_migration_timestamps[box_id].append(cycle.timestamp)
+                ecmus_no_migration_utilization[box_id].append(utilization)
 
             if index == RANDOM_INDEX:
-                random_timestamps.append(cycle.timestamp)
-                random_utilization.append(utilization)
+                random_timestamps[box_id].append(cycle.timestamp)
+                random_utilization[box_id].append(utilization)
 
             if index == CLOUD_FIRST_INDEX:
-                cloud_first_timestamps.append(cycle.timestamp)
-                cloud_first_utilization.append(utilization)
+                cloud_first_timestamps[box_id].append(cycle.timestamp)
+                cloud_first_utilization[box_id].append(utilization)
 
             if index == SMALLEST_EDGE_FIRST_INDEX:
-                smallest_edge_first_timestamps.append(cycle.timestamp)
-                smallest_edge_first_utilization.append(utilization)
+                smallest_edge_first_timestamps[box_id].append(cycle.timestamp)
+                smallest_edge_first_utilization[box_id].append(utilization)
 
             if index == BIGGEST_EDGE_FIRST_INDEX:
-                biggest_edge_first_timestamps.append(cycle.timestamp)
-                biggest_edge_first_utilization.append(utilization)
+                biggest_edge_first_timestamps[box_id].append(cycle.timestamp)
+                biggest_edge_first_utilization[box_id].append(utilization)
+
+    ecmus_utilization = merge_lists(*[ecmus_utilization[it] for it in range(box_count)])
+    ecmus_timestamps = merge_lists(*[ecmus_timestamps[it] for it in range(box_count)])
+
+    kube_schedule_utilization = merge_lists(*[kube_schedule_utilization[it] for it in range(box_count)])
+    kube_schedule_timestamps = merge_lists(*[kube_schedule_timestamps[it] for it in range(box_count)])
+
+    ecmus_no_migration_utilization = merge_lists(*[ecmus_no_migration_utilization[it] for it in range(box_count)])
+    ecmus_no_migration_timestamps = merge_lists(*[ecmus_no_migration_timestamps[it] for it in range(box_count)])
+
+    cloud_first_utilization = merge_lists(*[cloud_first_utilization[it] for it in range(box_count)])
+    cloud_first_timestamps = merge_lists(*[cloud_first_timestamps[it] for it in range(box_count)])
+
+    random_utilization = merge_lists(*[random_utilization[it] for it in range(box_count)])
+    random_timestamps = merge_lists(*[random_timestamps[it] for it in range(box_count)])
+
+    smallest_edge_first_utilization = merge_lists(*[smallest_edge_first_utilization[it] for it in range(box_count)])
+    smallest_edge_first_timestamps = merge_lists(*[smallest_edge_first_timestamps[it] for it in range(box_count)])
+
+    biggest_edge_first_utilization = merge_lists(*[biggest_edge_first_utilization[it] for it in range(box_count)])
+    biggest_edge_first_timestamps = merge_lists(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
 
     fig, ax = plt.subplots()
-    plt.plot(ecmus_timestamps, ecmus_utilization, label="ecmus")
-    plt.plot(kube_schedule_timestamps, kube_schedule_utilization, label="kube-schedule")
-    plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_utilization, label="ecmus-no-migration")
-    plt.plot(random_timestamps, random_utilization, label="random")
-    plt.plot(cloud_first_timestamps, cloud_first_utilization, label="cloud-first")
-    plt.plot(smallest_edge_first_timestamps, smallest_edge_first_utilization, label="smallest-edge-first")
-    plt.plot(biggest_edge_first_timestamps, biggest_edge_first_utilization, label="biggest-edge-first")
+    plt.plot(ecmus_timestamps, ecmus_utilization, label = "ecmus")
+    plt.plot(kube_schedule_timestamps, kube_schedule_utilization, label = "kube-schedule")
+    plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_utilization, label = "ecmus-no-migration")
+    plt.plot(random_timestamps, random_utilization, label = "random")
+    plt.plot(cloud_first_timestamps, cloud_first_utilization, label = "cloud-first")
+    plt.plot(smallest_edge_first_timestamps, smallest_edge_first_utilization, label = "smallest-edge-first")
+    plt.plot(biggest_edge_first_timestamps, biggest_edge_first_utilization, label = "biggest-edge-first")
 
     fig.set_size_inches(10.5, 10.5)
     plt.grid()
@@ -444,37 +516,42 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
 
 @register_extractor
 def placement_ratio_linechart(config: Config, _: str, histories: List[History], save_path: str) -> None:
-    ecmus_edge_placement_ratio = []
-    ecmus_cloud_placement_ratio = []
-    ecmus_timestamps = []
+    box_count = len(histories) // INDEX_COUNT
 
-    kube_schedule_edge_placement_ratio = []
-    kube_schedule_cloud_placement_ratio = []
-    kube_schedule_timestamps = []
+    ecmus_edge_placement_ratio = {it: [] for it in range(box_count)}
+    ecmus_cloud_placement_ratio = {it: [] for it in range(box_count)}
+    ecmus_timestamps = {it: [] for it in range(box_count)}
 
-    ecmus_no_migration_edge_placement_ratio = []
-    ecmus_no_migration_cloud_placement_ratio = []
-    ecmus_no_migration_timestamps = []
+    kube_schedule_edge_placement_ratio = {it: [] for it in range(box_count)}
+    kube_schedule_cloud_placement_ratio = {it: [] for it in range(box_count)}
+    kube_schedule_timestamps = {it: [] for it in range(box_count)}
 
-    random_edge_placement_ratio = []
-    random_cloud_placement_ratio = []
-    random_timestamps = []
+    ecmus_no_migration_edge_placement_ratio = {it: [] for it in range(box_count)}
+    ecmus_no_migration_cloud_placement_ratio = {it: [] for it in range(box_count)}
+    ecmus_no_migration_timestamps = {it: [] for it in range(box_count)}
 
-    cloud_first_edge_placement_ratio = []
-    cloud_first_cloud_placement_ratio = []
-    cloud_first_timestamps = []
+    random_edge_placement_ratio = {it: [] for it in range(box_count)}
+    random_cloud_placement_ratio = {it: [] for it in range(box_count)}
+    random_timestamps = {it: [] for it in range(box_count)}
 
-    smallest_edge_first_cloud_placement_ratio = []
-    smallest_edge_first_edge_placement_ratio = []
-    smallest_edge_first_timestamps = []
+    cloud_first_edge_placement_ratio = {it: [] for it in range(box_count)}
+    cloud_first_cloud_placement_ratio = {it: [] for it in range(box_count)}
+    cloud_first_timestamps = {it: [] for it in range(box_count)}
 
-    biggest_edge_first_edge_placement_ratio = []
-    biggest_edge_first_cloud_placement_ratio = []
-    biggest_edge_first_timestamps = []
+    smallest_edge_first_cloud_placement_ratio = {it: [] for it in range(box_count)}
+    smallest_edge_first_edge_placement_ratio = {it: [] for it in range(box_count)}
+    smallest_edge_first_timestamps = {it: [] for it in range(box_count)}
+
+    biggest_edge_first_edge_placement_ratio = {it: [] for it in range(box_count)}
+    biggest_edge_first_cloud_placement_ratio = {it: [] for it in range(box_count)}
+    biggest_edge_first_timestamps = {it: [] for it in range(box_count)}
 
     edge_nodes_count = len([node for node in config.nodes.values() if node.is_on_edge])
     cloud_nodes_count = len([node for node in config.nodes.values() if not node.is_on_edge])
-    for index, history in enumerate(histories):
+    for id, history in enumerate(histories):
+        # IMPORTANT NOTICE: histories have to be in order of INDICES for this to work
+        index = id % INDEX_COUNT
+        box_id = id // INDEX_COUNT
         for cycle in history.cycles:
             edge_usage = 0
             cloud_usage = 0
@@ -491,68 +568,106 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
             fragmentation_cloud = 1 - (cloud_usage / cloud_nodes_count)
 
             if index == ECMUS_INDEX:
-                ecmus_timestamps.append(cycle.timestamp)
-                ecmus_edge_placement_ratio.append(fragmentation_edge)
-                ecmus_cloud_placement_ratio.append(fragmentation_cloud)
+                ecmus_timestamps[box_id].append(cycle.timestamp)
+                ecmus_edge_placement_ratio[box_id].append(fragmentation_edge)
+                ecmus_cloud_placement_ratio[box_id].append(fragmentation_cloud)
 
             if index == KUBE_SCHEDULE_INDEX:
-                kube_schedule_timestamps.append(cycle.timestamp)
-                kube_schedule_edge_placement_ratio.append(fragmentation_edge)
-                kube_schedule_cloud_placement_ratio.append(fragmentation_cloud)
+                kube_schedule_timestamps[box_id].append(cycle.timestamp)
+                kube_schedule_edge_placement_ratio[box_id].append(fragmentation_edge)
+                kube_schedule_cloud_placement_ratio[box_id].append(fragmentation_cloud)
 
             if index == ECMUS_NO_MIGRATION_INDEX:
-                ecmus_no_migration_timestamps.append(cycle.timestamp)
-                ecmus_no_migration_edge_placement_ratio.append(fragmentation_edge)
-                ecmus_no_migration_cloud_placement_ratio.append(fragmentation_cloud)
+                ecmus_no_migration_timestamps[box_id].append(cycle.timestamp)
+                ecmus_no_migration_edge_placement_ratio[box_id].append(fragmentation_edge)
+                ecmus_no_migration_cloud_placement_ratio[box_id].append(fragmentation_cloud)
 
             if index == RANDOM_INDEX:
-                random_timestamps.append(cycle.timestamp)
-                random_edge_placement_ratio.append(fragmentation_edge)
-                random_cloud_placement_ratio.append(fragmentation_cloud)
+                random_timestamps[box_id].append(cycle.timestamp)
+                random_edge_placement_ratio[box_id].append(fragmentation_edge)
+                random_cloud_placement_ratio[box_id].append(fragmentation_cloud)
 
             if index == CLOUD_FIRST_INDEX:
-                cloud_first_timestamps.append(cycle.timestamp)
-                cloud_first_edge_placement_ratio.append(fragmentation_edge)
-                cloud_first_cloud_placement_ratio.append(fragmentation_cloud)
+                cloud_first_timestamps[box_id].append(cycle.timestamp)
+                cloud_first_edge_placement_ratio[box_id].append(fragmentation_edge)
+                cloud_first_cloud_placement_ratio[box_id].append(fragmentation_cloud)
 
             if index == SMALLEST_EDGE_FIRST_INDEX:
-                smallest_edge_first_timestamps.append(cycle.timestamp)
-                smallest_edge_first_edge_placement_ratio.append(fragmentation_edge)
-                smallest_edge_first_cloud_placement_ratio.append(fragmentation_cloud)
+                smallest_edge_first_timestamps[box_id].append(cycle.timestamp)
+                smallest_edge_first_edge_placement_ratio[box_id].append(fragmentation_edge)
+                smallest_edge_first_cloud_placement_ratio[box_id].append(fragmentation_cloud)
 
             if index == BIGGEST_EDGE_FIRST_INDEX:
-                biggest_edge_first_timestamps.append(cycle.timestamp)
-                biggest_edge_first_edge_placement_ratio.append(fragmentation_edge)
-                biggest_edge_first_cloud_placement_ratio.append(fragmentation_cloud)
+                biggest_edge_first_timestamps[box_id].append(cycle.timestamp)
+                biggest_edge_first_edge_placement_ratio[box_id].append(fragmentation_edge)
+                biggest_edge_first_cloud_placement_ratio[box_id].append(fragmentation_cloud)
+
+    ecmus_timestamps = merge_lists(*[ecmus_timestamps[it] for it in range(box_count)])
+    ecmus_edge_placement_ratio = merge_lists(*[ecmus_edge_placement_ratio[it] for it in range(box_count)])
+    ecmus_cloud_placement_ratio = merge_lists(*[ecmus_cloud_placement_ratio[it] for it in range(box_count)])
+
+    kube_schedule_timestamps = merge_lists(*[kube_schedule_timestamps[it] for it in range(box_count)])
+    kube_schedule_edge_placement_ratio = merge_lists(
+        *[kube_schedule_edge_placement_ratio[it] for it in range(box_count)])
+    kube_schedule_cloud_placement_ratio = merge_lists(
+        *[kube_schedule_cloud_placement_ratio[it] for it in range(box_count)])
+
+    ecmus_no_migration_timestamps = merge_lists(*[ecmus_no_migration_timestamps[it] for it in range(box_count)])
+    ecmus_no_migration_edge_placement_ratio = merge_lists(
+        *[ecmus_no_migration_edge_placement_ratio[it] for it in range(box_count)])
+    ecmus_no_migration_cloud_placement_ratio = merge_lists(
+        *[ecmus_no_migration_cloud_placement_ratio[it] for it in range(box_count)])
+
+    random_timestamps = merge_lists(*[random_timestamps[it] for it in range(box_count)])
+    random_edge_placement_ratio = merge_lists(*[random_edge_placement_ratio[it] for it in range(box_count)])
+    random_cloud_placement_ratio = merge_lists(*[random_cloud_placement_ratio[it] for it in range(box_count)])
+
+    cloud_first_timestamps = merge_lists(*[cloud_first_timestamps[it] for it in range(box_count)])
+    cloud_first_edge_placement_ratio = merge_lists(*[cloud_first_edge_placement_ratio[it] for it in range(box_count)])
+    cloud_first_cloud_placement_ratio = merge_lists(*[cloud_first_cloud_placement_ratio[it] for it in range(box_count)])
+
+    smallest_edge_first_timestamps = merge_lists(*[smallest_edge_first_timestamps[it] for it in range(box_count)])
+    smallest_edge_first_edge_placement_ratio = merge_lists(
+        *[smallest_edge_first_edge_placement_ratio[it] for it in range(box_count)])
+    smallest_edge_first_cloud_placement_ratio = merge_lists(
+        *[smallest_edge_first_cloud_placement_ratio[it] for it in range(box_count)])
+
+    biggest_edge_first_timestamps = merge_lists(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
+    biggest_edge_first_edge_placement_ratio = merge_lists(
+        *[biggest_edge_first_edge_placement_ratio[it] for it in range(box_count)])
+    biggest_edge_first_cloud_placement_ratio = merge_lists(
+        *[biggest_edge_first_cloud_placement_ratio[it] for it in range(box_count)])
 
     fig, ax = plt.subplots()
     fig.set_size_inches(10.5, 10.5)
 
     plt.grid()
-    plt.plot(ecmus_timestamps, ecmus_edge_placement_ratio, label="ecmus - edge")
-    plt.plot(ecmus_timestamps, ecmus_cloud_placement_ratio, label="ecmus - cloud")
+    plt.plot(ecmus_timestamps, ecmus_edge_placement_ratio, label = "ecmus - edge")
+    plt.plot(ecmus_timestamps, ecmus_cloud_placement_ratio, label = "ecmus - cloud")
 
-    plt.plot(kube_schedule_timestamps, kube_schedule_edge_placement_ratio, label="kube-schedule - edge")
-    plt.plot(kube_schedule_timestamps, kube_schedule_cloud_placement_ratio, label="kube-schedule - cloud")
+    plt.plot(kube_schedule_timestamps, kube_schedule_edge_placement_ratio, label = "kube-schedule - edge")
+    plt.plot(kube_schedule_timestamps, kube_schedule_cloud_placement_ratio, label = "kube-schedule - cloud")
 
-    plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_edge_placement_ratio, label="ecmus-no-migration - edge")
+    plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_edge_placement_ratio,
+             label = "ecmus-no-migration - edge")
     plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_cloud_placement_ratio,
-             label="ecmus-no-migration - cloud")
+             label = "ecmus-no-migration - cloud")
 
-    plt.plot(random_timestamps, random_edge_placement_ratio, label="random - edge")
-    plt.plot(random_timestamps, random_cloud_placement_ratio, label="random - cloud")
+    plt.plot(random_timestamps, random_edge_placement_ratio, label = "random - edge")
+    plt.plot(random_timestamps, random_cloud_placement_ratio, label = "random - cloud")
 
-    plt.plot(cloud_first_timestamps, cloud_first_edge_placement_ratio, label="cloud-first - edge")
-    plt.plot(cloud_first_timestamps, cloud_first_cloud_placement_ratio, label="cloud-first - cloud")
+    plt.plot(cloud_first_timestamps, cloud_first_edge_placement_ratio, label = "cloud-first - edge")
+    plt.plot(cloud_first_timestamps, cloud_first_cloud_placement_ratio, label = "cloud-first - cloud")
 
     plt.plot(smallest_edge_first_timestamps, smallest_edge_first_edge_placement_ratio,
-             label="smallest-edge-first - edge")
+             label = "smallest-edge-first - edge")
     plt.plot(smallest_edge_first_timestamps, smallest_edge_first_cloud_placement_ratio,
-             label="smallest-edge-first - cloud")
+             label = "smallest-edge-first - cloud")
 
-    plt.plot(biggest_edge_first_timestamps, biggest_edge_first_edge_placement_ratio, label="biggest-edge-first - edge")
+    plt.plot(biggest_edge_first_timestamps, biggest_edge_first_edge_placement_ratio,
+             label = "biggest-edge-first - edge")
     plt.plot(biggest_edge_first_timestamps, biggest_edge_first_cloud_placement_ratio,
-             label="biggest-edge-first - cloud")
+             label = "biggest-edge-first - cloud")
 
     plt.xlabel("time (s)")
     plt.ylabel("placement ratio")
