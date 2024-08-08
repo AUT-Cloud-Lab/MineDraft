@@ -27,7 +27,6 @@ BIGGEST_EDGE_FIRST_INDEX = 6
 
 INDEX_COUNT = 7
 
-
 @register_extractor
 def calc_migrations(config: Config, histories: List[History], save_path: str) -> None:
     output_file = open(save_path, 'w')
