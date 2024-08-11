@@ -8,7 +8,7 @@ date_biggest_edge_first="2024-08-04"
 
 all_scenarios: normal
 
-normal: normal_average_latency_boxplots normal_average_latency_linecharts normal_edge_utilization_linechart normal_placement_ratio_linechart
+normal: normal_average_latency_boxplots normal_average_latency_linecharts normal_edge_utilization_linechart normal_placement_ratio_linechart normal_multiple_pod_count_linechart
 
 normal_multiple_average_latency_boxplot:
 	 python3 main.py \
