@@ -12,7 +12,7 @@ from historical.common import Deployment
 from historical.config import Config
 from historical.data import History, Cycle, Migration
 from historical.utils import calculate_edge_usage_sum, calculate_cluster_usage_sum, calculate_resource_usage_for_node, \
-    calculate_placement_for_deployment, get_nodes_of_a_deployment, get_edge_placed_pods
+    calculate_placement_for_deployment, calculate_pod_count_for_deployment, get_nodes_of_a_deployment, get_edge_placed_pods
 
 CLOUD_RESPONSE_TIME = 300
 EDGE_RESPONSE_TIME = 50
@@ -168,6 +168,106 @@ def merge_lists(*lists):
 
     return [sums[i] / counts[i] if counts[i] != 0 else 0 for i in range(max_length)]
 
+
+@register_extractor
+def pod_count_linechart(config: Config, scenario_name: str, histories: List[History], save_path: str) -> None:
+    for deployment in config.deployments.values():
+        box_count = len(histories) // INDEX_COUNT
+
+        kube_pod_count = {it: [] for it in range(box_count)}
+        kube_timestamps = {it: [] for it in range(box_count)}
+
+        ecmus_pod_count = {it: [] for it in range(box_count)}
+        ecmus_timestamps = {it: [] for it in range(box_count)}
+
+        ecmus_no_migration_pod_count = {it: [] for it in range(box_count)}
+        ecmus_no_migration_timestamps = {it: [] for it in range(box_count)}
+
+        random_pod_count = {it: [] for it in range(box_count)}
+        random_timestamps = {it: [] for it in range(box_count)}
+
+        cloud_first_pod_count = {it: [] for it in range(box_count)}
+        cloud_first_timestamps = {it: [] for it in range(box_count)}
+
+        smallest_edge_first_pod_count = {it: [] for it in range(box_count)}
+        smallest_edge_first_timestamps = {it: [] for it in range(box_count)}
+
+        biggest_edge_first_pod_count = {it: [] for it in range(box_count)}
+        biggest_edge_first_timestamps = {it: [] for it in range(box_count)}
+
+        for id, history in enumerate(histories):
+            # IMPORTANT NOTICE: histories have to be in order of INDICES for this to work
+            index = id % INDEX_COUNT
+            box_id = id // INDEX_COUNT
+            for cycle in history.cycles:
+                pod_count = calculate_pod_count_for_deployment(cycle, deployment)
+                if index == ECMUS_INDEX:
+                    ecmus_pod_count[box_id].append(pod_count)
+                    ecmus_timestamps[box_id].append(cycle.timestamp)
+
+                if index == KUBE_SCHEDULE_INDEX:
+                    kube_pod_count[box_id].append(pod_count)
+                    kube_timestamps[box_id].append(cycle.timestamp)
+
+                if index == ECMUS_NO_MIGRATION_INDEX:
+                    ecmus_no_migration_pod_count[box_id].append(pod_count)
+                    ecmus_no_migration_timestamps[box_id].append(cycle.timestamp)
+
+                if index == RANDOM_INDEX:
+                    random_pod_count[box_id].append(pod_count)
+                    random_timestamps[box_id].append(cycle.timestamp)
+
+                if index == CLOUD_FIRST_INDEX:
+                    cloud_first_pod_count[box_id].append(pod_count)
+                    cloud_first_timestamps[box_id].append(cycle.timestamp)
+
+                if index == SMALLEST_EDGE_FIRST_INDEX:
+                    smallest_edge_first_pod_count[box_id].append(pod_count)
+                    smallest_edge_first_timestamps[box_id].append(cycle.timestamp)
+
+                if index == BIGGEST_EDGE_FIRST_INDEX:
+                    biggest_edge_first_pod_count[box_id].append(pod_count)
+                    biggest_edge_first_timestamps[box_id].append(cycle.timestamp)
+
+        ecmus_pod_count = merge_lists(*[ecmus_pod_count[it] for it in range(box_count)])
+        ecmus_timestamps = merge_lists(*[ecmus_timestamps[it] for it in range(box_count)])
+
+        kube_pod_count = merge_lists(*[kube_pod_count[it] for it in range(box_count)])
+        kube_timestamps = merge_lists(*[kube_timestamps[it] for it in range(box_count)])
+
+        ecmus_no_migration_pod_count = merge_lists(*[ecmus_no_migration_pod_count[it] for it in range(box_count)])
+        ecmus_no_migration_timestamps = merge_lists(*[ecmus_no_migration_timestamps[it] for it in range(box_count)])
+
+        cloud_first_pod_count = merge_lists(*[cloud_first_pod_count[it] for it in range(box_count)])
+        cloud_first_timestamps = merge_lists(*[cloud_first_timestamps[it] for it in range(box_count)])
+
+        random_pod_count = merge_lists(*[random_pod_count[it] for it in range(box_count)])
+        random_timestamps = merge_lists(*[random_timestamps[it] for it in range(box_count)])
+
+        smallest_edge_first_pod_count = merge_lists(*[smallest_edge_first_pod_count[it] for it in range(box_count)])
+        smallest_edge_first_timestamps = merge_lists(*[smallest_edge_first_timestamps[it] for it in range(box_count)])
+
+        biggest_edge_first_pod_count = merge_lists(*[biggest_edge_first_pod_count[it] for it in range(box_count)])
+        biggest_edge_first_timestamps = merge_lists(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
+
+        fig, ax = plt.subplots()
+        plt.grid()
+        fig.set_size_inches(10.5, 10.5)
+        #ax.plot(kube_timestamps, kube_pod_count, label = "kube")
+        ax.plot(ecmus_timestamps, ecmus_pod_count, label = "ecmus")
+        #ax.plot(ecmus_no_migration_timestamps, ecmus_no_migration_pod_count, label = "ecmus-no-migration")
+        #ax.plot(random_timestamps, random_pod_count, label = "random")
+        #ax.plot(cloud_first_timestamps, cloud_first_pod_count, label = "cloud-first")
+        ax.plot(biggest_edge_first_timestamps, biggest_edge_first_pod_count, label = "biggest-edge-first")
+        ax.plot(smallest_edge_first_timestamps, smallest_edge_first_pod_count, label = "smallest-edge-first")
+        ax.set_ylim(0, 20)
+        ax.set_yticks(range(0, 20, 1))
+        plt.xlabel("time(s)")
+        plt.ylabel("pod count")
+        plt.title(f"pod count - workload: {deployment.name}")
+        plt.legend()
+        ensure_directory(save_path)
+        plt.savefig(f"{save_path}/{deployment.name}.png")
 
 @register_extractor
 def average_latency_linechart(config: Config, scenario_name: str, histories: List[History], save_path: str) -> None:
