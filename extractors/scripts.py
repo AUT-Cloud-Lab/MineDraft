@@ -155,7 +155,7 @@ def check_equality(config: Config, histories: List[History], save_path: str) -> 
         print(f"{deployment}'s number of differences are {number_of_differences}!", file = output_file)
 
 
-def merge_lists(*lists):
+def merge_lists_by_average(*lists):
     max_length = max(len(lst) for lst in lists)
 
     sums = [0] * max_length
@@ -169,8 +169,41 @@ def merge_lists(*lists):
     return [sums[i] / counts[i] if counts[i] != 0 else 0 for i in range(max_length)]
 
 
+def merge_lists_by_sum(*lists):
+    max_length = max(len(lst) for lst in lists)
+
+    sums = [0] * max_length
+
+    for lst in lists:
+        for i, val in enumerate(lst):
+            sums[i] += val
+
+    return [sums[i] for i in range(max_length)]
+
+
 @register_extractor
 def pod_count_linechart(config: Config, scenario_name: str, histories: List[History], save_path: str) -> None:
+    kube_pod_count_list = []
+    kube_timestamps_list = []
+
+    ecmus_pod_count_list = []
+    ecmus_timestamps_list = []
+
+    ecmus_no_migration_pod_count_list = []
+    ecmus_no_migration_timestamps_list = []
+
+    random_pod_count_list = []
+    random_timestamps_list = []
+
+    cloud_first_pod_count_list = []
+    cloud_first_timestamps_list = []
+
+    smallest_edge_first_pod_count_list = []
+    smallest_edge_first_timestamps_list = []
+
+    biggest_edge_first_pod_count_list = []
+    biggest_edge_first_timestamps_list = []
+
     for deployment in config.deployments.values():
         box_count = len(histories) // INDEX_COUNT
 
@@ -229,26 +262,47 @@ def pod_count_linechart(config: Config, scenario_name: str, histories: List[Hist
                     biggest_edge_first_pod_count[box_id].append(pod_count)
                     biggest_edge_first_timestamps[box_id].append(cycle.timestamp)
 
-        ecmus_pod_count = merge_lists(*[ecmus_pod_count[it] for it in range(box_count)])
-        ecmus_timestamps = merge_lists(*[ecmus_timestamps[it] for it in range(box_count)])
+        ecmus_pod_count = merge_lists_by_average(*[ecmus_pod_count[it] for it in range(box_count)])
+        ecmus_timestamps = merge_lists_by_average(*[ecmus_timestamps[it] for it in range(box_count)])
 
-        kube_pod_count = merge_lists(*[kube_pod_count[it] for it in range(box_count)])
-        kube_timestamps = merge_lists(*[kube_timestamps[it] for it in range(box_count)])
+        kube_pod_count = merge_lists_by_average(*[kube_pod_count[it] for it in range(box_count)])
+        kube_timestamps = merge_lists_by_average(*[kube_timestamps[it] for it in range(box_count)])
 
-        ecmus_no_migration_pod_count = merge_lists(*[ecmus_no_migration_pod_count[it] for it in range(box_count)])
-        ecmus_no_migration_timestamps = merge_lists(*[ecmus_no_migration_timestamps[it] for it in range(box_count)])
+        ecmus_no_migration_pod_count = merge_lists_by_average(*[ecmus_no_migration_pod_count[it] for it in range(box_count)])
+        ecmus_no_migration_timestamps = merge_lists_by_average(*[ecmus_no_migration_timestamps[it] for it in range(box_count)])
 
-        cloud_first_pod_count = merge_lists(*[cloud_first_pod_count[it] for it in range(box_count)])
-        cloud_first_timestamps = merge_lists(*[cloud_first_timestamps[it] for it in range(box_count)])
+        cloud_first_pod_count = merge_lists_by_average(*[cloud_first_pod_count[it] for it in range(box_count)])
+        cloud_first_timestamps = merge_lists_by_average(*[cloud_first_timestamps[it] for it in range(box_count)])
 
-        random_pod_count = merge_lists(*[random_pod_count[it] for it in range(box_count)])
-        random_timestamps = merge_lists(*[random_timestamps[it] for it in range(box_count)])
+        random_pod_count = merge_lists_by_average(*[random_pod_count[it] for it in range(box_count)])
+        random_timestamps = merge_lists_by_average(*[random_timestamps[it] for it in range(box_count)])
 
-        smallest_edge_first_pod_count = merge_lists(*[smallest_edge_first_pod_count[it] for it in range(box_count)])
-        smallest_edge_first_timestamps = merge_lists(*[smallest_edge_first_timestamps[it] for it in range(box_count)])
+        smallest_edge_first_pod_count = merge_lists_by_average(*[smallest_edge_first_pod_count[it] for it in range(box_count)])
+        smallest_edge_first_timestamps = merge_lists_by_average(*[smallest_edge_first_timestamps[it] for it in range(box_count)])
 
-        biggest_edge_first_pod_count = merge_lists(*[biggest_edge_first_pod_count[it] for it in range(box_count)])
-        biggest_edge_first_timestamps = merge_lists(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
+        biggest_edge_first_pod_count = merge_lists_by_average(*[biggest_edge_first_pod_count[it] for it in range(box_count)])
+        biggest_edge_first_timestamps = merge_lists_by_average(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
+
+        ecmus_pod_count_list.append(ecmus_pod_count)
+        ecmus_timestamps_list.append(ecmus_timestamps)
+
+        kube_pod_count_list.append(kube_pod_count)
+        kube_timestamps_list.append(kube_timestamps)
+
+        ecmus_no_migration_pod_count_list.append(ecmus_no_migration_pod_count)
+        ecmus_no_migration_timestamps_list.append(ecmus_no_migration_timestamps)
+
+        cloud_first_pod_count_list.append(cloud_first_pod_count)
+        cloud_first_timestamps_list.append(cloud_first_timestamps)
+
+        random_pod_count_list.append(random_pod_count)
+        random_timestamps_list.append(random_timestamps)
+
+        smallest_edge_first_pod_count_list.append(smallest_edge_first_pod_count)
+        smallest_edge_first_timestamps_list.append(smallest_edge_first_timestamps)
+
+        biggest_edge_first_pod_count_list.append(biggest_edge_first_pod_count)
+        biggest_edge_first_timestamps_list.append(biggest_edge_first_timestamps)
 
         fig, ax = plt.subplots()
         plt.grid()
@@ -268,6 +322,49 @@ def pod_count_linechart(config: Config, scenario_name: str, histories: List[Hist
         plt.legend()
         ensure_directory(save_path)
         plt.savefig(f"{save_path}/{deployment.name}.png")
+
+    deployment_count = len(config.deployments)
+
+    ecmus_pod_count = merge_lists_by_sum(*[ecmus_pod_count_list[it] for it in range(deployment_count)])
+    ecmus_timestamps = merge_lists_by_average(*[ecmus_timestamps_list[it] for it in range(deployment_count)])
+
+    kube_pod_count = merge_lists_by_sum(*[kube_pod_count_list[it] for it in range(deployment_count)])
+    kube_timestamps = merge_lists_by_average(*[kube_timestamps_list[it] for it in range(deployment_count)])
+
+    ecmus_no_migration_pod_count = merge_lists_by_sum(*[ecmus_no_migration_pod_count_list[it] for it in range(deployment_count)])
+    ecmus_no_migration_timestamps = merge_lists_by_average(*[ecmus_no_migration_timestamps_list[it] for it in range(deployment_count)])
+
+    random_pod_count = merge_lists_by_sum(*[random_pod_count_list[it] for it in range(deployment_count)])
+    random_timestamps = merge_lists_by_average(*[random_timestamps_list[it] for it in range(deployment_count)])
+
+    cloud_first_pod_count = merge_lists_by_sum(*[cloud_first_pod_count_list[it] for it in range(deployment_count)])
+    cloud_first_timestamps = merge_lists_by_average(*[cloud_first_timestamps_list[it] for it in range(deployment_count)])
+
+    biggest_edge_first_pod_count = merge_lists_by_sum(*[biggest_edge_first_pod_count_list[it] for it in range(deployment_count)])
+    biggest_edge_first_timestamps = merge_lists_by_average(*[biggest_edge_first_timestamps_list[it] for it in range(deployment_count)])
+
+    smallest_edge_first_pod_count = merge_lists_by_sum(*[smallest_edge_first_pod_count_list[it] for it in range(deployment_count)])
+    smallest_edge_first_timestamps = merge_lists_by_average(*[smallest_edge_first_timestamps_list[it] for it in range(deployment_count)])
+
+    fig, ax = plt.subplots()
+    plt.grid()
+    fig.set_size_inches(10.5, 10.5)
+    #ax.plot(kube_timestamps, kube_pod_count, label = "kube")
+    ax.plot(ecmus_timestamps, ecmus_pod_count, label = "ecmus")
+    #ax.plot(ecmus_no_migration_timestamps, ecmus_no_migration_pod_count, label = "ecmus-no-migration")
+    #ax.plot(random_timestamps, random_pod_count, label = "random")
+    #ax.plot(cloud_first_timestamps, cloud_first_pod_count, label = "cloud-first")
+    ax.plot(biggest_edge_first_timestamps, biggest_edge_first_pod_count, label = "biggest-edge-first")
+    ax.plot(smallest_edge_first_timestamps, smallest_edge_first_pod_count, label = "smallest-edge-first")
+    ax.set_ylim(0, 20)
+    ax.set_yticks(range(0, 20, 1))
+    plt.xlabel("time(s)")
+    plt.ylabel("pod count")
+    plt.title(f"pod count - workload total")
+    plt.legend()
+    ensure_directory(save_path)
+    plt.savefig(f"{save_path}/all.png")
+
 
 @register_extractor
 def average_latency_linechart(config: Config, scenario_name: str, histories: List[History], save_path: str) -> None:
@@ -334,26 +431,26 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
                     biggest_edge_first_latencies[box_id].append(latency)
                     biggest_edge_first_timestamps[box_id].append(cycle.timestamp)
 
-        ecmus_latencies = merge_lists(*[ecmus_latencies[it] for it in range(box_count)])
-        ecmus_timestamps = merge_lists(*[ecmus_timestamps[it] for it in range(box_count)])
+        ecmus_latencies = merge_lists_by_average(*[ecmus_latencies[it] for it in range(box_count)])
+        ecmus_timestamps = merge_lists_by_average(*[ecmus_timestamps[it] for it in range(box_count)])
 
-        kube_latencies = merge_lists(*[kube_latencies[it] for it in range(box_count)])
-        kube_timestamps = merge_lists(*[kube_timestamps[it] for it in range(box_count)])
+        kube_latencies = merge_lists_by_average(*[kube_latencies[it] for it in range(box_count)])
+        kube_timestamps = merge_lists_by_average(*[kube_timestamps[it] for it in range(box_count)])
 
-        ecmus_no_migration_latencies = merge_lists(*[ecmus_no_migration_latencies[it] for it in range(box_count)])
-        ecmus_no_migration_timestamps = merge_lists(*[ecmus_no_migration_timestamps[it] for it in range(box_count)])
+        ecmus_no_migration_latencies = merge_lists_by_average(*[ecmus_no_migration_latencies[it] for it in range(box_count)])
+        ecmus_no_migration_timestamps = merge_lists_by_average(*[ecmus_no_migration_timestamps[it] for it in range(box_count)])
 
-        cloud_first_latencies = merge_lists(*[cloud_first_latencies[it] for it in range(box_count)])
-        cloud_first_timestamps = merge_lists(*[cloud_first_timestamps[it] for it in range(box_count)])
+        cloud_first_latencies = merge_lists_by_average(*[cloud_first_latencies[it] for it in range(box_count)])
+        cloud_first_timestamps = merge_lists_by_average(*[cloud_first_timestamps[it] for it in range(box_count)])
 
-        random_latencies = merge_lists(*[random_latencies[it] for it in range(box_count)])
-        random_timestamps = merge_lists(*[random_timestamps[it] for it in range(box_count)])
+        random_latencies = merge_lists_by_average(*[random_latencies[it] for it in range(box_count)])
+        random_timestamps = merge_lists_by_average(*[random_timestamps[it] for it in range(box_count)])
 
-        smallest_edge_first_latencies = merge_lists(*[smallest_edge_first_latencies[it] for it in range(box_count)])
-        smallest_edge_first_timestamps = merge_lists(*[smallest_edge_first_timestamps[it] for it in range(box_count)])
+        smallest_edge_first_latencies = merge_lists_by_average(*[smallest_edge_first_latencies[it] for it in range(box_count)])
+        smallest_edge_first_timestamps = merge_lists_by_average(*[smallest_edge_first_timestamps[it] for it in range(box_count)])
 
-        biggest_edge_first_latencies = merge_lists(*[biggest_edge_first_latencies[it] for it in range(box_count)])
-        biggest_edge_first_timestamps = merge_lists(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
+        biggest_edge_first_latencies = merge_lists_by_average(*[biggest_edge_first_latencies[it] for it in range(box_count)])
+        biggest_edge_first_timestamps = merge_lists_by_average(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
 
         fig, ax = plt.subplots()
         plt.grid()
@@ -571,26 +668,26 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
                 biggest_edge_first_timestamps[box_id].append(cycle.timestamp)
                 biggest_edge_first_utilization[box_id].append(utilization)
 
-    ecmus_utilization = merge_lists(*[ecmus_utilization[it] for it in range(box_count)])
-    ecmus_timestamps = merge_lists(*[ecmus_timestamps[it] for it in range(box_count)])
+    ecmus_utilization = merge_lists_by_average(*[ecmus_utilization[it] for it in range(box_count)])
+    ecmus_timestamps = merge_lists_by_average(*[ecmus_timestamps[it] for it in range(box_count)])
 
-    kube_schedule_utilization = merge_lists(*[kube_schedule_utilization[it] for it in range(box_count)])
-    kube_schedule_timestamps = merge_lists(*[kube_schedule_timestamps[it] for it in range(box_count)])
+    kube_schedule_utilization = merge_lists_by_average(*[kube_schedule_utilization[it] for it in range(box_count)])
+    kube_schedule_timestamps = merge_lists_by_average(*[kube_schedule_timestamps[it] for it in range(box_count)])
 
-    ecmus_no_migration_utilization = merge_lists(*[ecmus_no_migration_utilization[it] for it in range(box_count)])
-    ecmus_no_migration_timestamps = merge_lists(*[ecmus_no_migration_timestamps[it] for it in range(box_count)])
+    ecmus_no_migration_utilization = merge_lists_by_average(*[ecmus_no_migration_utilization[it] for it in range(box_count)])
+    ecmus_no_migration_timestamps = merge_lists_by_average(*[ecmus_no_migration_timestamps[it] for it in range(box_count)])
 
-    cloud_first_utilization = merge_lists(*[cloud_first_utilization[it] for it in range(box_count)])
-    cloud_first_timestamps = merge_lists(*[cloud_first_timestamps[it] for it in range(box_count)])
+    cloud_first_utilization = merge_lists_by_average(*[cloud_first_utilization[it] for it in range(box_count)])
+    cloud_first_timestamps = merge_lists_by_average(*[cloud_first_timestamps[it] for it in range(box_count)])
 
-    random_utilization = merge_lists(*[random_utilization[it] for it in range(box_count)])
-    random_timestamps = merge_lists(*[random_timestamps[it] for it in range(box_count)])
+    random_utilization = merge_lists_by_average(*[random_utilization[it] for it in range(box_count)])
+    random_timestamps = merge_lists_by_average(*[random_timestamps[it] for it in range(box_count)])
 
-    smallest_edge_first_utilization = merge_lists(*[smallest_edge_first_utilization[it] for it in range(box_count)])
-    smallest_edge_first_timestamps = merge_lists(*[smallest_edge_first_timestamps[it] for it in range(box_count)])
+    smallest_edge_first_utilization = merge_lists_by_average(*[smallest_edge_first_utilization[it] for it in range(box_count)])
+    smallest_edge_first_timestamps = merge_lists_by_average(*[smallest_edge_first_timestamps[it] for it in range(box_count)])
 
-    biggest_edge_first_utilization = merge_lists(*[biggest_edge_first_utilization[it] for it in range(box_count)])
-    biggest_edge_first_timestamps = merge_lists(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
+    biggest_edge_first_utilization = merge_lists_by_average(*[biggest_edge_first_utilization[it] for it in range(box_count)])
+    biggest_edge_first_timestamps = merge_lists_by_average(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
 
     fig, ax = plt.subplots()
     plt.plot(ecmus_timestamps, ecmus_utilization, label = "ecmus")
@@ -701,40 +798,40 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
                 biggest_edge_first_edge_placement_ratio[box_id].append(fragmentation_edge)
                 biggest_edge_first_cloud_placement_ratio[box_id].append(fragmentation_cloud)
 
-    ecmus_timestamps = merge_lists(*[ecmus_timestamps[it] for it in range(box_count)])
-    ecmus_edge_placement_ratio = merge_lists(*[ecmus_edge_placement_ratio[it] for it in range(box_count)])
-    ecmus_cloud_placement_ratio = merge_lists(*[ecmus_cloud_placement_ratio[it] for it in range(box_count)])
+    ecmus_timestamps = merge_lists_by_average(*[ecmus_timestamps[it] for it in range(box_count)])
+    ecmus_edge_placement_ratio = merge_lists_by_average(*[ecmus_edge_placement_ratio[it] for it in range(box_count)])
+    ecmus_cloud_placement_ratio = merge_lists_by_average(*[ecmus_cloud_placement_ratio[it] for it in range(box_count)])
 
-    kube_schedule_timestamps = merge_lists(*[kube_schedule_timestamps[it] for it in range(box_count)])
-    kube_schedule_edge_placement_ratio = merge_lists(
+    kube_schedule_timestamps = merge_lists_by_average(*[kube_schedule_timestamps[it] for it in range(box_count)])
+    kube_schedule_edge_placement_ratio = merge_lists_by_average(
         *[kube_schedule_edge_placement_ratio[it] for it in range(box_count)])
-    kube_schedule_cloud_placement_ratio = merge_lists(
+    kube_schedule_cloud_placement_ratio = merge_lists_by_average(
         *[kube_schedule_cloud_placement_ratio[it] for it in range(box_count)])
 
-    ecmus_no_migration_timestamps = merge_lists(*[ecmus_no_migration_timestamps[it] for it in range(box_count)])
-    ecmus_no_migration_edge_placement_ratio = merge_lists(
+    ecmus_no_migration_timestamps = merge_lists_by_average(*[ecmus_no_migration_timestamps[it] for it in range(box_count)])
+    ecmus_no_migration_edge_placement_ratio = merge_lists_by_average(
         *[ecmus_no_migration_edge_placement_ratio[it] for it in range(box_count)])
-    ecmus_no_migration_cloud_placement_ratio = merge_lists(
+    ecmus_no_migration_cloud_placement_ratio = merge_lists_by_average(
         *[ecmus_no_migration_cloud_placement_ratio[it] for it in range(box_count)])
 
-    random_timestamps = merge_lists(*[random_timestamps[it] for it in range(box_count)])
-    random_edge_placement_ratio = merge_lists(*[random_edge_placement_ratio[it] for it in range(box_count)])
-    random_cloud_placement_ratio = merge_lists(*[random_cloud_placement_ratio[it] for it in range(box_count)])
+    random_timestamps = merge_lists_by_average(*[random_timestamps[it] for it in range(box_count)])
+    random_edge_placement_ratio = merge_lists_by_average(*[random_edge_placement_ratio[it] for it in range(box_count)])
+    random_cloud_placement_ratio = merge_lists_by_average(*[random_cloud_placement_ratio[it] for it in range(box_count)])
 
-    cloud_first_timestamps = merge_lists(*[cloud_first_timestamps[it] for it in range(box_count)])
-    cloud_first_edge_placement_ratio = merge_lists(*[cloud_first_edge_placement_ratio[it] for it in range(box_count)])
-    cloud_first_cloud_placement_ratio = merge_lists(*[cloud_first_cloud_placement_ratio[it] for it in range(box_count)])
+    cloud_first_timestamps = merge_lists_by_average(*[cloud_first_timestamps[it] for it in range(box_count)])
+    cloud_first_edge_placement_ratio = merge_lists_by_average(*[cloud_first_edge_placement_ratio[it] for it in range(box_count)])
+    cloud_first_cloud_placement_ratio = merge_lists_by_average(*[cloud_first_cloud_placement_ratio[it] for it in range(box_count)])
 
-    smallest_edge_first_timestamps = merge_lists(*[smallest_edge_first_timestamps[it] for it in range(box_count)])
-    smallest_edge_first_edge_placement_ratio = merge_lists(
+    smallest_edge_first_timestamps = merge_lists_by_average(*[smallest_edge_first_timestamps[it] for it in range(box_count)])
+    smallest_edge_first_edge_placement_ratio = merge_lists_by_average(
         *[smallest_edge_first_edge_placement_ratio[it] for it in range(box_count)])
-    smallest_edge_first_cloud_placement_ratio = merge_lists(
+    smallest_edge_first_cloud_placement_ratio = merge_lists_by_average(
         *[smallest_edge_first_cloud_placement_ratio[it] for it in range(box_count)])
 
-    biggest_edge_first_timestamps = merge_lists(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
-    biggest_edge_first_edge_placement_ratio = merge_lists(
+    biggest_edge_first_timestamps = merge_lists_by_average(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
+    biggest_edge_first_edge_placement_ratio = merge_lists_by_average(
         *[biggest_edge_first_edge_placement_ratio[it] for it in range(box_count)])
-    biggest_edge_first_cloud_placement_ratio = merge_lists(
+    biggest_edge_first_cloud_placement_ratio = merge_lists_by_average(
         *[biggest_edge_first_cloud_placement_ratio[it] for it in range(box_count)])
 
     fig, ax = plt.subplots()
