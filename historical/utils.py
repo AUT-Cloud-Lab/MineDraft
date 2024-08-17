@@ -26,6 +26,18 @@ def get_nodes_of_a_deployment(
     return nodes
 
 
+def calculate_pod_count_for_deployment(cycle: Cycle, target: Deployment) -> int:
+    pod_count = 0
+
+    for node, pods in cycle.pod_placement.node_pods.items():
+        for pod in pods:
+            if pod.name != target.name:
+                continue
+            pod_count += 1
+
+    return pod_count
+
+
 def calculate_placement_for_deployment(cycle: Cycle, target: Deployment) -> (int, int):
     cloud_count = 0
     edge_count = 0
