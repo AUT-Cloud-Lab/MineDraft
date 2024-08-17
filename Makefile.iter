@@ -1,14 +1,14 @@
-date_kube_schedule ="2024-08-04"
+date_kube_schedule ="2024-08-17"
 date_ecmus="2024-08-04"
 date_ecmus_no_migration="2024-08-04"
-date_random="2024-08-04"
-date_cloud_first="2024-08-04"
+date_random="2024-08-17"
+date_cloud_first="2024-08-17"
 date_smallest_edge_first="2024-08-04"
 date_biggest_edge_first="2024-08-04"
 
 all_scenarios: normal
 
-normal: normal_average_latency_boxplots normal_average_latency_linecharts normal_edge_utilization_linechart normal_placement_ratio_linechart normal_multiple_pod_count_linechart
+normal: normal_multiple_average_latency_boxplot normal_multiple_average_latency_linechart normal_multiple_edge_utilization_linechart normal_multiple_placement_ratio_linechart normal_multiple_pod_count_linechart
 
 normal_multiple_average_latency_boxplot:
 	 python3 main.py \
