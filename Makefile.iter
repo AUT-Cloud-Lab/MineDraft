@@ -1,16 +1,15 @@
-date_kube_schedule ="2024-08-04"
+date_kube_schedule ="2024-08-17"
 date_ecmus="2024-08-04"
 date_ecmus_no_migration="2024-08-04"
-date_random="2024-08-04"
-date_cloud_first="2024-08-04"
+date_random="2024-08-17"
+date_cloud_first="2024-08-17"
 date_smallest_edge_first="2024-08-04"
 date_biggest_edge_first="2024-08-04"
 
 all_scenarios: normal
 
-normal: normal_average_latency_boxplots normal_average_latency_linecharts normal_edge_utilization_linechart normal_placement_ratio_linechart
+normal: normal_multiple_average_latency_boxplot normal_multiple_average_latency_linechart normal_multiple_edge_utilization_linechart normal_multiple_placement_ratio_linechart
 
-# TODO
 normal_multiple_average_latency_boxplot:
 	 python3 main.py \
     --script_name average_latency_boxplot \
@@ -88,7 +87,7 @@ normal_multiple_average_latency_boxplot:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.1/normal_scenario_0.75_0.1_10.json \
         --scenario-name normal_scenario_0.75_0.1 \
         --save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.1
-    
+
 	 python3 main.py \
     --script_name average_latency_boxplot \
         --config_path config.json \
@@ -165,7 +164,7 @@ normal_multiple_average_latency_boxplot:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.5/normal_scenario_0.75_0.5_10.json \
         --scenario-name normal_scenario_0.75_0.5 \
         --save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.5
-    
+
 	 python3 main.py \
     --script_name average_latency_boxplot \
         --config_path config.json \
@@ -242,7 +241,7 @@ normal_multiple_average_latency_boxplot:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.7/normal_scenario_0.75_0.7_10.json \
         --scenario-name normal_scenario_0.75_0.7 \
         --save-path ./results/average_latency/boxplot/normal_scenario_0.75_0.7
-    
+
 	 python3 main.py \
     --script_name average_latency_boxplot \
         --config_path config.json \
@@ -319,7 +318,7 @@ normal_multiple_average_latency_boxplot:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.1/normal_scenario_1.0_0.1_10.json \
         --scenario-name normal_scenario_1.0_0.1 \
         --save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.1
-    
+
 	 python3 main.py \
     --script_name average_latency_boxplot \
         --config_path config.json \
@@ -396,7 +395,7 @@ normal_multiple_average_latency_boxplot:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.5/normal_scenario_1.0_0.5_10.json \
         --scenario-name normal_scenario_1.0_0.5 \
         --save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.5
-    
+
 	 python3 main.py \
     --script_name average_latency_boxplot \
         --config_path config.json \
@@ -473,7 +472,7 @@ normal_multiple_average_latency_boxplot:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.7/normal_scenario_1.0_0.7_10.json \
         --scenario-name normal_scenario_1.0_0.7 \
         --save-path ./results/average_latency/boxplot/normal_scenario_1.0_0.7
-    
+
 	 python3 main.py \
     --script_name average_latency_boxplot \
         --config_path config.json \
@@ -550,7 +549,7 @@ normal_multiple_average_latency_boxplot:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.1/normal_scenario_1.25_0.1_10.json \
         --scenario-name normal_scenario_1.25_0.1 \
         --save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.1
-    
+
 	 python3 main.py \
     --script_name average_latency_boxplot \
         --config_path config.json \
@@ -627,7 +626,7 @@ normal_multiple_average_latency_boxplot:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.5/normal_scenario_1.25_0.5_10.json \
         --scenario-name normal_scenario_1.25_0.5 \
         --save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.5
-    
+
 	 python3 main.py \
     --script_name average_latency_boxplot \
         --config_path config.json \
@@ -704,7 +703,7 @@ normal_multiple_average_latency_boxplot:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7/normal_scenario_1.25_0.7_10.json \
         --scenario-name normal_scenario_1.25_0.7 \
         --save-path ./results/average_latency/boxplot/normal_scenario_1.25_0.7
-    
+
 normal_multiple_average_latency_linechart:
 	 python3 main.py \
     --script_name average_latency_linechart \
@@ -782,7 +781,7 @@ normal_multiple_average_latency_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.1/normal_scenario_0.75_0.1_10.json \
         --scenario-name normal_scenario_0.75_0.1 \
         --save-path ./results/average_latency/linechart/normal_scenario_0.75_0.1
-    
+
 	 python3 main.py \
     --script_name average_latency_linechart \
         --config_path config.json \
@@ -859,7 +858,7 @@ normal_multiple_average_latency_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.5/normal_scenario_0.75_0.5_10.json \
         --scenario-name normal_scenario_0.75_0.5 \
         --save-path ./results/average_latency/linechart/normal_scenario_0.75_0.5
-    
+
 	 python3 main.py \
     --script_name average_latency_linechart \
         --config_path config.json \
@@ -936,7 +935,7 @@ normal_multiple_average_latency_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.7/normal_scenario_0.75_0.7_10.json \
         --scenario-name normal_scenario_0.75_0.7 \
         --save-path ./results/average_latency/linechart/normal_scenario_0.75_0.7
-    
+
 	 python3 main.py \
     --script_name average_latency_linechart \
         --config_path config.json \
@@ -1013,7 +1012,7 @@ normal_multiple_average_latency_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.1/normal_scenario_1.0_0.1_10.json \
         --scenario-name normal_scenario_1.0_0.1 \
         --save-path ./results/average_latency/linechart/normal_scenario_1.0_0.1
-    
+
 	 python3 main.py \
     --script_name average_latency_linechart \
         --config_path config.json \
@@ -1090,7 +1089,7 @@ normal_multiple_average_latency_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.5/normal_scenario_1.0_0.5_10.json \
         --scenario-name normal_scenario_1.0_0.5 \
         --save-path ./results/average_latency/linechart/normal_scenario_1.0_0.5
-    
+
 	 python3 main.py \
     --script_name average_latency_linechart \
         --config_path config.json \
@@ -1167,7 +1166,7 @@ normal_multiple_average_latency_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.7/normal_scenario_1.0_0.7_10.json \
         --scenario-name normal_scenario_1.0_0.7 \
         --save-path ./results/average_latency/linechart/normal_scenario_1.0_0.7
-    
+
 	 python3 main.py \
     --script_name average_latency_linechart \
         --config_path config.json \
@@ -1244,7 +1243,7 @@ normal_multiple_average_latency_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.1/normal_scenario_1.25_0.1_10.json \
         --scenario-name normal_scenario_1.25_0.1 \
         --save-path ./results/average_latency/linechart/normal_scenario_1.25_0.1
-    
+
 	 python3 main.py \
     --script_name average_latency_linechart \
         --config_path config.json \
@@ -1321,7 +1320,7 @@ normal_multiple_average_latency_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.5/normal_scenario_1.25_0.5_10.json \
         --scenario-name normal_scenario_1.25_0.5 \
         --save-path ./results/average_latency/linechart/normal_scenario_1.25_0.5
-    
+
 	 python3 main.py \
     --script_name average_latency_linechart \
         --config_path config.json \
@@ -1398,7 +1397,7 @@ normal_multiple_average_latency_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7/normal_scenario_1.25_0.7_10.json \
         --scenario-name normal_scenario_1.25_0.7 \
         --save-path ./results/average_latency/linechart/normal_scenario_1.25_0.7
-    
+
 normal_multiple_edge_utilization_linechart:
 	 python3 main.py \
     --script_name edge_utilization_linechart \
@@ -1476,7 +1475,7 @@ normal_multiple_edge_utilization_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.1/normal_scenario_0.75_0.1_10.json \
         --scenario-name normal_scenario_0.75_0.1 \
         --save-path ./results/edge_utilization/linechart/normal_scenario_0.75_0.1
-    
+
 	 python3 main.py \
     --script_name edge_utilization_linechart \
         --config_path config.json \
@@ -1553,7 +1552,7 @@ normal_multiple_edge_utilization_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.5/normal_scenario_0.75_0.5_10.json \
         --scenario-name normal_scenario_0.75_0.5 \
         --save-path ./results/edge_utilization/linechart/normal_scenario_0.75_0.5
-    
+
 	 python3 main.py \
     --script_name edge_utilization_linechart \
         --config_path config.json \
@@ -1630,7 +1629,7 @@ normal_multiple_edge_utilization_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.7/normal_scenario_0.75_0.7_10.json \
         --scenario-name normal_scenario_0.75_0.7 \
         --save-path ./results/edge_utilization/linechart/normal_scenario_0.75_0.7
-    
+
 	 python3 main.py \
     --script_name edge_utilization_linechart \
         --config_path config.json \
@@ -1707,7 +1706,7 @@ normal_multiple_edge_utilization_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.1/normal_scenario_1.0_0.1_10.json \
         --scenario-name normal_scenario_1.0_0.1 \
         --save-path ./results/edge_utilization/linechart/normal_scenario_1.0_0.1
-    
+
 	 python3 main.py \
     --script_name edge_utilization_linechart \
         --config_path config.json \
@@ -1784,7 +1783,7 @@ normal_multiple_edge_utilization_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.5/normal_scenario_1.0_0.5_10.json \
         --scenario-name normal_scenario_1.0_0.5 \
         --save-path ./results/edge_utilization/linechart/normal_scenario_1.0_0.5
-    
+
 	 python3 main.py \
     --script_name edge_utilization_linechart \
         --config_path config.json \
@@ -1861,7 +1860,7 @@ normal_multiple_edge_utilization_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.7/normal_scenario_1.0_0.7_10.json \
         --scenario-name normal_scenario_1.0_0.7 \
         --save-path ./results/edge_utilization/linechart/normal_scenario_1.0_0.7
-    
+
 	 python3 main.py \
     --script_name edge_utilization_linechart \
         --config_path config.json \
@@ -1938,7 +1937,7 @@ normal_multiple_edge_utilization_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.1/normal_scenario_1.25_0.1_10.json \
         --scenario-name normal_scenario_1.25_0.1 \
         --save-path ./results/edge_utilization/linechart/normal_scenario_1.25_0.1
-    
+
 	 python3 main.py \
     --script_name edge_utilization_linechart \
         --config_path config.json \
@@ -2015,7 +2014,7 @@ normal_multiple_edge_utilization_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.5/normal_scenario_1.25_0.5_10.json \
         --scenario-name normal_scenario_1.25_0.5 \
         --save-path ./results/edge_utilization/linechart/normal_scenario_1.25_0.5
-    
+
 	 python3 main.py \
     --script_name edge_utilization_linechart \
         --config_path config.json \
@@ -2092,7 +2091,7 @@ normal_multiple_edge_utilization_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7/normal_scenario_1.25_0.7_10.json \
         --scenario-name normal_scenario_1.25_0.7 \
         --save-path ./results/edge_utilization/linechart/normal_scenario_1.25_0.7
-    
+
 normal_multiple_placement_ratio_linechart:
 	 python3 main.py \
     --script_name placement_ratio_linechart \
@@ -2170,7 +2169,7 @@ normal_multiple_placement_ratio_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.1/normal_scenario_0.75_0.1_10.json \
         --scenario-name normal_scenario_0.75_0.1 \
         --save-path ./results/placement_ratio/linechart/normal_scenario_0.75_0.1
-    
+
 	 python3 main.py \
     --script_name placement_ratio_linechart \
         --config_path config.json \
@@ -2247,7 +2246,7 @@ normal_multiple_placement_ratio_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.5/normal_scenario_0.75_0.5_10.json \
         --scenario-name normal_scenario_0.75_0.5 \
         --save-path ./results/placement_ratio/linechart/normal_scenario_0.75_0.5
-    
+
 	 python3 main.py \
     --script_name placement_ratio_linechart \
         --config_path config.json \
@@ -2324,7 +2323,7 @@ normal_multiple_placement_ratio_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_0.75_0.7/normal_scenario_0.75_0.7_10.json \
         --scenario-name normal_scenario_0.75_0.7 \
         --save-path ./results/placement_ratio/linechart/normal_scenario_0.75_0.7
-    
+
 	 python3 main.py \
     --script_name placement_ratio_linechart \
         --config_path config.json \
@@ -2401,7 +2400,7 @@ normal_multiple_placement_ratio_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.1/normal_scenario_1.0_0.1_10.json \
         --scenario-name normal_scenario_1.0_0.1 \
         --save-path ./results/placement_ratio/linechart/normal_scenario_1.0_0.1
-    
+
 	 python3 main.py \
     --script_name placement_ratio_linechart \
         --config_path config.json \
@@ -2478,7 +2477,7 @@ normal_multiple_placement_ratio_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.5/normal_scenario_1.0_0.5_10.json \
         --scenario-name normal_scenario_1.0_0.5 \
         --save-path ./results/placement_ratio/linechart/normal_scenario_1.0_0.5
-    
+
 	 python3 main.py \
     --script_name placement_ratio_linechart \
         --config_path config.json \
@@ -2555,7 +2554,7 @@ normal_multiple_placement_ratio_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.0_0.7/normal_scenario_1.0_0.7_10.json \
         --scenario-name normal_scenario_1.0_0.7 \
         --save-path ./results/placement_ratio/linechart/normal_scenario_1.0_0.7
-    
+
 	 python3 main.py \
     --script_name placement_ratio_linechart \
         --config_path config.json \
@@ -2632,7 +2631,7 @@ normal_multiple_placement_ratio_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.1/normal_scenario_1.25_0.1_10.json \
         --scenario-name normal_scenario_1.25_0.1 \
         --save-path ./results/placement_ratio/linechart/normal_scenario_1.25_0.1
-    
+
 	 python3 main.py \
     --script_name placement_ratio_linechart \
         --config_path config.json \
@@ -2709,7 +2708,7 @@ normal_multiple_placement_ratio_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.5/normal_scenario_1.25_0.5_10.json \
         --scenario-name normal_scenario_1.25_0.5 \
         --save-path ./results/placement_ratio/linechart/normal_scenario_1.25_0.5
-    
+
 	 python3 main.py \
     --script_name placement_ratio_linechart \
         --config_path config.json \
@@ -2786,4 +2785,3 @@ normal_multiple_placement_ratio_linechart:
             reports/biggest-edge-first-scheduler/$(date_biggest_edge_first)/normal_scenario_1.25_0.7/normal_scenario_1.25_0.7_10.json \
         --scenario-name normal_scenario_1.25_0.7 \
         --save-path ./results/placement_ratio/linechart/normal_scenario_1.25_0.7
-    
