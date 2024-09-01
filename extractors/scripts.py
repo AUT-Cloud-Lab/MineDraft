@@ -24,8 +24,9 @@ RANDOM_INDEX = 3
 CLOUD_FIRST_INDEX = 4
 SMALLEST_EDGE_FIRST_INDEX = 5
 BIGGEST_EDGE_FIRST_INDEX = 6
+ECMUS_QOS_AWARE_INDEX = 7
 
-INDEX_COUNT = 7
+INDEX_COUNT = 8
 
 @register_extractor
 def calc_migrations(config: Config, histories: List[History], save_path: str) -> None:
@@ -204,6 +205,9 @@ def pod_count_linechart(config: Config, scenario_name: str, histories: List[Hist
     biggest_edge_first_pod_count_list = []
     biggest_edge_first_timestamps_list = []
 
+    ecmus_qos_aware_pod_count_list = []
+    ecmus_qos_aware_timestamps_list = []
+
     for deployment in config.deployments.values():
         box_count = len(histories) // INDEX_COUNT
 
@@ -227,6 +231,9 @@ def pod_count_linechart(config: Config, scenario_name: str, histories: List[Hist
 
         biggest_edge_first_pod_count = {it: [] for it in range(box_count)}
         biggest_edge_first_timestamps = {it: [] for it in range(box_count)}
+
+        ecmus_qos_aware_pod_count = {it: [] for it in range(box_count)}
+        ecmus_qos_aware_timestamps = {it: [] for it in range(box_count)}
 
         for id, history in enumerate(histories):
             # IMPORTANT NOTICE: histories have to be in order of INDICES for this to work
@@ -262,6 +269,10 @@ def pod_count_linechart(config: Config, scenario_name: str, histories: List[Hist
                     biggest_edge_first_pod_count[box_id].append(pod_count)
                     biggest_edge_first_timestamps[box_id].append(cycle.timestamp)
 
+                if index == ECMUS_QOS_AWARE_INDEX:
+                    ecmus_qos_aware_pod_count[box_id].append(pod_count)
+                    ecmus_qos_aware_timestamps[box_id].append(cycle.timestamp)
+
         ecmus_pod_count = merge_lists_by_average(*[ecmus_pod_count[it] for it in range(box_count)])
         ecmus_timestamps = merge_lists_by_average(*[ecmus_timestamps[it] for it in range(box_count)])
 
@@ -282,6 +293,9 @@ def pod_count_linechart(config: Config, scenario_name: str, histories: List[Hist
 
         biggest_edge_first_pod_count = merge_lists_by_average(*[biggest_edge_first_pod_count[it] for it in range(box_count)])
         biggest_edge_first_timestamps = merge_lists_by_average(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
+
+        ecmus_qos_aware_pod_count = merge_lists_by_average(*[ecmus_qos_aware_pod_count[it] for it in range(box_count)])
+        ecmus_qos_aware_timestamps = merge_lists_by_average(*[ecmus_qos_aware_timestamps[it] for it in range(box_count)])
 
         ecmus_pod_count_list.append(ecmus_pod_count)
         ecmus_timestamps_list.append(ecmus_timestamps)
@@ -304,6 +318,9 @@ def pod_count_linechart(config: Config, scenario_name: str, histories: List[Hist
         biggest_edge_first_pod_count_list.append(biggest_edge_first_pod_count)
         biggest_edge_first_timestamps_list.append(biggest_edge_first_timestamps)
 
+        ecmus_qos_aware_pod_count_list.append(ecmus_qos_aware_pod_count)
+        ecmus_qos_aware_timestamps_list.append(ecmus_qos_aware_timestamps)
+
         fig, ax = plt.subplots()
         plt.grid()
         fig.set_size_inches(10.5, 10.5)
@@ -314,6 +331,7 @@ def pod_count_linechart(config: Config, scenario_name: str, histories: List[Hist
         ax.plot(cloud_first_timestamps, cloud_first_pod_count, label = "cloud-first")
         ax.plot(biggest_edge_first_timestamps, biggest_edge_first_pod_count, label = "biggest-edge-first")
         ax.plot(smallest_edge_first_timestamps, smallest_edge_first_pod_count, label = "smallest-edge-first")
+        ax.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_pod_count, label = "ecmus-qos-aware")
         ax.set_ylim(0, 20)
         ax.set_yticks(range(0, 20, 1))
         plt.xlabel("time(s)")
@@ -340,11 +358,14 @@ def pod_count_linechart(config: Config, scenario_name: str, histories: List[Hist
     cloud_first_pod_count = merge_lists_by_sum(*[cloud_first_pod_count_list[it] for it in range(deployment_count)])
     cloud_first_timestamps = merge_lists_by_average(*[cloud_first_timestamps_list[it] for it in range(deployment_count)])
 
+    smallest_edge_first_pod_count = merge_lists_by_sum(*[smallest_edge_first_pod_count_list[it] for it in range(deployment_count)])
+    smallest_edge_first_timestamps = merge_lists_by_average(*[smallest_edge_first_timestamps_list[it] for it in range(deployment_count)])
+
     biggest_edge_first_pod_count = merge_lists_by_sum(*[biggest_edge_first_pod_count_list[it] for it in range(deployment_count)])
     biggest_edge_first_timestamps = merge_lists_by_average(*[biggest_edge_first_timestamps_list[it] for it in range(deployment_count)])
 
-    smallest_edge_first_pod_count = merge_lists_by_sum(*[smallest_edge_first_pod_count_list[it] for it in range(deployment_count)])
-    smallest_edge_first_timestamps = merge_lists_by_average(*[smallest_edge_first_timestamps_list[it] for it in range(deployment_count)])
+    ecmus_qos_aware_pod_count = merge_lists_by_sum(*[ecmus_qos_aware_pod_count_list[it] for it in range(deployment_count)])
+    ecmus_qos_aware_timestamps = merge_lists_by_average(*[ecmus_qos_aware_timestamps_list[it] for it in range(deployment_count)])
 
     fig, ax = plt.subplots()
     plt.grid()
@@ -356,6 +377,7 @@ def pod_count_linechart(config: Config, scenario_name: str, histories: List[Hist
     ax.plot(cloud_first_timestamps, cloud_first_pod_count, label = "cloud-first")
     ax.plot(biggest_edge_first_timestamps, biggest_edge_first_pod_count, label = "biggest-edge-first")
     ax.plot(smallest_edge_first_timestamps, smallest_edge_first_pod_count, label = "smallest-edge-first")
+    ax.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_pod_count, label = "ecmus-qos-aware")
     ax.set_ylim(0, 20)
     ax.set_yticks(range(0, 20, 1))
     plt.xlabel("time(s)")
@@ -391,6 +413,9 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
 
         biggest_edge_first_latencies = {it: [] for it in range(box_count)}
         biggest_edge_first_timestamps = {it: [] for it in range(box_count)}
+
+        ecmus_qos_aware_latencies = {it: [] for it in range(box_count)}
+        ecmus_qos_aware_timestamps = {it: [] for it in range(box_count)}
 
         for id, history in enumerate(histories):
             # IMPORTANT NOTICE: histories have to be in order of INDICES for this to work
@@ -431,6 +456,10 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
                     biggest_edge_first_latencies[box_id].append(latency)
                     biggest_edge_first_timestamps[box_id].append(cycle.timestamp)
 
+                if index == ECMUS_QOS_AWARE_INDEX:
+                    ecmus_qos_aware_latencies[box_id].append(latency)
+                    ecmus_qos_aware_timestamps[box_id].append(cycle.timestamp)
+
         ecmus_latencies = merge_lists_by_average(*[ecmus_latencies[it] for it in range(box_count)])
         ecmus_timestamps = merge_lists_by_average(*[ecmus_timestamps[it] for it in range(box_count)])
 
@@ -452,6 +481,9 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
         biggest_edge_first_latencies = merge_lists_by_average(*[biggest_edge_first_latencies[it] for it in range(box_count)])
         biggest_edge_first_timestamps = merge_lists_by_average(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
 
+        ecmus_qos_aware_latencies = merge_lists_by_average(*[ecmus_qos_aware_latencies[it] for it in range(box_count)])
+        ecmus_qos_aware_timestamps = merge_lists_by_average(*[ecmus_qos_aware_timestamps[it] for it in range(box_count)])
+
         fig, ax = plt.subplots()
         plt.grid()
         fig.set_size_inches(10.5, 10.5)
@@ -462,6 +494,7 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
         ax.plot(cloud_first_timestamps, cloud_first_latencies, label = "cloud-first")
         ax.plot(biggest_edge_first_timestamps, biggest_edge_first_latencies, label = "biggest-edge-first")
         ax.plot(smallest_edge_first_timestamps, smallest_edge_first_latencies, label = "smallest-edge-first")
+        ax.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_latencies, label = "ecmus-qos-aware")
         ax.set_ylim(25, 325)
         ax.set_yticks(range(25, 325, 25))
         plt.xlabel("time(s)")
@@ -522,6 +555,12 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
             "c": [],
             "d": [],
         },
+        "ecmus-qos-aware": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
     }
 
     for deployment in config.deployments.values():
@@ -554,6 +593,9 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
 
                 if index == BIGGEST_EDGE_FIRST_INDEX:
                     data["biggest-edge-first-scheduler"][deployment.name].append(latency)
+
+                if index == ECMUS_QOS_AWARE_INDEX:
+                    data["ecmus-qos-aware"][deployment.name].append(latency)
 
     a_means = []
     b_means = []
@@ -626,6 +668,9 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
     biggest_edge_first_utilization = {it: [] for it in range(box_count)}
     biggest_edge_first_timestamps = {it: [] for it in range(box_count)}
 
+    ecmus_qos_aware_utilization = {it: [] for it in range(box_count)}
+    ecmus_qos_aware_timestamps = {it: [] for it in range(box_count)}
+
     for id, history in enumerate(histories):
         # IMPORTANT NOTICE: histories have to be in order of INDICES for this to work
         index = id % INDEX_COUNT
@@ -668,6 +713,10 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
                 biggest_edge_first_timestamps[box_id].append(cycle.timestamp)
                 biggest_edge_first_utilization[box_id].append(utilization)
 
+            if index == ECMUS_QOS_AWARE_INDEX:
+                ecmus_qos_aware_timestamps[box_id].append(cycle.timestamp)
+                ecmus_qos_aware_utilization[box_id].append(utilization)
+
     ecmus_utilization = merge_lists_by_average(*[ecmus_utilization[it] for it in range(box_count)])
     ecmus_timestamps = merge_lists_by_average(*[ecmus_timestamps[it] for it in range(box_count)])
 
@@ -689,6 +738,9 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
     biggest_edge_first_utilization = merge_lists_by_average(*[biggest_edge_first_utilization[it] for it in range(box_count)])
     biggest_edge_first_timestamps = merge_lists_by_average(*[biggest_edge_first_timestamps[it] for it in range(box_count)])
 
+    ecmus_qos_aware_utilization = merge_lists_by_average(*[ecmus_qos_aware_utilization[it] for it in range(box_count)])
+    ecmus_qos_aware_timestamps = merge_lists_by_average(*[ecmus_qos_aware_timestamps[it] for it in range(box_count)])
+
     fig, ax = plt.subplots()
     plt.plot(ecmus_timestamps, ecmus_utilization, label = "ecmus")
     plt.plot(kube_schedule_timestamps, kube_schedule_utilization, label = "kube-schedule")
@@ -697,6 +749,7 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
     plt.plot(cloud_first_timestamps, cloud_first_utilization, label = "cloud-first")
     plt.plot(smallest_edge_first_timestamps, smallest_edge_first_utilization, label = "smallest-edge-first")
     plt.plot(biggest_edge_first_timestamps, biggest_edge_first_utilization, label = "biggest-edge-first")
+    plt.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_utilization, label = "ecmus-qos-aware")
 
     fig.set_size_inches(10.5, 10.5)
     plt.grid()
@@ -741,6 +794,10 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
     biggest_edge_first_edge_placement_ratio = {it: [] for it in range(box_count)}
     biggest_edge_first_cloud_placement_ratio = {it: [] for it in range(box_count)}
     biggest_edge_first_timestamps = {it: [] for it in range(box_count)}
+
+    ecmus_qos_aware_edge_placement_ratio = {it: [] for it in range(box_count)}
+    ecmus_qos_aware_cloud_placement_ratio = {it: [] for it in range(box_count)}
+    ecmus_qos_aware_timestamps = {it: [] for it in range(box_count)}
 
     edge_nodes_count = len([node for node in config.nodes.values() if node.is_on_edge])
     cloud_nodes_count = len([node for node in config.nodes.values() if not node.is_on_edge])
@@ -798,6 +855,11 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
                 biggest_edge_first_edge_placement_ratio[box_id].append(fragmentation_edge)
                 biggest_edge_first_cloud_placement_ratio[box_id].append(fragmentation_cloud)
 
+            if index == ECMUS_QOS_AWARE_INDEX:
+                ecmus_qos_aware_timestamps[box_id].append(cycle.timestamp)
+                ecmus_qos_aware_edge_placement_ratio[box_id].append(fragmentation_edge)
+                ecmus_qos_aware_cloud_placement_ratio[box_id].append(fragmentation_cloud)
+
     ecmus_timestamps = merge_lists_by_average(*[ecmus_timestamps[it] for it in range(box_count)])
     ecmus_edge_placement_ratio = merge_lists_by_average(*[ecmus_edge_placement_ratio[it] for it in range(box_count)])
     ecmus_cloud_placement_ratio = merge_lists_by_average(*[ecmus_cloud_placement_ratio[it] for it in range(box_count)])
@@ -834,6 +896,13 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
     biggest_edge_first_cloud_placement_ratio = merge_lists_by_average(
         *[biggest_edge_first_cloud_placement_ratio[it] for it in range(box_count)])
 
+    ecmus_qos_aware_timestamps = merge_lists_by_average(
+        *[ecmus_qos_aware_timestamps[it] for it in range(box_count)])
+    ecmus_qos_aware_edge_placement_ratio = merge_lists_by_average(
+        *[ecmus_qos_aware_edge_placement_ratio[it] for it in range(box_count)])
+    ecmus_qos_aware_cloud_placement_ratio = merge_lists_by_average(
+        *[ecmus_qos_aware_cloud_placement_ratio[it] for it in range(box_count)])
+
     fig, ax = plt.subplots()
     fig.set_size_inches(10.5, 10.5)
 
@@ -864,6 +933,11 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
              label = "biggest-edge-first - edge")
     plt.plot(biggest_edge_first_timestamps, biggest_edge_first_cloud_placement_ratio,
              label = "biggest-edge-first - cloud")
+
+    plt.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_edge_placement_ratio,
+             label = "ecmus-qos-aware - edge")
+    plt.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_cloud_placement_ratio,
+             label = "ecmus-qos-aware - cloud")
 
     plt.xlabel("time (s)")
     plt.ylabel("placement ratio")
