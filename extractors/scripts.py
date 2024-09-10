@@ -6,6 +6,7 @@ from typing import List, Dict
 
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.ticker import FormatStrFormatter
 
 from extractors.decorator import register_extractor
 from historical.common import Deployment
@@ -324,20 +325,20 @@ def pod_count_linechart(config: Config, scenario_name: str, histories: List[Hist
         fig, ax = plt.subplots()
         plt.grid()
         fig.set_size_inches(10.5, 10.5)
-        ax.plot(kube_timestamps, kube_pod_count, label = "kube")
-        ax.plot(ecmus_timestamps, ecmus_pod_count, label = "ecmus")
-        ax.plot(ecmus_no_migration_timestamps, ecmus_no_migration_pod_count, label = "ecmus-no-migration")
-        ax.plot(random_timestamps, random_pod_count, label = "random")
-        ax.plot(cloud_first_timestamps, cloud_first_pod_count, label = "cloud-first")
-        ax.plot(biggest_edge_first_timestamps, biggest_edge_first_pod_count, label = "biggest-edge-first")
-        ax.plot(smallest_edge_first_timestamps, smallest_edge_first_pod_count, label = "smallest-edge-first")
+        ax.plot(kube_timestamps, kube_pod_count, label = "Kube", marker='o')
+        ax.plot(ecmus_timestamps, ecmus_pod_count, label = "KubeDSM", marker='s')
+        ax.plot(ecmus_no_migration_timestamps, ecmus_no_migration_pod_count, label = "KubeDSMNoMigration", marker='D')
+        ax.plot(random_timestamps, random_pod_count, label = "Random", marker='^')
+        ax.plot(cloud_first_timestamps, cloud_first_pod_count, label = "CloudFirst", marker='v')
+        ax.plot(biggest_edge_first_timestamps, biggest_edge_first_pod_count, label = "BiggestEdgeFirst", marker='x')
+        ax.plot(smallest_edge_first_timestamps, smallest_edge_first_pod_count, label = "SmallestEdgeFirst", marker='+')
         ax.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_pod_count, label = "KubeDSMQOSAware", marker="*")
         ax.set_ylim(0, 20)
         ax.set_yticks(range(0, 20, 1))
         plt.xlabel("time(s)")
         plt.ylabel("pod count")
         plt.title(f"pod count - workload: {deployment.name}")
-        plt.legend()
+        plt.legend(loc="upper right")
         ensure_directory(save_path)
         plt.savefig(f"{save_path}/{deployment.name}.png")
 
@@ -370,20 +371,20 @@ def pod_count_linechart(config: Config, scenario_name: str, histories: List[Hist
     fig, ax = plt.subplots()
     plt.grid()
     fig.set_size_inches(10.5, 10.5)
-    ax.plot(kube_timestamps, kube_pod_count, label = "kube")
-    ax.plot(ecmus_timestamps, ecmus_pod_count, label = "ecmus")
-    ax.plot(ecmus_no_migration_timestamps, ecmus_no_migration_pod_count, label = "ecmus-no-migration")
-    ax.plot(random_timestamps, random_pod_count, label = "random")
-    ax.plot(cloud_first_timestamps, cloud_first_pod_count, label = "cloud-first")
-    ax.plot(biggest_edge_first_timestamps, biggest_edge_first_pod_count, label = "biggest-edge-first")
-    ax.plot(smallest_edge_first_timestamps, smallest_edge_first_pod_count, label = "smallest-edge-first")
+    ax.plot(kube_timestamps, kube_pod_count, label = "Kube", marker='o')
+    ax.plot(ecmus_timestamps, ecmus_pod_count, label = "KubeDSM", marker='s')
+    ax.plot(ecmus_no_migration_timestamps, ecmus_no_migration_pod_count, label = "KubeDSMNoMigration", marker='D')
+    ax.plot(random_timestamps, random_pod_count, label = "Random", marker='^')
+    ax.plot(cloud_first_timestamps, cloud_first_pod_count, label = "CloudFirst", marker='v')
+    ax.plot(biggest_edge_first_timestamps, biggest_edge_first_pod_count, label = "BiggestEdgeFirst", marker='x')
+    ax.plot(smallest_edge_first_timestamps, smallest_edge_first_pod_count, label = "SmallestEdgeFirst", marker='+')
     ax.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_pod_count, label = "KubeDSMQOSAware", marker="*")
     ax.set_ylim(0, 20)
     ax.set_yticks(range(0, 20, 1))
     plt.xlabel("time(s)")
     plt.ylabel("pod count")
     plt.title(f"pod count - workload total")
-    plt.legend()
+    plt.legend(loc="upper right")
     ensure_directory(save_path)
     plt.savefig(f"{save_path}/all.png")
 
@@ -487,20 +488,20 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
         fig, ax = plt.subplots()
         plt.grid()
         fig.set_size_inches(10.5, 10.5)
-        ax.plot(kube_timestamps, kube_latencies, label = "kube")
-        ax.plot(ecmus_timestamps, ecmus_latencies, label = "ecmus")
-        ax.plot(ecmus_no_migration_timestamps, ecmus_no_migration_latencies, label = "ecmus-no-migration")
-        ax.plot(random_timestamps, random_latencies, label = "random")
-        ax.plot(cloud_first_timestamps, cloud_first_latencies, label = "cloud-first")
-        ax.plot(biggest_edge_first_timestamps, biggest_edge_first_latencies, label = "biggest-edge-first")
-        ax.plot(smallest_edge_first_timestamps, smallest_edge_first_latencies, label = "smallest-edge-first")
+        ax.plot(kube_timestamps, kube_latencies, label = "Kube", marker='o')
+        ax.plot(ecmus_timestamps, ecmus_latencies, label = "KubeDSM", marker='s')
+        ax.plot(ecmus_no_migration_timestamps, ecmus_no_migration_latencies, label = "KubeDSMNoMigration", marker='D')
+        ax.plot(random_timestamps, random_latencies, label = "Random", marker='^')
+        ax.plot(cloud_first_timestamps, cloud_first_latencies, label = "CloudFirst", marker='v')
+        ax.plot(biggest_edge_first_timestamps, biggest_edge_first_latencies, label = "BiggestEdgeFirst", marker='x')
+        ax.plot(smallest_edge_first_timestamps, smallest_edge_first_latencies, label = "SmallestEdgeFirst", marker='+')
         ax.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_latencies, label = "KubeDSMQOSAware", marker="*")
         ax.set_ylim(25, 325)
         ax.set_yticks(range(25, 325, 25))
         plt.xlabel("time(s)")
         plt.ylabel("average latency(ms)")
         plt.title(f"average latency - workload: {deployment.name}")
-        plt.legend()
+        plt.legend(loc="upper right")
         ensure_directory(save_path)
         plt.savefig(f"{save_path}/{deployment.name}.png")
 
@@ -513,43 +514,43 @@ def ensure_directory(save_path):
 @register_extractor
 def average_latency_boxplot(config: Config, scenario_name: str, histories: List[History], save_path: str) -> None:
     data = {
-        "kube-scheduler"               : {
+        "Kube"               : {
             "a": [],
             "b": [],
             "c": [],
             "d": [],
         },
-        "ecmus"                        : {
+        "KubeDSM"                        : {
             "a": [],
             "b": [],
             "c": [],
             "d": [],
         },
-        "ecmus-no-migration"           : {
+        "KubeDSMNoMigration"           : {
             "a": [],
             "b": [],
             "c": [],
             "d": [],
         },
-        "random-scheduler"             : {
+        "Random"             : {
             "a": [],
             "b": [],
             "c": [],
             "d": [],
         },
-        "cloud-first-scheduler"        : {
+        "CloudFirst"        : {
             "a": [],
             "b": [],
             "c": [],
             "d": [],
         },
-        "biggest-edge-first-scheduler" : {
+        "BiggestEdgeFirst" : {
             "a": [],
             "b": [],
             "c": [],
             "d": [],
         },
-        "smallest-edge-first-scheduler": {
+        "SmallestEdgeFirst": {
             "a": [],
             "b": [],
             "c": [],
@@ -574,25 +575,25 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
                                   cloud_pods_count * CLOUD_RESPONSE_TIME + edge_pods_count * EDGE_RESPONSE_TIME) / all_pods_count
 
                 if index == ECMUS_INDEX:
-                    data["ecmus"][deployment.name].append(latency)
+                    data["KubeDSM"][deployment.name].append(latency)
 
                 if index == KUBE_SCHEDULE_INDEX:
-                    data["kube-scheduler"][deployment.name].append(latency)
+                    data["Kube"][deployment.name].append(latency)
 
                 if index == ECMUS_NO_MIGRATION_INDEX:
-                    data["ecmus-no-migration"][deployment.name].append(latency)
+                    data["KubeDSMNoMigration"][deployment.name].append(latency)
 
                 if index == RANDOM_INDEX:
-                    data["random-scheduler"][deployment.name].append(latency)
+                    data["Random"][deployment.name].append(latency)
 
                 if index == CLOUD_FIRST_INDEX:
-                    data["cloud-first-scheduler"][deployment.name].append(latency)
+                    data["CloudFirst"][deployment.name].append(latency)
 
                 if index == SMALLEST_EDGE_FIRST_INDEX:
-                    data["smallest-edge-first-scheduler"][deployment.name].append(latency)
+                    data["SmallestEdgeFirst"][deployment.name].append(latency)
 
                 if index == BIGGEST_EDGE_FIRST_INDEX:
-                    data["biggest-edge-first-scheduler"][deployment.name].append(latency)
+                    data["BiggestEdgeFirst"][deployment.name].append(latency)
 
                 if index == ECMUS_QOS_AWARE_INDEX:
                     data["KubeDSMQOSAware"][deployment.name].append(latency)
@@ -607,15 +608,15 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
     c_errors = []
     d_errors = []
     for scheduler, latencies in data.items():
-        a_means.append(statistics.mean(latencies["a"]))
-        b_means.append(statistics.mean(latencies["b"]))
-        c_means.append(statistics.mean(latencies["c"]))
-        d_means.append(statistics.mean(latencies["d"]))
+        a_means.append(round(statistics.mean(latencies["a"]), 1))
+        b_means.append(round(statistics.mean(latencies["b"]), 1))
+        c_means.append(round(statistics.mean(latencies["c"]), 1))
+        d_means.append(round(statistics.mean(latencies["d"]), 1))
 
-        a_errors.append(statistics.stdev(latencies["a"]))
-        b_errors.append(statistics.stdev(latencies["b"]))
-        c_errors.append(statistics.stdev(latencies["c"]))
-        d_errors.append(statistics.stdev(latencies["d"]))
+        a_errors.append(round(statistics.stdev(latencies["a"]), 1))
+        b_errors.append(round(statistics.stdev(latencies["b"]), 1))
+        c_errors.append(round(statistics.stdev(latencies["c"]), 1))
+        d_errors.append(round(statistics.stdev(latencies["d"]), 1))
 
     x = np.arange(len(data.keys()))
     width = 0.2
@@ -633,10 +634,9 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
     ax.bar_label(rects4, padding = 10)
 
     plt.grid()
-    ax.set_xlabel('Schedulers')
     ax.set_title('Grouped bar chart for schedulers')
     ax.set_xticks(x)
-    ax.set_xticklabels(data.keys(), rotation = -90)
+    ax.set_xticklabels(data.keys(), rotation = 0)
     ax.set_ylim(0, 350)
     ensure_directory(save_path)
     plt.savefig(save_path + "/result.png")
@@ -742,13 +742,13 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
     ecmus_qos_aware_timestamps = merge_lists_by_average(*[ecmus_qos_aware_timestamps[it] for it in range(box_count)])
 
     fig, ax = plt.subplots()
-    plt.plot(ecmus_timestamps, ecmus_utilization, label = "ecmus")
-    plt.plot(kube_schedule_timestamps, kube_schedule_utilization, label = "kube-schedule")
-    plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_utilization, label = "ecmus-no-migration")
-    plt.plot(random_timestamps, random_utilization, label = "random")
-    plt.plot(cloud_first_timestamps, cloud_first_utilization, label = "cloud-first")
-    plt.plot(smallest_edge_first_timestamps, smallest_edge_first_utilization, label = "smallest-edge-first")
-    plt.plot(biggest_edge_first_timestamps, biggest_edge_first_utilization, label = "biggest-edge-first")
+    plt.plot(ecmus_timestamps, ecmus_utilization, label = "KubeDSM", marker='o')
+    plt.plot(kube_schedule_timestamps, kube_schedule_utilization, label = "Kube", marker='s')
+    plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_utilization, label = "KubeDSMNoMigration", marker='D')
+    plt.plot(random_timestamps, random_utilization, label = "Random", marker='^')
+    plt.plot(cloud_first_timestamps, cloud_first_utilization, label = "CloudFirst", marker='v')
+    plt.plot(smallest_edge_first_timestamps, smallest_edge_first_utilization, label = "SmallestEdgeFirst", marker='x')
+    plt.plot(biggest_edge_first_timestamps, biggest_edge_first_utilization, label = "BiggestEdgeFirst", marker='+')
     plt.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_utilization, label = "KubeDSMQOSAware", marker="*")
 
     fig.set_size_inches(10.5, 10.5)
@@ -758,7 +758,7 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
     plt.ylim(0, 1.10)
     plt.yticks(list(map(lambda x: x / 100.0, range(0, 110, 5))))
     plt.title("edge utilization - per algorithm")
-    plt.legend()
+    plt.legend(loc="upper right")
     ensure_directory(save_path)
     plt.savefig(save_path + "/result.png")
 
@@ -903,47 +903,42 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
     ecmus_qos_aware_cloud_placement_ratio = merge_lists_by_average(
         *[ecmus_qos_aware_cloud_placement_ratio[it] for it in range(box_count)])
 
-    fig, ax = plt.subplots()
+    fig, (ax_cloud, ax_edge) = plt.subplots(2, 1)
     fig.set_size_inches(10.5, 10.5)
 
-    plt.grid()
-    plt.plot(ecmus_timestamps, ecmus_edge_placement_ratio, label = "ecmus - edge")
-    plt.plot(ecmus_timestamps, ecmus_cloud_placement_ratio, label = "ecmus - cloud")
+    ax_edge.grid()
+    ax_edge.plot(ecmus_timestamps, ecmus_edge_placement_ratio, label = "KubeDSM", marker='o')
+    ax_edge.plot(kube_schedule_timestamps, kube_schedule_edge_placement_ratio, label = "Kube", marker='s')
+    ax_edge.plot(ecmus_no_migration_timestamps, ecmus_no_migration_edge_placement_ratio, label = "KubeDSMNoMigration", marker='D')
+    ax_edge.plot(random_timestamps, random_edge_placement_ratio, label = "Random", marker='^')
+    ax_edge.plot(cloud_first_timestamps, cloud_first_edge_placement_ratio, label = "CloudFirst", marker='v')
+    ax_edge.plot(smallest_edge_first_timestamps, smallest_edge_first_edge_placement_ratio, label = "SmallestEdgeFirst", marker='x')
+    ax_edge.plot(biggest_edge_first_timestamps, biggest_edge_first_edge_placement_ratio, label = "BiggestEdgeFirst", marker='+')
+    plt.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_edge_placement_ratio, label = "KubeDSMQOSAware", marker="*")
 
-    plt.plot(kube_schedule_timestamps, kube_schedule_edge_placement_ratio, label = "kube-schedule - edge")
-    plt.plot(kube_schedule_timestamps, kube_schedule_cloud_placement_ratio, label = "kube-schedule - cloud")
+    ax_edge.set_xlabel("time (s)")
+    ax_edge.set_ylabel("placement ratio")
+    ax_edge.set_ylim(0, 1.10)
+    ax_edge.set_yticks(list(map(lambda x: x / 100.0, range(0, 110, 5))))
+    ax_edge.set_title("edge pod placement ratio")
+    ax_edge.legend(loc="upper right")
 
-    plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_edge_placement_ratio,
-             label = "ecmus-no-migration - edge")
-    plt.plot(ecmus_no_migration_timestamps, ecmus_no_migration_cloud_placement_ratio,
-             label = "ecmus-no-migration - cloud")
+    ax_cloud.grid()
+    ax_cloud.plot(ecmus_timestamps, ecmus_cloud_placement_ratio, label = "KubeDSM", marker='o')
+    ax_cloud.plot(kube_schedule_timestamps, kube_schedule_cloud_placement_ratio, label = "Kube", marker='s')
+    ax_cloud.plot(ecmus_no_migration_timestamps, ecmus_no_migration_cloud_placement_ratio, label = "KubeDSMNoMigration", marker='D')
+    ax_cloud.plot(random_timestamps, random_cloud_placement_ratio, label = "Random", marker='^')
+    ax_cloud.plot(cloud_first_timestamps, cloud_first_cloud_placement_ratio, label = "CloudFirst", marker='v')
+    ax_cloud.plot(smallest_edge_first_timestamps, smallest_edge_first_cloud_placement_ratio, label = "SmallestEdgeFirst", marker='x')
+    ax_cloud.plot(biggest_edge_first_timestamps, biggest_edge_first_cloud_placement_ratio, label = "BiggestEdgeFirst", marker='+')
+    ax_cloud.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_cloud_placement_ratio, label = "KubeDSMQOSAware", marker="*")
 
-    plt.plot(random_timestamps, random_edge_placement_ratio, label = "random - edge")
-    plt.plot(random_timestamps, random_cloud_placement_ratio, label = "random - cloud")
+    ax_cloud.set_xlabel("time (s)")
+    ax_cloud.set_ylabel("placement ratio")
+    ax_cloud.set_ylim(0, 1.10)
+    ax_cloud.set_yticks(list(map(lambda x: x / 100.0, range(0, 110, 5))))
+    ax_cloud.set_title("cloud pod placement ratio")
+    ax_cloud.legend(loc="upper right")
 
-    plt.plot(cloud_first_timestamps, cloud_first_edge_placement_ratio, label = "cloud-first - edge")
-    plt.plot(cloud_first_timestamps, cloud_first_cloud_placement_ratio, label = "cloud-first - cloud")
-
-    plt.plot(smallest_edge_first_timestamps, smallest_edge_first_edge_placement_ratio,
-             label = "smallest-edge-first - edge")
-    plt.plot(smallest_edge_first_timestamps, smallest_edge_first_cloud_placement_ratio,
-             label = "smallest-edge-first - cloud")
-
-    plt.plot(biggest_edge_first_timestamps, biggest_edge_first_edge_placement_ratio,
-             label = "biggest-edge-first - edge")
-    plt.plot(biggest_edge_first_timestamps, biggest_edge_first_cloud_placement_ratio,
-             label = "biggest-edge-first - cloud")
-
-    plt.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_edge_placement_ratio,
-             label = "KubeDSMQOSAware - Edge", marker="*")
-    plt.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_cloud_placement_ratio,
-             label = "KubeDSMQOSAware - Cloud", marker="*")
-
-    plt.xlabel("time (s)")
-    plt.ylabel("placement ratio")
-    plt.ylim(0, 1.10)
-    plt.yticks(list(map(lambda x: x / 100.0, range(0, 110, 5))))
-    plt.title("pod placement ratio")
-    plt.legend()
     ensure_directory(save_path)
     plt.savefig(save_path + "/result.png")
