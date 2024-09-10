@@ -331,7 +331,7 @@ def pod_count_linechart(config: Config, scenario_name: str, histories: List[Hist
         ax.plot(cloud_first_timestamps, cloud_first_pod_count, label = "cloud-first")
         ax.plot(biggest_edge_first_timestamps, biggest_edge_first_pod_count, label = "biggest-edge-first")
         ax.plot(smallest_edge_first_timestamps, smallest_edge_first_pod_count, label = "smallest-edge-first")
-        ax.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_pod_count, label = "ecmus-qos-aware")
+        ax.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_pod_count, label = "KubeDSMQOSAware", marker="*")
         ax.set_ylim(0, 20)
         ax.set_yticks(range(0, 20, 1))
         plt.xlabel("time(s)")
@@ -377,7 +377,7 @@ def pod_count_linechart(config: Config, scenario_name: str, histories: List[Hist
     ax.plot(cloud_first_timestamps, cloud_first_pod_count, label = "cloud-first")
     ax.plot(biggest_edge_first_timestamps, biggest_edge_first_pod_count, label = "biggest-edge-first")
     ax.plot(smallest_edge_first_timestamps, smallest_edge_first_pod_count, label = "smallest-edge-first")
-    ax.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_pod_count, label = "ecmus-qos-aware")
+    ax.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_pod_count, label = "KubeDSMQOSAware", marker="*")
     ax.set_ylim(0, 20)
     ax.set_yticks(range(0, 20, 1))
     plt.xlabel("time(s)")
@@ -494,7 +494,7 @@ def average_latency_linechart(config: Config, scenario_name: str, histories: Lis
         ax.plot(cloud_first_timestamps, cloud_first_latencies, label = "cloud-first")
         ax.plot(biggest_edge_first_timestamps, biggest_edge_first_latencies, label = "biggest-edge-first")
         ax.plot(smallest_edge_first_timestamps, smallest_edge_first_latencies, label = "smallest-edge-first")
-        ax.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_latencies, label = "ecmus-qos-aware")
+        ax.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_latencies, label = "KubeDSMQOSAware", marker="*")
         ax.set_ylim(25, 325)
         ax.set_yticks(range(25, 325, 25))
         plt.xlabel("time(s)")
@@ -555,7 +555,7 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
             "c": [],
             "d": [],
         },
-        "ecmus-qos-aware": {
+        "KubeDSMQOSAware": {
             "a": [],
             "b": [],
             "c": [],
@@ -595,7 +595,7 @@ def average_latency_boxplot(config: Config, scenario_name: str, histories: List[
                     data["biggest-edge-first-scheduler"][deployment.name].append(latency)
 
                 if index == ECMUS_QOS_AWARE_INDEX:
-                    data["ecmus-qos-aware"][deployment.name].append(latency)
+                    data["KubeDSMQOSAware"][deployment.name].append(latency)
 
     a_means = []
     b_means = []
@@ -749,7 +749,7 @@ def edge_utilization_linechart(config: Config, _: str, histories: List[History],
     plt.plot(cloud_first_timestamps, cloud_first_utilization, label = "cloud-first")
     plt.plot(smallest_edge_first_timestamps, smallest_edge_first_utilization, label = "smallest-edge-first")
     plt.plot(biggest_edge_first_timestamps, biggest_edge_first_utilization, label = "biggest-edge-first")
-    plt.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_utilization, label = "ecmus-qos-aware")
+    plt.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_utilization, label = "KubeDSMQOSAware", marker="*")
 
     fig.set_size_inches(10.5, 10.5)
     plt.grid()
@@ -935,9 +935,9 @@ def placement_ratio_linechart(config: Config, _: str, histories: List[History], 
              label = "biggest-edge-first - cloud")
 
     plt.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_edge_placement_ratio,
-             label = "ecmus-qos-aware - edge")
+             label = "KubeDSMQOSAware - Edge", marker="*")
     plt.plot(ecmus_qos_aware_timestamps, ecmus_qos_aware_cloud_placement_ratio,
-             label = "ecmus-qos-aware - cloud")
+             label = "KubeDSMQOSAware - Cloud", marker="*")
 
     plt.xlabel("time (s)")
     plt.ylabel("placement ratio")
