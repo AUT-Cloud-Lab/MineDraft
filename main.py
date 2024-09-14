@@ -10,8 +10,8 @@ def main():
     parser = argparse.ArgumentParser(description="Extractors")
     parser.add_argument("--script_name", type=str, help="Script name")
     parser.add_argument("--config_path", type=str, help="Config path")
-    parser.add_argument("--history_paths", type=str, nargs="+", help="Histories path")
     parser.add_argument("--save-path", type=str, help="save path of the output file")
+    parser.add_argument("--history_paths", type=str, required=False, nargs="+", help="Histories path")
     parser.add_argument("--scenario-name", type=str, required=False, help="scenario name")
 
     args = vars(parser.parse_args())
@@ -32,9 +32,10 @@ def main():
         config = parse_config(json.load(config_file))
 
     histories = []
-    for history_path in history_paths:
-        with open(history_path, "r") as history_file:
-            histories.append(parse_history(config, json.load(history_file)))
+    if history_paths is not None:
+        for history_path in history_paths:
+            with open(history_path, "r") as history_file:
+                histories.append(parse_history(config, json.load(history_file)))
 
     extractor_scripts[script_name](config, scenario_name, histories, save_path)
 

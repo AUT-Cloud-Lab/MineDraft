@@ -28,9 +28,7 @@ SMALLEST_EDGE_FIRST_INDEX = 5
 BIGGEST_EDGE_FIRST_INDEX = 6
 ECMUS_QOS_AWARE_INDEX = 7
 
-# FIXME: change back to 8
-INDEX_COUNT = 7
-# INDEX_COUNT = 8
+INDEX_COUNT = 8
 
 METADATA_FILENAME = "metadata.json"
 
@@ -157,13 +155,12 @@ def migration_count_metadata(config: Config, scenario_name: str, histories: List
             "c": [],
             "d": [],
         },
-        # FIXME
-        # "KubeDSMQOSAware": {
-        #     "a": [],
-        #     "b": [],
-        #     "c": [],
-        #     "d": [],
-        # },
+        "KubeDSMQOSAware": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
     }
 
     ensure_directory(save_path)
@@ -278,6 +275,101 @@ def migration_count_metadata(config: Config, scenario_name: str, histories: List
 
     with open(metadata_filepath, "w") as file:
         json.dump(metadata, file)
+
+
+@register_extractor
+def migration_count_boxplot(config: Config, scenario_name: str, histories: List[History], save_path: str) -> None:
+    metadata_filepath = os.path.join(save_path, METADATA_FILENAME)
+
+    if not os.path.exists(metadata_filepath):
+        return
+
+    with open(metadata_filepath, "r") as file:
+        metadata = json.load(file)
+
+    ensure_directory(save_path)
+
+    scheduler_data = {}
+
+    for scheduler, scenarios in metadata.items():
+        scenario_data = {}
+        for scenario, values in scenarios.items():
+            scenario_data[scenario] = values
+        scheduler_data[scheduler] = scenario_data
+
+    num_schedulers = len(scheduler_data)
+    fig, axs = plt.subplots(num_schedulers, 1, figsize=(12, 6 * num_schedulers), sharex=True)
+
+    if num_schedulers == 1:
+        axs = [axs]
+
+    for ax, (scheduler, scenario_data) in zip(axs, scheduler_data.items()):
+        scenarios = list(scenario_data.keys())
+        num_scenarios = len(scenarios)
+
+        bar_width = 0.2
+        index = np.arange(num_scenarios)
+
+        values_a = [scenario_data[sc]['a'] for sc in scenarios]
+        values_b = [scenario_data[sc]['b'] for sc in scenarios]
+        values_c = [scenario_data[sc]['c'] for sc in scenarios]
+        values_d = [scenario_data[sc]['d'] for sc in scenarios]
+
+        bars_a = ax.bar(index - 1.5 * bar_width, values_a, bar_width, label='a', color='blue')
+        bars_b = ax.bar(index - 0.5 * bar_width, values_b, bar_width, label='b', color='orange')
+        bars_c = ax.bar(index + 0.5 * bar_width, values_c, bar_width, label='c', color='green')
+        bars_d = ax.bar(index + 1.5 * bar_width, values_d, bar_width, label='d', color='red')
+
+        ax.set_title(f'Values for Each Scenario - {scheduler}')
+        ax.set_xlabel('Scenario')
+        ax.set_ylabel('Value')
+
+        ax.legend()
+
+        ax.set_xticks(index)
+        ax.set_xticklabels(scenarios, rotation=90, ha='right')
+
+        for bars in [bars_a, bars_b, bars_c, bars_d]:
+            for bar in bars:
+                height = bar.get_height()
+                ax.text(bar.get_x() + bar.get_width() / 2, height, f'{height}', 
+                        ha='center', va='bottom')
+
+    plt.savefig(save_path + f"/individual.png")
+
+    scheduler_sums = {}
+
+    for scheduler, scenarios in metadata.items():
+        scenario_sums = {}
+        for scenario, values in scenarios.items():
+            total = values.get('a', 0) + values.get('b', 0) + values.get('c', 0) + values.get('d', 0)
+            scenario_sums[scenario] = total
+        scheduler_sums[scheduler] = scenario_sums
+
+    num_schedulers = len(scheduler_sums)
+    fig, axs = plt.subplots(num_schedulers, 1, figsize=(10, 6 * num_schedulers), sharex=True)
+
+    if num_schedulers == 1:
+        axs = [axs]
+
+    for ax, (scheduler, scenario_sums) in zip(axs, scheduler_sums.items()):
+        scenarios = list(scenario_sums.keys())
+        sums = list(scenario_sums.values())
+
+        bars = ax.bar(scenarios, sums, color='skyblue')
+
+        ax.set_title(f"Sum of Migrations for Each Scenario - {scheduler}")
+        ax.set_xlabel("Scenario")
+        ax.set_xticks(scenarios)
+        ax.set_xticklabels(scenarios, rotation = 90)
+        ax.set_ylabel("Sum of Migrations")
+
+        for bar in bars:
+            height = bar.get_height()
+            ax.text(bar.get_x() + bar.get_width() / 2, height, f"{height}", 
+                    ha="center", va="bottom")
+
+    plt.savefig(save_path + f"/sum.png")
 
 
 @register_extractor
