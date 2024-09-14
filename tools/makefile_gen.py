@@ -8,6 +8,7 @@ SCRIPT_NAMES = [
     "edge_utilization_linechart",
     "placement_ratio_linechart",
     "pod_count_linechart",
+    "migration_count_boxplot",
 ]
 
 REPORT_FILE_COUNT = 10
@@ -29,7 +30,10 @@ def generate_result_str(kind, script_name, report_dir_names, report_file_count):
 
     for report_dir_name in report_dir_names:
         parent_dir_name, child_dir_name = script_name.rsplit("_", 1)
-        result_dir_name = f"./results/{parent_dir_name}/{child_dir_name}/{report_dir_name}"
+
+        result_dir_name = f"./results/{parent_dir_name}/{child_dir_name}"
+        if script_name != "migration_count_boxplot":
+            result_dir_name = f"{result_dir_name}/{report_dir_name}"
 
         history_paths = r""""""
         for it in range(1, report_file_count + 1):
@@ -48,11 +52,22 @@ def generate_result_str(kind, script_name, report_dir_names, report_file_count):
 
             history_paths += base_history_paths
 
-        command_str = "\t python3 main.py \\\n" + rf"""    --script_name {script_name} \
+        script_label_name = script_name if script_name != "migration_count_boxplot" else "migration_count_metadata"
+
+        command_str = "\t python3 main.py \\\n" + rf"""    --script_name {script_label_name} \
             --config_path config.json \
             --history_paths \
         {history_paths}
             --scenario-name {report_dir_name} \
+            --save-path {result_dir_name}
+        """
+
+        command_str += "\n"
+        result_str += command_str
+
+    if script_name == "migration_count_boxplot":
+        command_str = "\t python3 main.py \\\n" + rf"""    --script_name {script_name} \
+            --config_path config.json \
             --save-path {result_dir_name}
         """
 
