@@ -1,4 +1,5 @@
 import math
+import json
 import os.path
 import statistics
 from math import ceil
@@ -27,99 +28,11 @@ SMALLEST_EDGE_FIRST_INDEX = 5
 BIGGEST_EDGE_FIRST_INDEX = 6
 ECMUS_QOS_AWARE_INDEX = 7
 
-INDEX_COUNT = 8
+# FIXME: change back to 8
+INDEX_COUNT = 7
+# INDEX_COUNT = 8
 
-@register_extractor
-def calc_migrations(config: Config, histories: List[History], save_path: str) -> None:
-    output_file = open(save_path, 'w')
-    assert len(histories) == 1
-    history: History = histories[0]
-
-    def is_cycle_valid(cycle: Cycle) -> bool:
-        """
-        Check if number of running pods are equal to the desired number of pods.
-        """
-        for deployment_name in config.deployments:
-            number_of_pods = 0
-            for (_, pods) in cycle.pod_placement.node_pods.items():
-                number_of_pods += len(
-                    list(filter(lambda pod: pod.name == deployment_name, pods))
-                )
-
-            if ceil(cycle.hpa.deployment_metrics[deployment]) != number_of_pods:
-                return False
-
-        return True
-
-    for deployment in config.deployments.values():
-        migrations: List[Migration] = []
-        for (start, cycle) in enumerate(history.cycles):
-            if not is_cycle_valid(cycle):
-                continue
-            for (_end, next_cycle) in enumerate(history.cycles[start + 1:]):
-                end = start + _end + 1
-                if not is_cycle_valid(next_cycle):
-                    continue
-
-                if ceil(cycle.hpa.deployment_metrics[deployment]) != ceil(
-                        next_cycle.hpa.deployment_metrics[deployment]
-                ):
-                    continue
-
-                # found two cycles with possible migrations!
-                source_nodes = sorted(
-                    get_nodes_of_a_deployment(cycle.pod_placement, deployment),
-                    key = lambda node: node.name,
-                )
-                target_nodes = sorted(
-                    get_nodes_of_a_deployment(next_cycle.pod_placement, deployment),
-                    key = lambda node: node.name,
-                )
-
-                print(list(map(lambda node: node.name, source_nodes)), file = output_file)
-                print(list(map(lambda node: node.name, target_nodes)), file = output_file)
-
-                real_sources = []
-                real_targets = []
-
-                it_source = 0
-                it_target = 0
-                while it_source < len(source_nodes) and it_target < len(target_nodes):
-                    if source_nodes[it_source] == target_nodes[it_target]:
-                        it_source += 1
-                        it_target += 1
-                    elif source_nodes[it_source].name < target_nodes[it_target].name:
-                        real_sources.append(source_nodes[it_source])
-                        it_source += 1
-                    else:
-                        real_targets.append(target_nodes[it_target])
-                        it_target += 1
-
-                while it_source < len(source_nodes):
-                    real_sources.append(source_nodes[it_source])
-                    it_source += 1
-
-                while it_target < len(target_nodes):
-                    real_targets.append(target_nodes[it_target])
-                    it_target += 1
-
-                assert len(real_sources) == len(real_targets)
-                print(f"here with {len(real_sources)}", file = output_file)
-                print(f"{start}, {end}", file = output_file)
-                for i in range(len(real_sources)):
-                    migrations.append(
-                        Migration(
-                            deployment = deployment,
-                            source = real_sources[i],
-                            target = real_targets[i],
-                            start = start,
-                            end = end,
-                        )
-                    )
-
-        print(f"Number of migrations for {deployment.name}: {len(migrations)}", file = output_file)
-        for migration in migrations:
-            print(migration, file = output_file)
+METADATA_FILENAME = "metadata.json"
 
 
 @register_extractor
@@ -181,6 +94,190 @@ def merge_lists_by_sum(*lists):
             sums[i] += val
 
     return [sums[i] for i in range(max_length)]
+
+
+@register_extractor
+def migration_count_metadata(config: Config, scenario_name: str, histories: List[History], save_path: str) -> None:
+    def is_cycle_valid(cycle: Cycle) -> bool:
+        """
+        Check if number of running pods are equal to the desired number of pods.
+        """
+        for deployment_name in config.deployments:
+            number_of_pods = 0
+            for (_, pods) in cycle.pod_placement.node_pods.items():
+                number_of_pods += len(
+                    list(filter(lambda pod: pod.name == deployment_name, pods))
+                )
+
+            if deployment not in cycle.hpa.deployment_metrics or ceil(cycle.hpa.deployment_metrics[deployment]) != number_of_pods:
+                return False
+
+        return True
+
+    data = {
+        "Kube": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
+        "KubeDSM": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
+        "KubeDSMNoMigration": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
+        "Random": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
+        "CloudFirst": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
+        "BiggestEdgeFirst": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
+        "SmallestEdgeFirst": {
+            "a": [],
+            "b": [],
+            "c": [],
+            "d": [],
+        },
+        # FIXME
+        # "KubeDSMQOSAware": {
+        #     "a": [],
+        #     "b": [],
+        #     "c": [],
+        #     "d": [],
+        # },
+    }
+
+    ensure_directory(save_path)
+    metadata_filepath = os.path.join(save_path, METADATA_FILENAME)
+
+    metadata = {scheduler: {} for scheduler in data.keys()}
+
+    if not os.path.exists(metadata_filepath):
+        with open(metadata_filepath, "w") as file:
+            json.dump(metadata, file)
+
+    else:
+        with open(metadata_filepath, "r") as file:
+            metadata = json.load(file)
+
+    for deployment in config.deployments.values():
+        for id, history in enumerate(histories):
+            # IMPORTANT NOTICE: histories have to be in order of INDICES for this to work
+            index = id % INDEX_COUNT
+            migrations: List[Migration] = []
+            for (start, cycle) in enumerate(history.cycles):
+                if not is_cycle_valid(cycle):
+                    continue
+
+                for (_end, next_cycle) in enumerate(history.cycles[start + 1:]):
+                    end = start + _end + 1
+                    if not is_cycle_valid(next_cycle):
+                        continue
+
+                    if ceil(cycle.hpa.deployment_metrics[deployment]) != ceil(
+                            next_cycle.hpa.deployment_metrics[deployment]
+                    ):
+                        continue
+
+                    # found two cycles with possible migrations!
+                    source_nodes = sorted(
+                        get_nodes_of_a_deployment(cycle.pod_placement, deployment),
+                        key = lambda node: node.name,
+                    )
+                    target_nodes = sorted(
+                        get_nodes_of_a_deployment(next_cycle.pod_placement, deployment),
+                        key = lambda node: node.name,
+                    )
+
+                    real_sources = []
+                    real_targets = []
+
+                    it_source = 0
+                    it_target = 0
+                    while it_source < len(source_nodes) and it_target < len(target_nodes):
+                        if source_nodes[it_source] == target_nodes[it_target]:
+                            it_source += 1
+                            it_target += 1
+                        elif source_nodes[it_source].name < target_nodes[it_target].name:
+                            real_sources.append(source_nodes[it_source])
+                            it_source += 1
+                        else:
+                            real_targets.append(target_nodes[it_target])
+                            it_target += 1
+
+                    while it_source < len(source_nodes):
+                        real_sources.append(source_nodes[it_source])
+                        it_source += 1
+
+                    while it_target < len(target_nodes):
+                        real_targets.append(target_nodes[it_target])
+                        it_target += 1
+
+                    assert len(real_sources) == len(real_targets)
+
+                    for i in range(len(real_sources)):
+                        migrations.append(
+                            Migration(
+                                deployment = deployment,
+                                source = real_sources[i],
+                                target = real_targets[i],
+                                start = start,
+                                end = end,
+                            )
+                        )
+
+            if index == ECMUS_INDEX:
+                data["KubeDSM"][deployment.name].append(len(migrations))
+
+            if index == KUBE_SCHEDULE_INDEX:
+                data["Kube"][deployment.name].append(len(migrations))
+
+            if index == ECMUS_NO_MIGRATION_INDEX:
+                data["KubeDSMNoMigration"][deployment.name].append(len(migrations))
+
+            if index == RANDOM_INDEX:
+                data["Random"][deployment.name].append(len(migrations))
+
+            if index == CLOUD_FIRST_INDEX:
+                data["CloudFirst"][deployment.name].append(len(migrations))
+
+            if index == SMALLEST_EDGE_FIRST_INDEX:
+                data["SmallestEdgeFirst"][deployment.name].append(len(migrations))
+
+            if index == BIGGEST_EDGE_FIRST_INDEX:
+                data["BiggestEdgeFirst"][deployment.name].append(len(migrations))
+
+            if index == ECMUS_QOS_AWARE_INDEX:
+                data["KubeDSMQOSAware"][deployment.name].append(len(migrations))
+
+    for scheduler in data.keys():
+        for deployment in config.deployments:
+            data[scheduler][deployment] = sum(data[scheduler][deployment]) / len(data[scheduler][deployment])
+
+    for scheduler in metadata.keys():
+        metadata[scheduler][scenario_name] = data[scheduler]
+
+    with open(metadata_filepath, "w") as file:
+        json.dump(metadata, file)
 
 
 @register_extractor
