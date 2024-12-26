@@ -1,0 +1,4426 @@
+[
+    {
+        "timestamp": "15s",
+        "hpa": [
+            {
+                "metric_value": 0.053,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.043,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.053,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.055,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "b-deployment-6d8c97d549-bgp5t"
+            ]
+        }
+    },
+    {
+        "timestamp": "30s",
+        "hpa": [
+            {
+                "metric_value": 0.053,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.043,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.053,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.055,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "b-deployment-6d8c97d549-bgp5t"
+            ]
+        }
+    },
+    {
+        "timestamp": "45s",
+        "hpa": [
+            {
+                "metric_value": 12.366,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 6.108,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 12.356,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 5.046,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "1m0s",
+        "hpa": [
+            {
+                "metric_value": 12.366,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 6.108,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 12.356,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 5.046,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "1m15s",
+        "hpa": [
+            {
+                "metric_value": 10.908,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 6.789,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 10.824,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.999,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "1m30s",
+        "hpa": [
+            {
+                "metric_value": 10.908,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 6.789,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 10.824,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.999,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "1m45s",
+        "hpa": [
+            {
+                "metric_value": 8.191,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.374,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 7.614,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.022,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "2m0s",
+        "hpa": [
+            {
+                "metric_value": 8.191,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.374,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 7.614,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.022,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "2m15s",
+        "hpa": [
+            {
+                "metric_value": 7.436,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 9.01,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 7.444,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "2m30s",
+        "hpa": [
+            {
+                "metric_value": 7.436,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 9.01,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 7.444,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "2m45s",
+        "hpa": [
+            {
+                "metric_value": 6.577,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 9.899,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.599,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.999,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "3m0s",
+        "hpa": [
+            {
+                "metric_value": 6.577,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 9.899,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.599,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.999,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "3m15s",
+        "hpa": [
+            {
+                "metric_value": 6.622,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 9.888,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.666,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.999,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "3m30s",
+        "hpa": [
+            {
+                "metric_value": 6.622,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 9.888,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.666,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.999,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "3m45s",
+        "hpa": [
+            {
+                "metric_value": 7.392,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 8.344,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 7.362,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 11.888,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "4m0s",
+        "hpa": [
+            {
+                "metric_value": 7.392,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 8.344,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 7.362,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 11.888,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "4m15s",
+        "hpa": [
+            {
+                "metric_value": 8.199,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.477,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.318,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 14.911,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "4m30s",
+        "hpa": [
+            {
+                "metric_value": 8.199,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.477,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.318,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 14.911,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "4m45s",
+        "hpa": [
+            {
+                "metric_value": 8.473,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.477,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.303,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 14.933,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "5m0s",
+        "hpa": [
+            {
+                "metric_value": 8.473,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.477,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.303,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 14.933,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "5m15s",
+        "hpa": [
+            {
+                "metric_value": 7.732,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.488,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.369,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 14.666,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "5m30s",
+        "hpa": [
+            {
+                "metric_value": 7.732,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.488,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.369,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 14.666,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "5m45s",
+        "hpa": [
+            {
+                "metric_value": 5.488,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.466,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.273,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 11.377,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "6m0s",
+        "hpa": [
+            {
+                "metric_value": 5.488,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.466,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.273,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 11.377,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "6m15s",
+        "hpa": [
+            {
+                "metric_value": 5.051,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.499,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.318,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.999,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "6m30s",
+        "hpa": [
+            {
+                "metric_value": 5.051,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.499,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.318,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.999,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "6m45s",
+        "hpa": [
+            {
+                "metric_value": 5.592,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.499,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.222,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.022,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "7m0s",
+        "hpa": [
+            {
+                "metric_value": 5.592,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.499,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.222,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.022,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "7m15s",
+        "hpa": [
+            {
+                "metric_value": 7.703,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.455,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.31,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.022,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "7m30s",
+        "hpa": [
+            {
+                "metric_value": 7.703,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.455,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.31,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.022,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "7m45s",
+        "hpa": [
+            {
+                "metric_value": 8.243,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.499,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.222,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.999,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "8m0s",
+        "hpa": [
+            {
+                "metric_value": 8.243,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.499,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.222,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.999,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "8m15s",
+        "hpa": [
+            {
+                "metric_value": 7.873,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.466,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.022,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "8m30s",
+        "hpa": [
+            {
+                "metric_value": 7.873,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.466,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.022,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "8m45s",
+        "hpa": [
+            {
+                "metric_value": 7.051,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.477,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.933,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.022,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "9m0s",
+        "hpa": [
+            {
+                "metric_value": 7.051,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.477,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.933,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.022,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "9m15s",
+        "hpa": [
+            {
+                "metric_value": 6.673,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.499,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.769,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.022,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "9m30s",
+        "hpa": [
+            {
+                "metric_value": 6.673,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.499,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.769,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.022,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "9m45s",
+        "hpa": [
+            {
+                "metric_value": 6.428,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 8.288,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.636,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.022,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "10m0s",
+        "hpa": [
+            {
+                "metric_value": 6.428,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 8.288,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.636,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.022,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "10m15s",
+        "hpa": [
+            {
+                "metric_value": 5.355,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 9.932,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.673,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.999,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "10m30s",
+        "hpa": [
+            {
+                "metric_value": 5.355,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 9.932,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.673,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.999,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "10m45s",
+        "hpa": [
+            {
+                "metric_value": 5.021,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 9.988,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.681,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.999,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "11m0s",
+        "hpa": [
+            {
+                "metric_value": 5.021,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 9.988,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.681,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.999,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "11m15s",
+        "hpa": [
+            {
+                "metric_value": 5.236,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 9.21,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.866,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.244,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "11m30s",
+        "hpa": [
+            {
+                "metric_value": 5.236,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 9.21,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.866,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 10.244,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "11m45s",
+        "hpa": [
+            {
+                "metric_value": 6.399,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.543,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 7.88,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 13.511,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "12m0s",
+        "hpa": [
+            {
+                "metric_value": 6.399,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.543,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 7.88,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 13.511,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "12m15s",
+        "hpa": [
+            {
+                "metric_value": 6.57,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.488,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.214,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 14.955,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "12m30s",
+        "hpa": [
+            {
+                "metric_value": 6.57,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.488,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.214,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 14.955,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "12m45s",
+        "hpa": [
+            {
+                "metric_value": 6.577,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.488,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.058,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 14.666,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "13m0s",
+        "hpa": [
+            {
+                "metric_value": 6.577,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.488,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.058,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 14.666,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "13m15s",
+        "hpa": [
+            {
+                "metric_value": 6.599,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.455,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.851,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 11.177,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "13m30s",
+        "hpa": [
+            {
+                "metric_value": 6.599,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 7.455,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.851,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 11.177,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "13m45s",
+        "hpa": [
+            {
+                "metric_value": 6.481,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 6.61,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.051,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.799,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "14m0s",
+        "hpa": [
+            {
+                "metric_value": 6.481,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 6.61,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.051,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.799,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "c-deployment-74bf776888-lfqhd",
+                "c-deployment-74bf776888-w5484",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "14m15s",
+        "hpa": [
+            {
+                "metric_value": 5.17,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 4.766,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 4.051,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.222,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "14m30s",
+        "hpa": [
+            {
+                "metric_value": 5.17,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 4.766,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 4.051,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.222,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "b-deployment-6d8c97d549-228qn",
+                "b-deployment-6d8c97d549-7xjmd",
+                "d-deployment-fbc7d5c-cf8ts",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "b-deployment-6d8c97d549-lfk6v",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "14m45s",
+        "hpa": [
+            {
+                "metric_value": 4.392,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 2.333,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 4.659,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.577,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ],
+            "uq7p7x251-01": [
+                "d-deployment-fbc7d5c-cf8ts"
+            ]
+        }
+    },
+    {
+        "timestamp": "15m0s",
+        "hpa": [
+            {
+                "metric_value": 4.392,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 2.333,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 4.659,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 9.577,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-f8njt",
+                "a-deployment-6cbd596cc4-hd9ql",
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ],
+            "uq7p7x251-01": [
+                "d-deployment-fbc7d5c-cf8ts"
+            ]
+        }
+    },
+    {
+        "timestamp": "15m15s",
+        "hpa": [
+            {
+                "metric_value": 2.406,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 1.4,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 3.532,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 3.26,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "15m30s",
+        "hpa": [
+            {
+                "metric_value": 2.406,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 1.4,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 3.532,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 3.26,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-44c6v",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-krl4z",
+                "c-deployment-74bf776888-b6dzc",
+                "c-deployment-74bf776888-xwk7p"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "15m45s",
+        "hpa": [
+            {
+                "metric_value": 1.488,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 3.221,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 4.235,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "c-deployment-74bf776888-b6dzc"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "16m0s",
+        "hpa": [
+            {
+                "metric_value": 1.488,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 3.221,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 4.235,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "c-deployment-74bf776888-b6dzc"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "16m15s",
+        "hpa": [
+            {
+                "metric_value": 7.133,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 1.788,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 3.699,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-ckk28",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "16m30s",
+        "hpa": [
+            {
+                "metric_value": 7.133,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 1.788,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 3.699,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-ckk28",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "16m45s",
+        "hpa": [
+            {
+                "metric_value": 6.393,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.088,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 3.577,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-ckk28",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-mt5qr",
+                "c-deployment-74bf776888-hhpdq"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "17m0s",
+        "hpa": [
+            {
+                "metric_value": 6.393,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 8.088,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 3.577,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-ckk28",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-mt5qr",
+                "c-deployment-74bf776888-hhpdq"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "17m15s",
+        "hpa": [
+            {
+                "metric_value": 5.9,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 11.399,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 4.41,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-kz2hv"
+            ],
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-ckk28",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-mt5qr",
+                "c-deployment-74bf776888-hhpdq"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-6xjjf",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "17m30s",
+        "hpa": [
+            {
+                "metric_value": 5.9,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 11.399,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 4.41,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-kz2hv"
+            ],
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-ckk28",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-mt5qr",
+                "c-deployment-74bf776888-hhpdq"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-6xjjf",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "17m45s",
+        "hpa": [
+            {
+                "metric_value": 6.565,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 5.85,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 4.955,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-kz2hv",
+                "c-deployment-74bf776888-c2d7g"
+            ],
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-ckk28",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-mt5qr",
+                "c-deployment-74bf776888-hhpdq"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-6xjjf",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "18m0s",
+        "hpa": [
+            {
+                "metric_value": 6.565,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 5.85,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 4.955,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-kz2hv",
+                "c-deployment-74bf776888-c2d7g"
+            ],
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-ckk28",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-mt5qr",
+                "c-deployment-74bf776888-hhpdq"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-6xjjf",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "18m15s",
+        "hpa": [
+            {
+                "metric_value": 5.384,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.133,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 4.922,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-kz2hv",
+                "c-deployment-74bf776888-c2d7g"
+            ],
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-ckk28",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-mt5qr",
+                "c-deployment-74bf776888-hhpdq"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-6xjjf",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "18m30s",
+        "hpa": [
+            {
+                "metric_value": 5.384,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 6.133,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 4.922,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "": [
+                "a-deployment-6cbd596cc4-kz2hv",
+                "c-deployment-74bf776888-c2d7g"
+            ],
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-ckk28",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "a-deployment-6cbd596cc4-mt5qr",
+                "c-deployment-74bf776888-hhpdq"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-6xjjf",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "18m45s",
+        "hpa": [
+            {
+                "metric_value": 2.088,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 3.473,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 3.299,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-ckk28",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "c-deployment-74bf776888-hhpdq"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-6xjjf",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "19m0s",
+        "hpa": [
+            {
+                "metric_value": 2.088,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 3.473,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 3.299,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "a-deployment-6cbd596cc4-ckk28",
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7g5w631-01": [
+                "c-deployment-74bf776888-hhpdq"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-6xjjf",
+                "c-deployment-74bf776888-n882j",
+                "d-deployment-fbc7d5c-67qfr"
+            ]
+        }
+    },
+    {
+        "timestamp": "19m15s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.699,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.666,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "19m30s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.699,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.666,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "19m45s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "20m0s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "20m15s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "20m30s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "20m45s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "21m0s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "21m15s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "21m30s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "21m45s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "22m0s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "22m15s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "22m30s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "22m45s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "23m0s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "23m15s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "23m30s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "23m45s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "24m0s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "24m15s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    },
+    {
+        "timestamp": "24m30s",
+        "hpa": [
+            {
+                "metric_value": 0.066,
+                "name": "a-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "b-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "c-hpa"
+            },
+            {
+                "metric_value": 0.066,
+                "name": "d-hpa"
+            }
+        ],
+        "pod_placement": {
+            "uq7g5t611-01": [
+                "custom-scheduler-77dbcd9f69-fzmk7"
+            ],
+            "uq7j5k991-01": [
+                "d-deployment-fbc7d5c-6mt8f",
+                "d-deployment-fbc7d5c-nfblk"
+            ],
+            "uq7p7w241-01": [
+                "a-deployment-6cbd596cc4-tr6zk",
+                "b-deployment-6d8c97d549-bgp5t",
+                "c-deployment-74bf776888-n882j"
+            ]
+        }
+    }
+]
