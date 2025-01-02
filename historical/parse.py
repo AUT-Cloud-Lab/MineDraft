@@ -2,7 +2,7 @@ from pytimeparse import parse as parse_time
 
 from historical.config import Config
 from historical.data import Cycle, History, PodPlacement, HpaState
-from historical.common import Deployment, Node
+from historical.common import Deployment, Node, Scheduler
 from historical.utils import (
     get_deployment_name_from_pod_name,
     get_deployment_from_name_in_hpa,
@@ -13,6 +13,7 @@ def parse_config(json_data: dict) -> Config:
     """Parse a config from the JSON data."""
     deployments = {}
     nodes = {}
+    schedulers = []
 
     for deployment_data in json_data["deployments"]:
         deployment = Deployment(
@@ -28,7 +29,17 @@ def parse_config(json_data: dict) -> Config:
         )
         nodes[node.name] = node
 
-    return Config(deployments, nodes)
+    for scheduler_data in json_data["schedulers"]:
+        scheduler = Scheduler(scheduler_data["name"])
+        schedulers.append(scheduler)
+
+    return Config(
+        deployments,
+        nodes,
+        schedulers,
+        json_data["CLOUD_RESPONSE_TIME"],
+        json_data["EDGE_RESPONSE_TIME"],
+    )
 
 
 def parse_pod_placement(config: Config, json_data: dict) -> PodPlacement:
