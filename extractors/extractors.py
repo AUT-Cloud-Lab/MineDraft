@@ -1,6 +1,5 @@
-from math import ceil
 import statistics
-from typing import Any, Dict, List
+from typing import List
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -9,18 +8,16 @@ from extractors.decorator import register_extractor
 from extractors.logic import (
     calc_average_latency_through_time,
     calc_edge_utilization_through_time,
-    migration_count,
+    calc_pod_count_through_time,
 )
 from extractors.utils import (
-    calculate_pod_count_for_deployment,
     ensure_directory,
-    merge_for_each_deployment,
     merge_lists_by_average,
     merge_lists_by_sum,
 )
-from historical.common import Deployment, Scheduler
+from historical.common import Scheduler
 from historical.config import Config
-from historical.data import Cycle, History, ScenarioData
+from historical.data import ScenarioData
 
 # TODO make sure these are long enough
 COLORS = ["blue", "orange", "green", "red", "purple", "brown", "pink", "gray", "olive"]
@@ -28,175 +25,15 @@ MARKERS = ["^", "v", "x", "+", "*", "o", "s", "D", "p", "P", "X", "d"]
 
 
 @register_extractor
-def migration_count_boxplot(
-    config: Config,
-    scenarios: List[ScenarioData],
-    schedulers: List[Scheduler],
-    save_path: str,
-) -> None:
-
-    migration_count_list_for_all_scenarios = {
-        scenario.name: [] for scenario in scenarios
-    }
-
-    for scenario in scenarios:
-        migration_count_list_for_all_scenarios[scenario.name].append(
-            migration_count(config, scenario)
-        )
-
-    migration_count_for_all_scenarios = {
-        scenario.name: merge_for_each_deployment(
-            migration_count_list_for_all_scenarios[scenario.name]
-        )
-        for scenario in scenarios
-    }
-
-    num_schedulers = len(schedulers)
-    axs: List[plt.Axes] = []
-    fig, axs = plt.subplots(
-        # TODO move 12, 6 to config
-        num_schedulers,
-        1,
-        figsize=(12, 6 * num_schedulers),
-        sharex=True,
-    )
-
-    if num_schedulers == 1:
-        axs = [axs]
-
-    for ax, sched in zip(axs, schedulers):
-        scenarios_name = list(migration_count_for_all_scenarios.keys())
-        num_scenarios = len(scenarios_name)
-
-        bar_width = 0.2
-        index = np.arange(num_scenarios)
-
-        values = {
-            deployment: [
-                migration_count_for_all_scenarios[scen][sched][deployment]
-                for scen in scenarios_name
-            ]
-            for deployment in config.deployments.values()
-        }
-
-        bar_containers = [
-            ax.bar(
-                index + (ind - len(config.deployments) / 2 + 0.5) * bar_width,
-                values[deployment],
-                bar_width,
-                label=deployment.name,
-                color=COLORS[ind],
-            )
-            for (ind, deployment) in enumerate(config.deployments.values())
-        ]
-
-        ax.set_title(f"Values for Each Scenario - {sched.name}")
-        ax.set_xlabel("Scenario")
-        ax.set_ylabel("Value")
-
-        ax.legend()
-
-        ax.set_xticks(index)
-        ax.set_xticklabels(scenarios_name, rotation=90, ha="right")
-
-        for bars in bar_containers:
-            for bar in bars:
-                height = bar.get_height()
-                ax.text(
-                    bar.get_x() + bar.get_width() / 2,
-                    height,
-                    f"{height}",
-                    ha="center",
-                    va="bottom",
-                )
-
-    plt.savefig(save_path + f"/individual.png")
-
-    sched_scen_to_migrations = {}
-
-    for scen_name, sched_migrations in migration_count_for_all_scenarios.items():
-        for sched, migrations in sched_migrations.items():
-            sched_scen_to_migrations[(sched, scen_name)] = sum(migrations.values())
-
-    fig, axs = plt.subplots(
-        num_schedulers, 1, figsize=(10, 6 * num_schedulers), sharex=True
-    )
-
-    if num_schedulers == 1:
-        axs = [axs]
-
-    for ax, sched in zip(axs, schedulers):
-        scenarios_name = list(migration_count_for_all_scenarios.keys())
-
-        bars = ax.bar(
-            scenarios_name,
-            [
-                sched_scen_to_migrations[(sched, scen_name)]
-                for scen_name in scenarios_name
-            ],
-            color="skyblue",
-        )
-
-        ax.set_title(f"Sum of Migrations for Each Scenario - {sched.name}")
-        ax.set_xlabel("Scenario")
-        ax.set_xticks(scenarios)
-        ax.set_xticklabels(scenarios, rotation=90)
-        ax.set_ylabel("Sum of Migrations")
-
-        for bar in bars:
-            height = bar.get_height()
-            ax.text(
-                bar.get_x() + bar.get_width() / 2,
-                height,
-                f"{height}",
-                ha="center",
-                va="bottom",
-            )
-
-    plt.savefig(save_path + f"/sum.png")
-
-
-@register_extractor
 def pod_count_linechart(
     config: Config,
-    scenarios: List[ScenarioData],
+    scenario: ScenarioData,
     schedulers: List[Scheduler],
     save_path: str,
 ) -> None:
-    # TODO make these kind of extractors a different type of extractor, i.e.:
-    # All per cycle extractors can be defined using a simple function that applies to each cycle of the history and then the diagram can be drawn using the results of this function.
-    assert len(set([scen.name for scen in scenarios])) == 1
-
-    pod_counts = {
-        sched: {deployment: [] for deployment in config.deployments.values()}
-        for sched in schedulers
-    }
-    timestamps = {
-        sched: {deployment: [] for deployment in config.deployments.values()}
-        for sched in schedulers
-    }
+    pod_counts, timestamps = calc_pod_count_through_time(config, scenario, schedulers)
 
     for deployment in config.deployments.values():
-        for sched in schedulers:
-            current_pod_counts = []
-            current_timestamps = []
-            for scen in scenarios:
-                current_pod_counts.append(
-                    [
-                        calculate_pod_count_for_deployment(cycle, deployment)
-                        for cycle in scen.scheduler_histories[sched].cycles
-                    ]
-                )
-                current_timestamps.append(
-                    [
-                        cycle.timestamp
-                        for cycle in scen.scheduler_histories[sched].cycles
-                    ]
-                )
-
-            pod_counts[sched][deployment] = merge_lists_by_average(*current_pod_counts)
-            timestamps[sched][deployment] = merge_lists_by_average(*current_timestamps)
-
         fig, ax = plt.subplots()
         plt.grid(True, axis="y")
         fig.set_size_inches(10.5, 7.5)
@@ -237,7 +74,7 @@ def pod_count_linechart(
 
     all_pod_counts = {
         sched: merge_lists_by_sum(
-            [
+            *[
                 pod_counts[sched][deployment]
                 for deployment in config.deployments.values()
             ]
@@ -246,7 +83,7 @@ def pod_count_linechart(
     }
     all_timestamps = {
         sched: merge_lists_by_average(
-            [
+            *[
                 timestamps[sched][deployment]
                 for deployment in config.deployments.values()
             ]
@@ -289,13 +126,13 @@ def pod_count_linechart(
 @register_extractor
 def average_latency_linechart(
     config: Config,
-    scenarios: List[ScenarioData],
+    scenario: ScenarioData,
     schedulers: List[Scheduler],
     save_path: str,
 ) -> None:
-    assert len(set([scen.name for scen in scenarios])) == 1
-
-    latencies, timestamps = calc_average_latency_through_time(config, scenarios)
+    latencies, timestamps = calc_average_latency_through_time(
+        config, scenario, schedulers
+    )
 
     for deployment in config.deployments.values():
         fig, ax = plt.subplots()
@@ -329,13 +166,11 @@ def average_latency_linechart(
 @register_extractor
 def average_latency_boxplot(
     config: Config,
-    scenarios: List[ScenarioData],
+    scenario: ScenarioData,
     schedulers: List[Scheduler],
     save_path: str,
 ) -> None:
-    assert len(set([scen.name for scen in scenarios])) == 1
-
-    latencies, _ = calc_average_latency_through_time(config, scenarios)
+    latencies, _ = calc_average_latency_through_time(config, scenario, schedulers)
 
     latencies_means = {
         sched: {
@@ -384,23 +219,15 @@ def average_latency_boxplot(
 
 
 @register_extractor
-def average_latency_CSV(
-    config: Config, scenarios: List[ScenarioData], save_path: str
-) -> None:
-    # TODO add this script
-    pass
-
-
-@register_extractor
 def edge_utilization_linechart(
     config: Config,
-    scenarios: List[ScenarioData],
+    scenario: ScenarioData,
     schedulers: List[Scheduler],
     save_path: str,
 ) -> None:
-    assert len(set([scen.name for scen in scenarios])) == 1
-
-    edge_utilization, timestamps = calc_edge_utilization_through_time(config, scenarios)
+    edge_utilization, timestamps = calc_edge_utilization_through_time(
+        config, scenario, schedulers
+    )
 
     fig, ax = plt.subplots()
     marker_interval = 2
