@@ -1,6 +1,6 @@
 from functools import wraps
 
-extractor_scripts = {}
+extractor_functions = {}
 
 
 def register_extractor(func):
@@ -8,4 +8,4 @@ def register_extractor(func):
     def wrapper(*args, **kwargs):
         return func(*args, **kwargs)
 
-    extractor_scripts[func.__name__] = wrapper
+    extractor_functions[func.__name__] = wrapper
