@@ -75,51 +75,6 @@
     "cloud_response_time": 300,
     "edge_response_time": 50
   },
-  "schedulers": [
-    {
-      "name": "biggest-edge-first-scheduler"
-    },
-    {
-      "name": "cloud-first-scheduler"
-    },
-    {
-      "name": "ecmus"
-    },
-    {
-      "name": "ecmus-all-half"
-    },
-    {
-      "name": "ecmus-c-gt-a"
-    },
-    {
-      "name": "ecmus-mid-migration"
-    },
-    {
-      "name": "ecmus-no-cloud-offload"
-    },
-    {
-      "name": "ecmus-no-edge-migration"
-    },
-    {
-      "name": "ecmus-no-migration"
-    },
-    {
-      "name": "ecmus-only-d"
-    },
-    {
-      "name": "ecmus-qos-aware"
-    },
-    {
-      "name": "ecmus-qos-aware-bkp"
-    },
-    {
-      "name": "kube-schedule"
-    },
-    {
-      "name": "random-scheduler"
-    },
-    {
-      "name": "smallest-edge-first-scheduler"
-    }
-  ]
+  "CLOUD_RESPONSE_TIME": 300,
+  "EDGE_RESPONSE_TIME": 50
 }
