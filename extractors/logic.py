@@ -15,7 +15,13 @@ T = TypeVar("T")
 
 # ! WARN THIS PART IS JUST A QUICK FIX TO EXECUTION PROBLEM
 # ! WARN HAVE TO REMOVE THIS PART AFTER FIXING THE EXECUTION PROBLEM
-BUGGED_SCHEDULERS = ["smallest-edge-first-scheduler", "biggest-edge-first-scheduler", "random-scheduler", "cloud-first-scheduler"]
+BUGGED_SCHEDULERS = [
+    "smallest-edge-first-scheduler",
+    "biggest-edge-first-scheduler",
+    "random-scheduler",
+    "cloud-first-scheduler",
+]
+
 
 def calc_through_time(
     config: Config,
@@ -145,3 +151,49 @@ def calc_pod_count_through_time(
         return calculate_pod_count_for_deployment(cycle, deployment)
 
     return calc_through_time(config, scenario, schedulers, pod_count_on_each_cycle)
+
+
+def calc_edge_ratio_through_time(
+    config: Config,
+    scenario: ScenarioData,
+    schedulers: List[Scheduler],
+) -> Tuple[
+    Dict[Scheduler, Dict[Deployment, List[float]]],
+    Dict[Scheduler, List[float]],
+]:
+    def deployment_edge_ratio_on_each_cycle(
+        deployment: Deployment, cycle: Cycle
+    ) -> float:
+        cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(
+            cycle, deployment
+        )
+        all_pods_count = cloud_pods_count + edge_pods_count
+        return edge_pods_count / all_pods_count
+
+    edge_ratio_for_each_deployment, _ = calc_through_time(
+        config, scenario, schedulers, deployment_edge_ratio_on_each_cycle
+    )
+
+    def edge_ratio_on_each_cycle(_: Deployment, cycle: Cycle) -> float:
+        all_cloud_pods_count = 0
+        all_edge_pods_count = 0
+        for deployment in config.deployments.values():
+            cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(
+                cycle, deployment
+            )
+            all_cloud_pods_count += cloud_pods_count
+            all_edge_pods_count += edge_pods_count
+
+        return all_edge_pods_count / (all_cloud_pods_count + all_edge_pods_count)
+
+    edge_ratio_overall_but_by_deployment, _ = calc_through_time(
+        config, scenario, schedulers, edge_ratio_on_each_cycle
+    )
+
+    any_deployment = next(iter(config.deployments.values()))
+    edge_ratio_overall = {
+        sched: edge_ratio_overall_but_by_deployment[sched][any_deployment]
+        for sched in schedulers
+    }
+
+    return edge_ratio_for_each_deployment, edge_ratio_overall

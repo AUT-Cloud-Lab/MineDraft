@@ -7,6 +7,7 @@ import numpy as np
 from extractors.decorator import register_extractor
 from extractors.logic import (
     calc_average_latency_through_time,
+    calc_edge_ratio_through_time,
     calc_edge_utilization_through_time,
     calc_pod_count_through_time,
 )
@@ -257,3 +258,35 @@ def edge_utilization_linechart(
     plt.tight_layout()
     ensure_directory(save_path)
     plt.savefig(save_path + "/result.png")
+
+
+@register_extractor
+def all_data_tables(
+    config: Config,
+    scenario: ScenarioData,
+    schedulers: List[Scheduler],
+    save_path: str,
+) -> None:
+    edge_utilization, _ = calc_edge_utilization_through_time(
+        config, scenario, schedulers
+    )
+    edge_ratio_for_each_deployment, edge_ratio_overall = calc_edge_ratio_through_time(
+        config, scenario, schedulers
+    )
+
+    with open(f"{save_path}/{scenario.name}.csv", "w") as f:
+        header = ["scheduler", "edge-utilization", "edge-ratio-overall"]
+        for deployment in config.deployments.values():
+            header.append(f"edge-ratio-{deployment.name}")
+        f.write(",".join(header) + "\n")
+        for sched in schedulers:
+            f.write(f"{sched.name},")
+            f.write(f"{statistics.mean(edge_utilization[sched]):.2f},")
+            f.write(f"{statistics.mean(edge_ratio_overall[sched]):.2f},")
+            for ind, deployment in enumerate(config.deployments.values()):
+                f.write(
+                    f"{statistics.mean(edge_ratio_for_each_deployment[sched][deployment]):.2f}"
+                )
+                if ind != len(config.deployments.values()) - 1:
+                    f.write(",")
+            f.write("\n")
