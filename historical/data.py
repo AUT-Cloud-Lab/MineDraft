@@ -1,8 +1,7 @@
-from typing import Dict, List
-from datetime import timedelta
 from dataclasses import dataclass
+from typing import Dict, List
 
-from historical.common import Deployment, Node
+from historical.common import Deployment, Node, Scheduler
 
 
 @dataclass
@@ -34,3 +33,9 @@ class Migration:
     source: Node
     target: Node
     deployment: Deployment
+
+
+@dataclass
+class ScenarioData:
+    name: str
+    scheduler_histories: Dict[Scheduler, List[History]]
