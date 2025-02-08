@@ -62,6 +62,7 @@ def calculate_placement_for_deployment(
 
     return cloud_count, edge_count
 
+
 def calculate_edge_usage_sum(cycle: Cycle) -> Tuple[float, float]:
     cpu_sum = 0
     memory_sum = 0
