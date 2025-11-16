@@ -6,7 +6,7 @@ from historical.data import Cycle, PodPlacement
 
 
 def get_nodes_of_a_deployment(
-        pod_placement: PodPlacement, deployment: Deployment
+    pod_placement: PodPlacement, deployment: Deployment
 ) -> List[Node]:
     nodes = []
     for node, pods in pod_placement.node_pods.items():
@@ -44,7 +44,7 @@ def calculate_edge_pod_count_for_deployment(cycle: Cycle, target: Deployment) ->
 
 
 def calculate_placement_for_deployment(
-        cycle: Cycle, target: Deployment
+    cycle: Cycle, target: Deployment
 ) -> Tuple[int, int]:
     cloud_count = 0
     edge_count = 0
@@ -85,7 +85,7 @@ def calculate_cluster_usage_sum(cycle: Cycle) -> Tuple[float, float]:
 
 
 def calculate_resource_usage_for_node(
-        cycle: Cycle, desired_node: Node
+    cycle: Cycle, desired_node: Node
 ) -> Tuple[float, float]:
     cpu_usage = 0
     memory_usage = 0
@@ -94,7 +94,7 @@ def calculate_resource_usage_for_node(
         memory_usage += pod.resources[1]
 
     return (cpu_usage / desired_node.resources[0]), (
-            memory_usage / desired_node.resources[1]
+        memory_usage / desired_node.resources[1]
     )
 
 
@@ -130,7 +130,7 @@ def merge_lists_by_sum(*lists):
 
 
 def merge_for_each_deployment(
-        results: List[Dict[Deployment, Any]]
+    results: List[Dict[Deployment, Any]],
 ) -> Dict[Deployment, Any]:
     res = {}
     for deployment in results[0].keys():
