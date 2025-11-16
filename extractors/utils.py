@@ -2,12 +2,11 @@ import os
 from typing import Any, Dict, List, Tuple
 
 from historical.common import Deployment, Node
-from historical.config import Config
 from historical.data import Cycle, PodPlacement
 
 
 def get_nodes_of_a_deployment(
-    pod_placement: PodPlacement, deployment: Deployment
+        pod_placement: PodPlacement, deployment: Deployment
 ) -> List[Node]:
     nodes = []
     for node, pods in pod_placement.node_pods.items():
@@ -45,7 +44,7 @@ def calculate_edge_pod_count_for_deployment(cycle: Cycle, target: Deployment) ->
 
 
 def calculate_placement_for_deployment(
-    cycle: Cycle, target: Deployment
+        cycle: Cycle, target: Deployment
 ) -> Tuple[int, int]:
     cloud_count = 0
     edge_count = 0
@@ -86,7 +85,7 @@ def calculate_cluster_usage_sum(cycle: Cycle) -> Tuple[float, float]:
 
 
 def calculate_resource_usage_for_node(
-    cycle: Cycle, desired_node: Node
+        cycle: Cycle, desired_node: Node
 ) -> Tuple[float, float]:
     cpu_usage = 0
     memory_usage = 0
@@ -95,7 +94,7 @@ def calculate_resource_usage_for_node(
         memory_usage += pod.resources[1]
 
     return (cpu_usage / desired_node.resources[0]), (
-        memory_usage / desired_node.resources[1]
+            memory_usage / desired_node.resources[1]
     )
 
 
@@ -131,9 +130,24 @@ def merge_lists_by_sum(*lists):
 
 
 def merge_for_each_deployment(
-    results: List[Dict[Deployment, Any]]
+        results: List[Dict[Deployment, Any]]
 ) -> Dict[Deployment, Any]:
     res = {}
     for deployment in results[0].keys():
         res[deployment] = sum([result[deployment] for result in results]) / len(results)
     return res
+
+
+def calc_node_used_resources(node: Node, cycle: Cycle) -> Tuple[float, float]:
+    pods = cycle.pod_placement.node_pods[node]
+    used_cpu = sum(map(lambda pod: pod.resources[0], pods))
+    used_memory = sum(map(lambda pod: pod.resources[1], pods))
+
+    return used_cpu, used_memory
+
+
+def calc_node_fragmentation(node: Node, cycle: Cycle) -> float:
+    (used_cpu, used_memory) = calc_node_used_resources(node, cycle)
+    (total_cpu, total_memory) = node.resources
+
+    return 1 - ((used_cpu / total_cpu) * (used_memory / total_memory))

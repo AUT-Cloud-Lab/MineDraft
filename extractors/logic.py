@@ -5,7 +5,7 @@ from extractors.utils import (
     calculate_edge_usage_sum,
     calculate_placement_for_deployment,
     calculate_pod_count_for_deployment,
-    merge_lists_by_average,
+    merge_lists_by_average, calc_node_fragmentation,
 )
 from historical.common import Deployment, Scheduler
 from historical.config import Config
@@ -15,10 +15,10 @@ T = TypeVar("T")
 
 
 def calc_through_time(
-    config: Config,
-    scenario: ScenarioData,
-    schedulers: List[Scheduler],
-    on_each_cycle: Callable[[Deployment, Cycle], T],
+        config: Config,
+        scenario: ScenarioData,
+        schedulers: List[Scheduler],
+        on_each_cycle: Callable[[Deployment, Cycle], T],
 ) -> Tuple[
     Dict[Scheduler, Dict[Deployment, List[T]]],
     Dict[Scheduler, Dict[Deployment, List[float]]],
@@ -54,9 +54,9 @@ def calc_through_time(
 
 
 def calc_average_latency_through_time(
-    config: Config,
-    scenario: ScenarioData,
-    schedulers: List[Scheduler],
+        config: Config,
+        scenario: ScenarioData,
+        schedulers: List[Scheduler],
 ) -> Tuple[
     Dict[Scheduler, Dict[Deployment, List[float]]],
     Dict[Scheduler, Dict[Deployment, List[float]]],
@@ -67,17 +67,17 @@ def calc_average_latency_through_time(
         )
         all_pods_count = cloud_pods_count + edge_pods_count
         return (
-            cloud_pods_count * config.CLOUD_RESPONSE_TIME
-            + edge_pods_count * config.EDGE_RESPONSE_TIME
+                cloud_pods_count * config.CLOUD_RESPONSE_TIME
+                + edge_pods_count * config.EDGE_RESPONSE_TIME
         ) / all_pods_count
 
     return calc_through_time(config, scenario, schedulers, latency_on_each_cycle)
 
 
 def calc_edge_utilization_through_time(
-    config: Config,
-    scenario: ScenarioData,
-    schedulers: List[Scheduler],
+        config: Config,
+        scenario: ScenarioData,
+        schedulers: List[Scheduler],
 ) -> Tuple[Dict[Scheduler, List[float]], Dict[Scheduler, List[float]],]:
     def edge_utilization_on_each_cycle(deployment: Deployment, cycle: Cycle) -> float:
         edge_total_cpu, edge_total_memory = config.get_edge_resources()
@@ -115,9 +115,9 @@ def calc_edge_utilization_through_time(
 
 
 def calc_pod_count_through_time(
-    config: Config,
-    scenario: ScenarioData,
-    schedulers: List[Scheduler],
+        config: Config,
+        scenario: ScenarioData,
+        schedulers: List[Scheduler],
 ) -> Tuple[
     Dict[Scheduler, Dict[Deployment, List[int]]],
     Dict[Scheduler, Dict[Deployment, List[float]]],
@@ -129,15 +129,15 @@ def calc_pod_count_through_time(
 
 
 def calc_edge_ratio_through_time(
-    config: Config,
-    scenario: ScenarioData,
-    schedulers: List[Scheduler],
+        config: Config,
+        scenario: ScenarioData,
+        schedulers: List[Scheduler],
 ) -> Tuple[
     Dict[Scheduler, Dict[Deployment, List[float]]],
     Dict[Scheduler, List[float]],
 ]:
     def deployment_edge_ratio_on_each_cycle(
-        deployment: Deployment, cycle: Cycle
+            deployment: Deployment, cycle: Cycle
     ) -> float:
         cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(
             cycle, deployment
@@ -172,3 +172,22 @@ def calc_edge_ratio_through_time(
     }
 
     return edge_ratio_for_each_deployment, edge_ratio_overall
+
+
+def calc_fragmentation_through_time(
+        config: Config,
+        scenario: ScenarioData,
+        schedulers: List[Scheduler],
+) -> Tuple[
+    Dict[Scheduler, Dict[Deployment, List[float]]],
+    Dict[Scheduler, Dict[Deployment, List[float]]],
+]:
+    def fragmentation_on_each_cycle(deployment: Deployment, cycle: Cycle) -> float:
+        total_fragmentation = 0.0
+
+        for node in config.nodes.values():
+            total_fragmentation += calc_node_fragmentation(node, cycle)
+
+        return total_fragmentation
+
+    return calc_through_time(config, scenario, schedulers, fragmentation_on_each_cycle)
