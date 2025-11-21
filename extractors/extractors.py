@@ -1,3 +1,4 @@
+import json
 import statistics
 from typing import List
 
@@ -10,6 +11,7 @@ from extractors.logic import (
     calc_edge_ratio_through_time,
     calc_edge_utilization_through_time,
     calc_pod_count_through_time,
+    calc_fragmentation_through_time,
 )
 from extractors.utils import (
     ensure_directory,
@@ -48,14 +50,7 @@ def pod_count_linechart(
                 markevery=marker_interval,
             )
         max_val = (
-            int(
-                np.max(
-                    np.concatenate(
-                        [pod_counts[sched][deployment] for sched in schedulers]
-                    )
-                )
-            )
-            + 1
+            int(np.max(np.concatenate([pod_counts[sched][deployment] for sched in schedulers]))) + 1
         )
         ax.set_ylim(0, max_val)
         ax.set_yticks(range(0, max_val, 1))
@@ -75,19 +70,13 @@ def pod_count_linechart(
 
     all_pod_counts = {
         sched: merge_lists_by_sum(
-            *[
-                pod_counts[sched][deployment]
-                for deployment in config.deployments.values()
-            ]
+            *[pod_counts[sched][deployment] for deployment in config.deployments.values()]
         )
         for sched in schedulers
     }
     all_timestamps = {
         sched: merge_lists_by_average(
-            *[
-                timestamps[sched][deployment]
-                for deployment in config.deployments.values()
-            ]
+            *[timestamps[sched][deployment] for deployment in config.deployments.values()]
         )
         for sched in schedulers
     }
@@ -104,9 +93,7 @@ def pod_count_linechart(
             marker=MARKERS[ind],
             markevery=markevery,
         )
-    max_val = (
-        int(np.max(np.concatenate([all_pod_counts[sched] for sched in schedulers]))) + 1
-    )
+    max_val = int(np.max(np.concatenate([all_pod_counts[sched] for sched in schedulers]))) + 1
     ax.set_ylim(0, max_val)
     ax.set_yticks(range(0, max_val, 1))
     plt.xlabel("time(s)")
@@ -131,9 +118,7 @@ def average_latency_linechart(
     schedulers: List[Scheduler],
     save_path: str,
 ) -> None:
-    latencies, timestamps = calc_average_latency_through_time(
-        config, scenario, schedulers
-    )
+    latencies, timestamps = calc_average_latency_through_time(config, scenario, schedulers)
 
     for deployment in config.deployments.values():
         fig, ax = plt.subplots()
@@ -226,9 +211,7 @@ def edge_utilization_linechart(
     schedulers: List[Scheduler],
     save_path: str,
 ) -> None:
-    edge_utilization, timestamps = calc_edge_utilization_through_time(
-        config, scenario, schedulers
-    )
+    edge_utilization, timestamps = calc_edge_utilization_through_time(config, scenario, schedulers)
 
     fig, ax = plt.subplots()
     marker_interval = 2
@@ -267,9 +250,7 @@ def all_data_tables(
     schedulers: List[Scheduler],
     save_path: str,
 ) -> None:
-    edge_utilization, _ = calc_edge_utilization_through_time(
-        config, scenario, schedulers
-    )
+    edge_utilization, _ = calc_edge_utilization_through_time(config, scenario, schedulers)
     edge_ratio_for_each_deployment, edge_ratio_overall = calc_edge_ratio_through_time(
         config, scenario, schedulers
     )
@@ -284,9 +265,32 @@ def all_data_tables(
             f.write(f"{statistics.mean(edge_utilization[sched]):.2f},")
             f.write(f"{statistics.mean(edge_ratio_overall[sched]):.2f},")
             for ind, deployment in enumerate(config.deployments.values()):
-                f.write(
-                    f"{statistics.mean(edge_ratio_for_each_deployment[sched][deployment]):.2f}"
-                )
+                f.write(f"{statistics.mean(edge_ratio_for_each_deployment[sched][deployment]):.2f}")
                 if ind != len(config.deployments.values()) - 1:
                     f.write(",")
             f.write("\n")
+
+
+@register_extractor
+def fragmentation_data(
+    config: Config,
+    scenario: ScenarioData,
+    schedulers: List[Scheduler],
+    save_path: str,
+) -> None:
+    frags, timestamps = calc_fragmentation_through_time(config, scenario, schedulers)
+
+    result = {}
+
+    for scheduler, frags in frags.items():
+        frags_avg = np.mean(frags, axis=0)
+        result[scheduler.name] = frags_avg
+
+    result_json = json.dumps(
+        {
+            scenario.name: result,
+        }
+    )
+    with open(f"{save_path}/result.csv", "a") as fp:
+        fp.write(result_json)
+        fp.write("\n")
