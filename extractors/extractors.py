@@ -10,8 +10,8 @@ from extractors.logic import (
     calc_average_latency_through_time,
     calc_edge_ratio_through_time,
     calc_edge_utilization_through_time,
-    calc_pod_count_through_time,
     calc_fragmentation_through_time,
+    calc_pod_count_through_time,
 )
 from extractors.utils import (
     ensure_directory,
@@ -98,7 +98,7 @@ def pod_count_linechart(
     ax.set_yticks(range(0, max_val, 1))
     plt.xlabel("time(s)")
     plt.ylabel("pod count")
-    plt.title(f"pod count - workload total")
+    plt.title("pod count - workload total")
     plt.legend(
         loc="upper center",
         bbox_to_anchor=(0.5, -0.1),
@@ -291,6 +291,9 @@ def fragmentation_data(
             scenario.name: result,
         }
     )
-    with open(f"{save_path}/result.csv", "a") as fp:
+
+    ensure_directory("./results/fragmentation_data")
+
+    with open("./results/fragmentation_data/result.json", "a") as fp:
         fp.write(result_json)
         fp.write("\n")
