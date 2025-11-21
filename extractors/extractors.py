@@ -294,6 +294,6 @@ def fragmentation_data(
 
     ensure_directory("./results/fragmentation_data")
 
-    with open("./results/fragmentation_data/result.json", "a") as fp:
+    with open("./results/fragmentation_data/model-fragmentation.json", "a") as fp:
         fp.write(result_json)
         fp.write("\n")
