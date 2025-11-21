@@ -2,11 +2,11 @@ import math
 from typing import Callable, Dict, List, Tuple, TypeVar
 
 from extractors.utils import (
+    calc_node_fragmentation,
     calculate_edge_usage_sum,
     calculate_placement_for_deployment,
     calculate_pod_count_for_deployment,
     merge_lists_by_average,
-    calc_node_fragmentation,
 )
 from historical.common import Deployment, Scheduler
 from historical.config import Config
@@ -42,14 +42,10 @@ def calc_through_time(
                 current_results_lists.append(
                     [on_each_cycle(deployment, cycle) for cycle in history.cycles]
                 )
-                current_timestamps_lists.append(
-                    [cycle.timestamp for cycle in history.cycles]
-                )
+                current_timestamps_lists.append([cycle.timestamp for cycle in history.cycles])
 
             results[sched][deployment] = merge_lists_by_average(*current_results_lists)
-            timestamps[sched][deployment] = merge_lists_by_average(
-                *current_timestamps_lists
-            )
+            timestamps[sched][deployment] = merge_lists_by_average(*current_timestamps_lists)
 
     return results, timestamps
 
@@ -63,9 +59,7 @@ def calc_average_latency_through_time(
     Dict[Scheduler, Dict[Deployment, List[float]]],
 ]:
     def latency_on_each_cycle(deployment: Deployment, cycle: Cycle) -> float:
-        cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(
-            cycle, deployment
-        )
+        cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(cycle, deployment)
         all_pods_count = cloud_pods_count + edge_pods_count
         return (
             cloud_pods_count * config.CLOUD_RESPONSE_TIME
@@ -100,8 +94,7 @@ def calc_edge_utilization_through_time(
             edge_usage_sum_memory = edge_total_memory
 
         utilization = math.sqrt(
-            (edge_usage_sum_cpu / edge_total_cpu)
-            * (edge_usage_sum_memory / edge_total_memory)
+            (edge_usage_sum_cpu / edge_total_cpu) * (edge_usage_sum_memory / edge_total_memory)
         )
 
         return utilization
@@ -111,9 +104,7 @@ def calc_edge_utilization_through_time(
     )
     any_deployment = next(iter(config.deployments.values()))
     res = {sched: res_by_deployment[sched][any_deployment] for sched in schedulers}
-    timestamps = {
-        sched: timestamps_by_deployment[sched][any_deployment] for sched in schedulers
-    }
+    timestamps = {sched: timestamps_by_deployment[sched][any_deployment] for sched in schedulers}
 
     return res, timestamps
 
@@ -140,12 +131,8 @@ def calc_edge_ratio_through_time(
     Dict[Scheduler, Dict[Deployment, List[float]]],
     Dict[Scheduler, List[float]],
 ]:
-    def deployment_edge_ratio_on_each_cycle(
-        deployment: Deployment, cycle: Cycle
-    ) -> float:
-        cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(
-            cycle, deployment
-        )
+    def deployment_edge_ratio_on_each_cycle(deployment: Deployment, cycle: Cycle) -> float:
+        cloud_pods_count, edge_pods_count = calculate_placement_for_deployment(cycle, deployment)
         all_pods_count = cloud_pods_count + edge_pods_count
         return edge_pods_count / all_pods_count
 
@@ -171,8 +158,7 @@ def calc_edge_ratio_through_time(
 
     any_deployment = next(iter(config.deployments.values()))
     edge_ratio_overall = {
-        sched: edge_ratio_overall_but_by_deployment[sched][any_deployment]
-        for sched in schedulers
+        sched: edge_ratio_overall_but_by_deployment[sched][any_deployment] for sched in schedulers
     }
 
     return edge_ratio_for_each_deployment, edge_ratio_overall
@@ -183,15 +169,20 @@ def calc_fragmentation_through_time(
     scenario: ScenarioData,
     schedulers: List[Scheduler],
 ) -> Tuple[
-    Dict[Scheduler, Dict[Deployment, List[float]]],
-    Dict[Scheduler, Dict[Deployment, List[float]]],
+    Dict[Scheduler, List[float]],
+    Dict[Scheduler, List[float]],
 ]:
-    def fragmentation_on_each_cycle(deployment: Deployment, cycle: Cycle) -> float:
-        total_fragmentation = 0.0
+    def fragmentation_on_each_cycle(_: Deployment, cycle: Cycle) -> float:
+        return sum(calc_node_fragmentation(node, cycle) for node in config.nodes.values()) / len(
+            config.nodes
+        )
 
-        for node in config.nodes.values():
-            total_fragmentation += calc_node_fragmentation(node, cycle)
+    frag_by_deploy, timestamp_by_deploy = calc_through_time(
+        config, scenario, schedulers, fragmentation_on_each_cycle
+    )
 
-        return total_fragmentation
+    any_deployment = next(iter(config.deployments.values()))
+    res = {sched: frag_by_deploy[sched][any_deployment] for sched in schedulers}
+    timestamps = {sched: timestamp_by_deploy[sched][any_deployment] for sched in schedulers}
 
-    return calc_through_time(config, scenario, schedulers, fragmentation_on_each_cycle)
+    return res, timestamps
