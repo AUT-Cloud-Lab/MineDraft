@@ -2,9 +2,9 @@ from types import SimpleNamespace
 
 import pytest
 
-from extractors.utils import calc_node_used_resources, calc_node_fragmentation
-from historical.common import Node, Deployment
-from historical.data import Cycle, PodPlacement, HpaState
+from extractors.utils import calc_node_fragmentation, calc_node_used_resources
+from historical.common import Deployment, Node
+from historical.data import Cycle, HpaState, PodPlacement
 
 
 def test_calc_node_used_resources():
@@ -50,6 +50,20 @@ def test_calc_node_used_resources():
                 }
             ),
             "expected": (10, 10),
+        },
+        "node doesn't exist in pod_placement": {
+            "node": Node(name="some other node name", is_on_edge=True, resources=[10, 10]),
+            "pod_placement": PodPlacement(
+                node_pods={
+                    Node(name="some name", is_on_edge=True, resources=[10, 10]): [
+                        Deployment(name="a", resources=[1, 4]),
+                        Deployment(name="a", resources=[2, 3]),
+                        Deployment(name="a", resources=[3, 2]),
+                        Deployment(name="a", resources=[4, 1]),
+                    ]
+                }
+            ),
+            "expected": (0, 0),
         },
     }
 

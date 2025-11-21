@@ -5,9 +5,7 @@ from historical.common import Deployment, Node
 from historical.data import Cycle, PodPlacement
 
 
-def get_nodes_of_a_deployment(
-    pod_placement: PodPlacement, deployment: Deployment
-) -> List[Node]:
+def get_nodes_of_a_deployment(pod_placement: PodPlacement, deployment: Deployment) -> List[Node]:
     nodes = []
     for node, pods in pod_placement.node_pods.items():
         for pod in pods:
@@ -43,9 +41,7 @@ def calculate_edge_pod_count_for_deployment(cycle: Cycle, target: Deployment) ->
     return pod_count
 
 
-def calculate_placement_for_deployment(
-    cycle: Cycle, target: Deployment
-) -> Tuple[int, int]:
+def calculate_placement_for_deployment(cycle: Cycle, target: Deployment) -> Tuple[int, int]:
     cloud_count = 0
     edge_count = 0
     for node, pods in cycle.pod_placement.node_pods.items():
@@ -84,18 +80,14 @@ def calculate_cluster_usage_sum(cycle: Cycle) -> Tuple[float, float]:
     return cpu_sum, memory_sum
 
 
-def calculate_resource_usage_for_node(
-    cycle: Cycle, desired_node: Node
-) -> Tuple[float, float]:
+def calculate_resource_usage_for_node(cycle: Cycle, desired_node: Node) -> Tuple[float, float]:
     cpu_usage = 0
     memory_usage = 0
     for pod in cycle.pod_placement.node_pods[desired_node]:
         cpu_usage += pod.resources[0]
         memory_usage += pod.resources[1]
 
-    return (cpu_usage / desired_node.resources[0]), (
-        memory_usage / desired_node.resources[1]
-    )
+    return (cpu_usage / desired_node.resources[0]), (memory_usage / desired_node.resources[1])
 
 
 def ensure_directory(save_path):
@@ -139,7 +131,7 @@ def merge_for_each_deployment(
 
 
 def calc_node_used_resources(node: Node, cycle: Cycle) -> Tuple[float, float]:
-    pods = cycle.pod_placement.node_pods[node]
+    pods = cycle.pod_placement.node_pods.get(node, [])
     used_cpu = sum(map(lambda pod: pod.resources[0], pods))
     used_memory = sum(map(lambda pod: pod.resources[1], pods))
 
