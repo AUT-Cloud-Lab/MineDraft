@@ -1,3 +1,4 @@
+import os
 import statistics
 from typing import List
 
@@ -9,6 +10,7 @@ from extractors.logic import (
     calc_average_latency_through_time,
     calc_edge_ratio_through_time,
     calc_edge_utilization_through_time,
+    calc_fragmentation_through_time,
     calc_pod_count_through_time,
 )
 from extractors.utils import (
@@ -290,3 +292,26 @@ def all_data_tables(
                 if ind != len(config.deployments.values()) - 1:
                     f.write(",")
             f.write("\n")
+
+
+@register_extractor
+def fragmentation_data(
+    config: Config,
+    scenario: ScenarioData,
+    schedulers: List[Scheduler],
+    save_path: str,
+) -> None:
+    frags, _ = calc_fragmentation_through_time(config, scenario, schedulers)
+
+    avg_frags = {sched: statistics.mean(frags[sched]) for sched in schedulers}
+
+    parent_dir = os.path.dirname(save_path)
+    file_path = os.path.join(parent_dir, "fragmentation.csv")
+
+    file_exists = os.path.exists(file_path)
+
+    with open(file_path, "a") as f:
+        if not file_exists:
+            f.write("scheduler,scenario,average_frag\n")
+        for sched in schedulers:
+            f.write(f"{sched.name},{scenario.name},{avg_frags[sched]:.2f}\n")

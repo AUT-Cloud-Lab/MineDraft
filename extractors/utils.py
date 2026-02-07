@@ -99,6 +99,21 @@ def calculate_resource_usage_for_node(
     )
 
 
+def calc_node_used_resources(node: Node, cycle: Cycle) -> Tuple[float, float]:
+    pods = cycle.pod_placement.node_pods.get(node, [])
+    used_cpu = sum(map(lambda pod: pod.resources[0], pods))
+    used_memory = sum(map(lambda pod: pod.resources[1], pods))
+
+    return used_cpu, used_memory
+
+
+def calc_node_fragmentation(node: Node, cycle: Cycle) -> float:
+    (used_cpu, used_memory) = calc_node_used_resources(node, cycle)
+    (total_cpu, total_memory) = node.resources
+
+    return 1 - ((used_cpu / total_cpu) * (used_memory / total_memory))
+
+
 def ensure_directory(save_path):
     if not os.path.exists(save_path):
         os.makedirs(save_path)
@@ -131,7 +146,7 @@ def merge_lists_by_sum(*lists):
 
 
 def merge_for_each_deployment(
-    results: List[Dict[Deployment, Any]]
+    results: List[Dict[Deployment, Any]],
 ) -> Dict[Deployment, Any]:
     res = {}
     for deployment in results[0].keys():

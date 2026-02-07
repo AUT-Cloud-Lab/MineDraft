@@ -5,6 +5,7 @@ from extractors.utils import (
     calculate_edge_usage_sum,
     calculate_placement_for_deployment,
     calculate_pod_count_for_deployment,
+    calc_node_fragmentation,
     merge_lists_by_average,
 )
 from historical.common import Deployment, Scheduler
@@ -78,7 +79,10 @@ def calc_edge_utilization_through_time(
     config: Config,
     scenario: ScenarioData,
     schedulers: List[Scheduler],
-) -> Tuple[Dict[Scheduler, List[float]], Dict[Scheduler, List[float]],]:
+) -> Tuple[
+    Dict[Scheduler, List[float]],
+    Dict[Scheduler, List[float]],
+]:
     def edge_utilization_on_each_cycle(deployment: Deployment, cycle: Cycle) -> float:
         edge_total_cpu, edge_total_memory = config.get_edge_resources()
         edge_usage_sum_cpu, edge_usage_sum_memory = calculate_edge_usage_sum(cycle)
@@ -172,3 +176,29 @@ def calc_edge_ratio_through_time(
     }
 
     return edge_ratio_for_each_deployment, edge_ratio_overall
+
+
+def calc_fragmentation_through_time(
+    config: Config,
+    scenario: ScenarioData,
+    schedulers: List[Scheduler],
+) -> Tuple[
+    Dict[Scheduler, List[float]],
+    Dict[Scheduler, List[float]],
+]:
+    def fragmentation_on_each_cycle(_: Deployment, cycle: Cycle) -> float:
+        return sum(
+            calc_node_fragmentation(node, cycle) for node in config.nodes.values()
+        ) / len(config.nodes)
+
+    frag_by_deploy, timestamp_by_deploy = calc_through_time(
+        config, scenario, schedulers, fragmentation_on_each_cycle
+    )
+
+    any_deployment = next(iter(config.deployments.values()))
+    res = {sched: frag_by_deploy[sched][any_deployment] for sched in schedulers}
+    timestamps = {
+        sched: timestamp_by_deploy[sched][any_deployment] for sched in schedulers
+    }
+
+    return res, timestamps
