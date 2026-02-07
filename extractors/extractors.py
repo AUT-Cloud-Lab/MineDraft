@@ -342,3 +342,39 @@ def edge_utilization_data(
             f.write("scheduler,scenario,average_edge_utilization\n")
         for sched in schedulers:
             f.write(f"{sched.name},{scenario.name},{avg_edge_utilization[sched]:.2f}\n")
+
+@register_extractor
+def latency_data(
+    config: Config,
+    scenario: ScenarioData,
+    schedulers: List[Scheduler],
+    save_path: str,
+) -> None:
+    latencies, _ = calc_average_latency_through_time(config, scenario, schedulers)
+
+    avg_latencies_per_deployment = {
+        sched: {
+            deployment: statistics.mean(latencies[sched][deployment])
+            for deployment in config.deployments.values()
+        }
+        for sched in schedulers
+    }
+
+    parent_dir = os.path.dirname(save_path)
+    file_path = os.path.join(parent_dir, "latency.csv")
+
+    file_exists = os.path.exists(file_path)
+
+    with open(file_path, "a") as f:
+        if not file_exists:
+            header = "scheduler,scenario," + ",".join(
+                f"{deployment.name}_latency"
+                for deployment in config.deployments.values()
+            )
+            f.write(header + "\n")
+        for sched in schedulers:
+            values = ",".join(
+                f"{avg_latencies_per_deployment[sched][deployment]:.2f}"
+                for deployment in config.deployments.values()
+            )
+            f.write(f"{sched.name},{scenario.name},{values}\n")

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-EXTRACTORS="fragmentation_data edge_utilization_data"
+EXTRACTORS="fragmentation_data edge_utilization_data latency_data"
 SCENARIOS="normal_scenario_1.1_0.4 normal_scenario_1.2_0.4 normal_scenario_1.3_0.4 normal_scenario_1.4_0.4 normal_scenario_1.5_0.1 normal_scenario_1.5_0.2 normal_scenario_1.5_0.3 normal_scenario_1.5_0.4 normal_scenario_1.5_0.5 normal_scenario_1.6_0.4"
 SCHEDULERS="kube-schedule ecmus-qos-aware smallest-edge-first-scheduler biggest-edge-first-scheduler cloud-first-scheduler"
 
