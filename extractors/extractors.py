@@ -315,3 +315,30 @@ def fragmentation_data(
             f.write("scheduler,scenario,average_frag\n")
         for sched in schedulers:
             f.write(f"{sched.name},{scenario.name},{avg_frags[sched]:.2f}\n")
+
+
+@register_extractor
+def edge_utilization_data(
+    config: Config,
+    scenario: ScenarioData,
+    schedulers: List[Scheduler],
+    save_path: str,
+) -> None:
+    edge_utilization, _ = calc_edge_utilization_through_time(
+        config, scenario, schedulers
+    )
+
+    avg_edge_utilization = {
+        sched: statistics.mean(edge_utilization[sched]) for sched in schedulers
+    }
+
+    parent_dir = os.path.dirname(save_path)
+    file_path = os.path.join(parent_dir, "edge_utilization.csv")
+
+    file_exists = os.path.exists(file_path)
+
+    with open(file_path, "a") as f:
+        if not file_exists:
+            f.write("scheduler,scenario,average_edge_utilization\n")
+        for sched in schedulers:
+            f.write(f"{sched.name},{scenario.name},{avg_edge_utilization[sched]:.2f}\n")
